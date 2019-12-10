@@ -105,7 +105,10 @@ cd muir-lib
 sbt publishLocal
 ```
 
-
+## Clone muIR-sim 
+``` bash 
+git cloe --recursive git@github.com:sfu-arch/muir-sim.git
+```
 ## Running muIR-sim
 
 * Publish muIR-lib
