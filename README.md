@@ -119,7 +119,7 @@ git clone --recursive git@github.com:sfu-arch/muir-sim.git
 
 * Build hardware accelerator library
 
-        make run_chisel NPROCS=4
+        make 
 
 * Instal python binding:
 
