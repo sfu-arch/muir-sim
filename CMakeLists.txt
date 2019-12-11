@@ -16,7 +16,7 @@
 # under the License.
 
 cmake_minimum_required(VERSION 3.8)
-project(tsim C CXX)
+project(C CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -39,9 +39,9 @@ endif()
 
 add_subdirectory(software)
 #add_executable(tsim ${CMAKE_CURRENT_SOURCE_DIR}/src/driver_main.cc)
-add_executable(tsim ${CMAKE_CURRENT_SOURCE_DIR}/src/driver_test09.cc)
+# add_executable(tsim ${CMAKE_CURRENT_SOURCE_DIR}/src/driver_test09.cc)
 
-target_link_libraries(tsim sw pthread dl)
+# target_link_libraries(tsim sw pthread dl)
 
 # Adding pybind11
 add_subdirectory(pybind11)
