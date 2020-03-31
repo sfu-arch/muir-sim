@@ -23,8 +23,8 @@ import regfile._
 import util._
 
 
-class test08DF(ArgsIn: Seq[Int] = List(32, 32), Returns: Seq[Int] = List(32))
-			(implicit p: Parameters) extends DandelionAccelModule(ArgsIn, Returns){
+class test08DF(PtrsIn: Seq[Int] = List(32), ValsIn: Seq[Int] = List(32), Returns: Seq[Int] = List(32))
+			(implicit p: Parameters) extends DandelionAccelDCRModule(PtrsIn, ValsIn, Returns){
 
 
   /* ================================================================== *
@@ -32,15 +32,15 @@ class test08DF(ArgsIn: Seq[Int] = List(32, 32), Returns: Seq[Int] = List(32))
    * ================================================================== */
 
   val MemCtrl = Module(new UnifiedController(ID = 0, Size = 32, NReads = 3, NWrites = 3)
-  (WControl = new WriteMemoryController(NumOps = 3, BaseSize = 2, NumEntries = 2))
-  (RControl = new ReadMemoryController(NumOps = 3, BaseSize = 2, NumEntries = 2))
+  (WControl = new WriteMemoryController(NumOps = 3, BaseSize = 2, NumEntries = 2, Serialize = true))
+  (RControl = new ReadMemoryController(NumOps = 3, BaseSize = 2, NumEntries = 2, Serialize = true))
   (RWArbiter = new ReadWriteArbiter()))
 
   io.MemReq <> MemCtrl.io.MemReq
   MemCtrl.io.MemResp <> io.MemResp
 
-  val InputSplitter = Module(new SplitCallNew(List(3, 6)))
-  InputSplitter.io.In <> io.in
+  val ArgSplitter = Module(new SplitCallDCR(ptrsArgTypes = List(3), valsArgTypes = List(6)))
+  ArgSplitter.io.In <> io.in
 
 
 
@@ -50,9 +50,9 @@ class test08DF(ArgsIn: Seq[Int] = List(32, 32), Returns: Seq[Int] = List(32))
 
   val Loop_0 = Module(new LoopBlockNode(NumIns = List(1, 1), NumOuts = List(), NumCarry = List(1), NumExits = 1, ID = 0))
 
-  val Loop_1 = Module(new LoopBlockNode(NumIns = List(1, 1, 1, 1, 2), NumOuts = List(), NumCarry = List(1), NumExits = 1, ID = 1))
+  val Loop_1 = Module(new LoopBlockNode(NumIns = List(1, 2, 1, 1, 1), NumOuts = List(), NumCarry = List(1), NumExits = 1, ID = 1))
 
-  val Loop_2 = Module(new LoopBlockNode(NumIns = List(1, 1, 1, 1, 1, 1, 2), NumOuts = List(1), NumCarry = List(1, 1), NumExits = 1, ID = 2))
+  val Loop_2 = Module(new LoopBlockNode(NumIns = List(1, 1, 2, 1, 1, 1, 1), NumOuts = List(1), NumCarry = List(1, 1), NumExits = 1, ID = 2))
 
 
 
@@ -277,7 +277,7 @@ class test08DF(ArgsIn: Seq[Int] = List(32, 32), Returns: Seq[Int] = List(32))
    *                   BASICBLOCK -> PREDICATE INSTRUCTION              *
    * ================================================================== */
 
-  bb_entry0.io.predicateIn(0) <> InputSplitter.io.Out.enable
+  bb_entry0.io.predicateIn(0) <> ArgSplitter.io.Out.enable
 
   bb_for_body4_preheader3.io.predicateIn(0) <> br_15.io.FalseOutput(0)
 
@@ -359,31 +359,31 @@ class test08DF(ArgsIn: Seq[Int] = List(32, 32), Returns: Seq[Int] = List(32))
 
   Loop_0.io.InLiveIn(0) <> Loop_1.io.OutLiveIn.elements("field0")(0)
 
-  Loop_0.io.InLiveIn(1) <> Loop_1.io.OutLiveIn.elements("field1")(0)
+  Loop_0.io.InLiveIn(1) <> Loop_1.io.OutLiveIn.elements("field0")(0)
 
-  Loop_1.io.InLiveIn(0) <> Loop_2.io.OutLiveIn.elements("field3")(0)
+  Loop_1.io.InLiveIn(0) <> Loop_2.io.OutLiveIn.elements("field0")(0)
 
-  Loop_1.io.InLiveIn(1) <> Loop_2.io.OutLiveIn.elements("field2")(0)
+  Loop_1.io.InLiveIn(1) <> Loop_2.io.OutLiveIn.elements("field1")(0)
 
-  Loop_1.io.InLiveIn(2) <> Loop_2.io.OutLiveIn.elements("field1")(0)
+  Loop_1.io.InLiveIn(2) <> Loop_2.io.OutLiveIn.elements("field2")(0)
 
-  Loop_1.io.InLiveIn(3) <> Loop_2.io.OutLiveIn.elements("field5")(0)
+  Loop_1.io.InLiveIn(3) <> Loop_2.io.OutLiveIn.elements("field1")(0)
 
-  Loop_1.io.InLiveIn(4) <> Loop_2.io.OutLiveIn.elements("field4")(0)
+  Loop_1.io.InLiveIn(4) <> Loop_2.io.OutLiveIn.elements("field3")(0)
 
-  Loop_2.io.InLiveIn(0) <> icmp_cmp2480.io.Out(0)
+  Loop_2.io.InLiveIn(0) <> ArgSplitter.io.Out.dataPtrs.elements("field0")(0)
 
-  Loop_2.io.InLiveIn(1) <> icmp_cmp6461.io.Out(0)
+  Loop_2.io.InLiveIn(1) <> Gep_arrayidx124.io.Out(0)
 
-  Loop_2.io.InLiveIn(2) <> InputSplitter.io.Out.data.elements("field0")(0)
+  Loop_2.io.InLiveIn(2) <> Gep_arrayidx197.io.Out(0)
 
-  Loop_2.io.InLiveIn(3) <> sextwide_trip_count8.io.Out(0)
+  Loop_2.io.InLiveIn(3) <> icmp_cmp2480.io.Out(0)
 
-  Loop_2.io.InLiveIn(4) <> Gep_arrayidx124.io.Out(0)
+  Loop_2.io.InLiveIn(4) <> icmp_cmp6461.io.Out(0)
 
-  Loop_2.io.InLiveIn(5) <> InputSplitter.io.Out.data.elements("field1")(0)
+  Loop_2.io.InLiveIn(5) <> sextwide_trip_count8.io.Out(0)
 
-  Loop_2.io.InLiveIn(6) <> Gep_arrayidx197.io.Out(0)
+  Loop_2.io.InLiveIn(6) <> ArgSplitter.io.Out.dataVals.elements("field0")(0)
 
 
 
@@ -391,23 +391,23 @@ class test08DF(ArgsIn: Seq[Int] = List(32, 32), Returns: Seq[Int] = List(32))
    *                   LOOP DATA LIVE-IN DEPENDENCIES                   *
    * ================================================================== */
 
+  Gep_arrayidx36.io.baseAddress <> Loop_0.io.OutLiveIn.elements("field0")(0)
+
   icmp_exitcond41.io.RightIO <> Loop_0.io.OutLiveIn.elements("field0")(0)
 
-  Gep_arrayidx36.io.baseAddress <> Loop_0.io.OutLiveIn.elements("field1")(0)
+  ld_29.io.GepAddr <> Loop_1.io.OutLiveIn.elements("field1")(0)
 
-  br_26.io.CmpIO <> Loop_1.io.OutLiveIn.elements("field2")(0)
+  st_31.io.GepAddr <> Loop_1.io.OutLiveIn.elements("field1")(1)
 
-  icmp_exitcond5233.io.RightIO <> Loop_1.io.OutLiveIn.elements("field3")(0)
+  br_26.io.CmpIO <> Loop_1.io.OutLiveIn.elements("field1")(0)
 
-  ld_29.io.GepAddr <> Loop_1.io.OutLiveIn.elements("field4")(0)
+  icmp_exitcond5233.io.RightIO <> Loop_1.io.OutLiveIn.elements("field2")(0)
 
-  st_31.io.GepAddr <> Loop_1.io.OutLiveIn.elements("field4")(1)
+  ld_18.io.GepAddr <> Loop_2.io.OutLiveIn.elements("field2")(0)
+
+  st_21.io.GepAddr <> Loop_2.io.OutLiveIn.elements("field2")(1)
 
   br_15.io.CmpIO <> Loop_2.io.OutLiveIn.elements("field0")(0)
-
-  ld_18.io.GepAddr <> Loop_2.io.OutLiveIn.elements("field6")(0)
-
-  st_21.io.GepAddr <> Loop_2.io.OutLiveIn.elements("field6")(1)
 
 
 
@@ -768,19 +768,19 @@ class test08DF(ArgsIn: Seq[Int] = List(32, 32), Returns: Seq[Int] = List(32))
 
   br_42.io.CmpIO <> icmp_exitcond41.io.Out(0)
 
-  Gep_arrayidx124.io.baseAddress <> InputSplitter.io.Out.data.elements("field0")(1)
+  Gep_arrayidx124.io.baseAddress <> ArgSplitter.io.Out.dataPtrs.elements("field0")(1)
 
-  Gep_arrayidx197.io.baseAddress <> InputSplitter.io.Out.data.elements("field0")(2)
+  Gep_arrayidx197.io.baseAddress <> ArgSplitter.io.Out.dataPtrs.elements("field0")(2)
 
-  icmp_cmp2480.io.LeftIO <> InputSplitter.io.Out.data.elements("field1")(1)
+  icmp_cmp2480.io.LeftIO <> ArgSplitter.io.Out.dataVals.elements("field0")(1)
 
-  icmp_cmp6461.io.LeftIO <> InputSplitter.io.Out.data.elements("field1")(2)
+  icmp_cmp6461.io.LeftIO <> ArgSplitter.io.Out.dataVals.elements("field0")(2)
 
-  binaryOp_sub2.io.LeftIO <> InputSplitter.io.Out.data.elements("field1")(3)
+  binaryOp_sub2.io.LeftIO <> ArgSplitter.io.Out.dataVals.elements("field0")(3)
 
-  binaryOp_sub175.io.LeftIO <> InputSplitter.io.Out.data.elements("field1")(4)
+  binaryOp_sub175.io.LeftIO <> ArgSplitter.io.Out.dataVals.elements("field0")(4)
 
-  sextwide_trip_count8.io.Input <> InputSplitter.io.Out.data.elements("field1")(5)
+  sextwide_trip_count8.io.Input <> ArgSplitter.io.Out.dataVals.elements("field0")(5)
 
   st_21.io.Out(0).ready := true.B
 
@@ -799,6 +799,8 @@ class test08DF(ArgsIn: Seq[Int] = List(32, 32), Returns: Seq[Int] = List(32))
   br_34.io.PredOp(0) <> st_31.io.SuccOp(0)
 
   br_42.io.PredOp(0) <> st_39.io.SuccOp(0)
+
+
 
   /* ================================================================== *
    *                   PRINTING OUTPUT INTERFACE                        *

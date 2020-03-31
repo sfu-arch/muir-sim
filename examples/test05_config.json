@@ -1,0 +1,16 @@
+{
+    "Accel" : {
+        "nameAccel" : "test05",
+        "numPtrs"  : 1,
+        "numVals"  : 0,
+        "numRets"  : 1,
+        "numEnts"  : 1,
+        "numCtrls" : 1,
+        "dataLen"  : 64,
+
+        "Build" : {
+            "printLog" : true,
+            "cacheLog" : false
+        }
+    }
+}

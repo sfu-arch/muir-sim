@@ -22,11 +22,10 @@ package vta.shell
 import chisel3._
 import chisel3.{RawModule, withClockAndReset}
 import chipsalliance.rocketchip.config._
-import dandelion.accel.DandelionAccelModule
+import dandelion.accel.{DandelionAccelDCRModule, DandelionAccelModule}
 import dandelion.config._
 import dandelion.interfaces.axi._
-import dandelion.dpi._
-import dandelion.shell.{ConfigBusMaster, DandelionCacheShell, DandelionF1DTAShell, DandelionVTAShell, VTAShell}
+import dandelion.shell.{ConfigBusMaster, DandelionF1DTAShell}
 
 /** XilinxShell.
  *
@@ -34,7 +33,7 @@ import dandelion.shell.{ConfigBusMaster, DandelionCacheShell, DandelionF1DTAShel
  * therefore we can pack Dandelion as an IP for IPI based flows.
  */
 
-class DandelionF1Accel[T <: DandelionAccelModule](accelModule: () => T)
+class DandelionF1Accel[T <: DandelionAccelDCRModule](accelModule: () => T)
                                                  (nPtrs: Int, nVals: Int, numRets: Int, numEvents: Int, numCtrls: Int)
                                                  (implicit val p: Parameters) extends RawModule with HasAccelShellParams {
 
