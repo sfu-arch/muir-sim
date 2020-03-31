@@ -123,8 +123,10 @@ def FindExecutable( executable ):
 
 def ParseArguments():
   parser = argparse.ArgumentParser()
-  parser.add_argument( '--build-accel', action='store_true', dest='build',
+  parser.add_argument( '--build-accel', action='store_true', dest='buildsim',
                         help = 'Building accelerator model')
+  parser.add_argument( '--build-f1', action='store_true', dest='buildf1',
+                        help = 'Building accelerator module for AWS F1')
   parser.add_argument( '--build-dsim', action='store_true', dest='dsim',
                         help = 'Building dsim library')
   parser.add_argument( '--accel-config', action = 'store', dest='accel_config', type=dir_path,
@@ -149,6 +151,24 @@ def BuildAccel(config):
     print(bcolors.OKGREEN + " ".join(str(val) for val in ['make', 'chisel'] + make_params) + bcolors.ENDC)
     CheckCall(['make', 'chisel'] + make_params)
 
+def BuildF1Accel(config):
+
+  make_params = [] 
+  with open(config, 'r') as configFile:
+    configData = json.load(configFile)
+    for config in configData['Accel']:
+      if config == 'Build':
+        for build in configData['Accel'][config]:
+          make_params += ["{}={} ".format(str(build), str(configData['Accel'][config][build]))]
+      else:
+        make_params += ["{}={} ".format(str(config), str(configData['Accel'][config]))]
+
+    # print(make_params)
+    print(bcolors.OKGREEN + " ".join(str(val) for val in ['make', 'chisel'] + make_params) + bcolors.ENDC)
+    CheckCall(['make', 'f1', 'TOP=DandelionF1Accel'] + make_params)
+
+
+
 def BuildDsim():
   CheckCall([sys.executable, '-m', 'pip', 'install', '.'])
 
@@ -164,8 +184,10 @@ def Main():
 
   if args.dsim:
     BuildDsim()
-  else:
+  elif args.accel_config:
     BuildAccel(args.accel_config)
+  elif args.buildf1:
+    BuildF1Accel(args.accel_config)
 
 
 if __name__ == "__main__":

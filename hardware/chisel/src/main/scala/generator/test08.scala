@@ -50,9 +50,9 @@ class test08DF(PtrsIn: Seq[Int] = List(32), ValsIn: Seq[Int] = List(32), Returns
 
   val Loop_0 = Module(new LoopBlockNode(NumIns = List(1, 1), NumOuts = List(), NumCarry = List(1), NumExits = 1, ID = 0))
 
-  val Loop_1 = Module(new LoopBlockNode(NumIns = List(1, 2, 1, 1, 1), NumOuts = List(), NumCarry = List(1), NumExits = 1, ID = 1))
+  val Loop_1 = Module(new LoopBlockNode(NumIns = List(1, 1, 1, 1, 2), NumOuts = List(), NumCarry = List(1), NumExits = 1, ID = 1))
 
-  val Loop_2 = Module(new LoopBlockNode(NumIns = List(1, 1, 2, 1, 1, 1, 1), NumOuts = List(1), NumCarry = List(1, 1), NumExits = 1, ID = 2))
+  val Loop_2 = Module(new LoopBlockNode(NumIns = List(1, 1, 1, 1, 1, 1, 2), NumOuts = List(1), NumCarry = List(1, 1), NumExits = 1, ID = 2))
 
 
 
@@ -359,31 +359,31 @@ class test08DF(PtrsIn: Seq[Int] = List(32), ValsIn: Seq[Int] = List(32), Returns
 
   Loop_0.io.InLiveIn(0) <> Loop_1.io.OutLiveIn.elements("field0")(0)
 
-  Loop_0.io.InLiveIn(1) <> Loop_1.io.OutLiveIn.elements("field0")(0)
+  Loop_0.io.InLiveIn(1) <> Loop_1.io.OutLiveIn.elements("field1")(0)
 
-  Loop_1.io.InLiveIn(0) <> Loop_2.io.OutLiveIn.elements("field0")(0)
+  Loop_1.io.InLiveIn(0) <> Loop_2.io.OutLiveIn.elements("field3")(0)
 
-  Loop_1.io.InLiveIn(1) <> Loop_2.io.OutLiveIn.elements("field1")(0)
+  Loop_1.io.InLiveIn(1) <> Loop_2.io.OutLiveIn.elements("field2")(0)
 
-  Loop_1.io.InLiveIn(2) <> Loop_2.io.OutLiveIn.elements("field2")(0)
+  Loop_1.io.InLiveIn(2) <> Loop_2.io.OutLiveIn.elements("field1")(0)
 
-  Loop_1.io.InLiveIn(3) <> Loop_2.io.OutLiveIn.elements("field1")(0)
+  Loop_1.io.InLiveIn(3) <> Loop_2.io.OutLiveIn.elements("field5")(0)
 
-  Loop_1.io.InLiveIn(4) <> Loop_2.io.OutLiveIn.elements("field3")(0)
+  Loop_1.io.InLiveIn(4) <> Loop_2.io.OutLiveIn.elements("field4")(0)
 
-  Loop_2.io.InLiveIn(0) <> ArgSplitter.io.Out.dataPtrs.elements("field0")(0)
+  Loop_2.io.InLiveIn(0) <> icmp_cmp2480.io.Out(0)
 
-  Loop_2.io.InLiveIn(1) <> Gep_arrayidx124.io.Out(0)
+  Loop_2.io.InLiveIn(1) <> icmp_cmp6461.io.Out(0)
 
-  Loop_2.io.InLiveIn(2) <> Gep_arrayidx197.io.Out(0)
+  Loop_2.io.InLiveIn(2) <> ArgSplitter.io.Out.dataPtrs.elements("field0")(0)
 
-  Loop_2.io.InLiveIn(3) <> icmp_cmp2480.io.Out(0)
+  Loop_2.io.InLiveIn(3) <> sextwide_trip_count8.io.Out(0)
 
-  Loop_2.io.InLiveIn(4) <> icmp_cmp6461.io.Out(0)
+  Loop_2.io.InLiveIn(4) <> Gep_arrayidx124.io.Out(0)
 
-  Loop_2.io.InLiveIn(5) <> sextwide_trip_count8.io.Out(0)
+  Loop_2.io.InLiveIn(5) <> ArgSplitter.io.Out.dataVals.elements("field0")(0)
 
-  Loop_2.io.InLiveIn(6) <> ArgSplitter.io.Out.dataVals.elements("field0")(0)
+  Loop_2.io.InLiveIn(6) <> Gep_arrayidx197.io.Out(0)
 
 
 
@@ -391,23 +391,23 @@ class test08DF(PtrsIn: Seq[Int] = List(32), ValsIn: Seq[Int] = List(32), Returns
    *                   LOOP DATA LIVE-IN DEPENDENCIES                   *
    * ================================================================== */
 
-  Gep_arrayidx36.io.baseAddress <> Loop_0.io.OutLiveIn.elements("field0")(0)
-
   icmp_exitcond41.io.RightIO <> Loop_0.io.OutLiveIn.elements("field0")(0)
 
-  ld_29.io.GepAddr <> Loop_1.io.OutLiveIn.elements("field1")(0)
+  Gep_arrayidx36.io.baseAddress <> Loop_0.io.OutLiveIn.elements("field1")(0)
 
-  st_31.io.GepAddr <> Loop_1.io.OutLiveIn.elements("field1")(1)
+  br_26.io.CmpIO <> Loop_1.io.OutLiveIn.elements("field2")(0)
 
-  br_26.io.CmpIO <> Loop_1.io.OutLiveIn.elements("field1")(0)
+  icmp_exitcond5233.io.RightIO <> Loop_1.io.OutLiveIn.elements("field3")(0)
 
-  icmp_exitcond5233.io.RightIO <> Loop_1.io.OutLiveIn.elements("field2")(0)
+  ld_29.io.GepAddr <> Loop_1.io.OutLiveIn.elements("field4")(0)
 
-  ld_18.io.GepAddr <> Loop_2.io.OutLiveIn.elements("field2")(0)
-
-  st_21.io.GepAddr <> Loop_2.io.OutLiveIn.elements("field2")(1)
+  st_31.io.GepAddr <> Loop_1.io.OutLiveIn.elements("field4")(1)
 
   br_15.io.CmpIO <> Loop_2.io.OutLiveIn.elements("field0")(0)
+
+  ld_18.io.GepAddr <> Loop_2.io.OutLiveIn.elements("field6")(0)
+
+  st_21.io.GepAddr <> Loop_2.io.OutLiveIn.elements("field6")(1)
 
 
 
@@ -435,9 +435,9 @@ class test08DF(PtrsIn: Seq[Int] = List(32), ValsIn: Seq[Int] = List(32), Returns
 
   Loop_1.io.CarryDepenIn(0) <> binaryOp_inc1532.io.Out(0)
 
-  Loop_2.io.CarryDepenIn(0) <> binaryOp_add19.io.Out(1)
+  Loop_2.io.CarryDepenIn(0) <> binaryOp_inc2522.io.Out(0)
 
-  Loop_2.io.CarryDepenIn(1) <> binaryOp_inc2522.io.Out(0)
+  Loop_2.io.CarryDepenIn(1) <> binaryOp_add19.io.Out(1)
 
 
 
@@ -449,9 +449,9 @@ class test08DF(PtrsIn: Seq[Int] = List(32), ValsIn: Seq[Int] = List(32), Returns
 
   phij_04925.io.InData(0) <> Loop_1.io.CarryDepenOut.elements("field0")(0)
 
-  phiresult_05014.io.InData(1) <> Loop_2.io.CarryDepenOut.elements("field0")(0)
+  phii_05113.io.InData(1) <> Loop_2.io.CarryDepenOut.elements("field0")(0)
 
-  phii_05113.io.InData(1) <> Loop_2.io.CarryDepenOut.elements("field1")(0)
+  phiresult_05014.io.InData(1) <> Loop_2.io.CarryDepenOut.elements("field1")(0)
 
 
 
