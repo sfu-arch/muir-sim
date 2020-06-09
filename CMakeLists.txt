@@ -13,10 +13,13 @@ option(DSIM "Build dsim binary simulation" OFF)
 
 set(DSIM_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
+set(VERILATOR_ROOT "/usr/local/share/verilator")
 include_directories("${DSIM_DIR}/include")
 include_directories("${DSIM_DIR}/include/dpi")
 include_directories("${DSIM_DIR}/include/dlpack/include")
 include_directories("${DSIM_DIR}/include/dmlc/include")
+include_directories("${VERILATOR_ROOT}/include")
+include_directories("${VERILATOR_ROOT}/include/vltstd")
 
 set(CMAKE_C_FLAGS "-g -O2 -Wall -fPIC")
 set(CMAKE_CXX_STANDARD 14)
