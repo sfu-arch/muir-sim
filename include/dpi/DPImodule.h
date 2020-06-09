@@ -29,6 +29,8 @@
 #include <dlfcn.h>
 #endif
 
+#include <iostream>
+#include <iomanip>
 #include <condition_variable>
 #include <fstream>
 #include <mutex>
@@ -57,6 +59,11 @@ struct HostResponse {
 struct MemResponse {
     uint8_t valid;
     uint64_t value;
+};
+
+struct dpi64_st_t {
+    uint32_t low_32;
+    uint32_t high_64;
 };
 
 template <typename T>
@@ -124,7 +131,7 @@ class MemDevice {
 
    private:
     uint64_t *raddr_{0};
-    svLogicVecVal *waddr_{0};
+    dpi64_st_t *waddr_{0};
     uint32_t rlen_{0};
     uint32_t wlen_{0};
     std::mutex mutex_;
@@ -184,7 +191,7 @@ void MemDevice::SetRequest(uint8_t opcode, uint64_t addr, uint32_t len) {
 
     if (opcode == 1) {
         wlen_ = len + 1;
-        waddr_ = reinterpret_cast<svLogicVecVal *>(vaddr);
+        waddr_ = reinterpret_cast<dpi64_st_t *>(vaddr);
     } else {
         rlen_ = len + 1;
         raddr_ = reinterpret_cast<uint64_t *>(vaddr);
@@ -206,7 +213,10 @@ MemResponse MemDevice::ReadData(uint8_t ready) {
 void MemDevice::WriteData(const svLogicVecVal* value) {
     std::lock_guard<std::mutex> lock(mutex_);
     if (wlen_ > 0) {
-        *waddr_ = *value;
+        value += 1;
+        waddr_->high_64 = value->aval;
+        value--;
+        waddr_->low_32 = value->aval;
         waddr_++;
         wlen_ -= 1;
     }
