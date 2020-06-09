@@ -14,7 +14,7 @@ option(DSIM "Build dsim binary simulation" OFF)
 set(DSIM_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 include_directories("${DSIM_DIR}/include")
-include_directories("${DSIM_DIR}/include/vta")
+include_directories("${DSIM_DIR}/include/dpi")
 include_directories("${DSIM_DIR}/include/dlpack/include")
 include_directories("${DSIM_DIR}/include/dmlc/include")
 
