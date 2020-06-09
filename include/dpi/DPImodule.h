@@ -29,15 +29,24 @@
 #include <dlfcn.h>
 #endif
 
-#include <iostream>
-#include <iomanip>
 #include <condition_variable>
 #include <fstream>
+#include <iomanip>
+#include <iostream>
 #include <mutex>
 #include <queue>
 #include <thread>
 
 #include "virtual_memory.h"
+
+/**
+ * @NOTE: DATA_SIZE is data bit width size of AXI MEM bus
+ * to simulate different AXI MEM  data bit width you have to first set DATA_SIZE
+ * to the desire value and make sure that DATA_SIZE value is the same as
+ * DATA_LEN_MEM in VTAMemDPI.v file
+ */
+#define DATA_SIZE 64
+#define WORD_SIZE 32
 
 namespace vta {
 namespace dpi {
@@ -61,9 +70,8 @@ struct MemResponse {
     uint64_t value;
 };
 
-struct dpi64_st_t {
-    uint32_t low_32;
-    uint32_t high_64;
+struct dpiVec_st_t {
+    uint32_t val[DATA_SIZE / WORD_SIZE];
 };
 
 template <typename T>
@@ -127,11 +135,11 @@ class MemDevice {
    public:
     void SetRequest(uint8_t opcode, uint64_t addr, uint32_t len);
     MemResponse ReadData(uint8_t ready);
-    void WriteData(const svLogicVecVal* value);
+    void WriteData(const svLogicVecVal *value);
 
    private:
     uint64_t *raddr_{0};
-    dpi64_st_t *waddr_{0};
+    dpiVec_st_t *waddr_{0};
     uint32_t rlen_{0};
     uint32_t wlen_{0};
     std::mutex mutex_;
@@ -191,7 +199,7 @@ void MemDevice::SetRequest(uint8_t opcode, uint64_t addr, uint32_t len) {
 
     if (opcode == 1) {
         wlen_ = len + 1;
-        waddr_ = reinterpret_cast<dpi64_st_t *>(vaddr);
+        waddr_ = reinterpret_cast<dpiVec_st_t *>(vaddr);
     } else {
         rlen_ = len + 1;
         raddr_ = reinterpret_cast<uint64_t *>(vaddr);
@@ -210,13 +218,14 @@ MemResponse MemDevice::ReadData(uint8_t ready) {
     return r;
 }
 
-void MemDevice::WriteData(const svLogicVecVal* value) {
+void MemDevice::WriteData(const svLogicVecVal *value) {
     std::lock_guard<std::mutex> lock(mutex_);
     if (wlen_ > 0) {
         value += 1;
-        waddr_->high_64 = value->aval;
-        value--;
-        waddr_->low_32 = value->aval;
+        for (int i = DATA_SIZE / WORD_SIZE - 1; i >= 0; i--) {
+            waddr_->val[i] = value->aval;
+            value--;
+        }
         waddr_++;
         wlen_ -= 1;
     }
@@ -307,8 +316,9 @@ class DPIModule final : public DPIModuleNode {
     }
 
     void MemDPI(dpi8_t req_valid, dpi8_t req_opcode, dpi8_t req_len,
-                dpi64_t req_addr, dpi8_t wr_valid, const svLogicVecVal* wr_value,
-                dpi8_t *rd_valid, dpi64_t *rd_value, dpi8_t rd_ready) {
+                dpi64_t req_addr, dpi8_t wr_valid,
+                const svLogicVecVal *wr_value, dpi8_t *rd_valid,
+                dpi64_t *rd_value, dpi8_t rd_ready) {
         MemResponse r = mem_device_.ReadData(rd_ready);
         *rd_valid = r.valid;
         *rd_value = r.value;
@@ -335,8 +345,9 @@ class DPIModule final : public DPIModuleNode {
 
     static void VTAMemDPI(VTAContextHandle self, dpi8_t req_valid,
                           dpi8_t req_opcode, dpi8_t req_len, dpi64_t req_addr,
-                          dpi8_t wr_valid, const svLogicVecVal* wr_value, dpi8_t *rd_valid,
-                          dpi64_t *rd_value, dpi8_t rd_ready) {
+                          dpi8_t wr_valid, const svLogicVecVal *wr_value,
+                          dpi8_t *rd_valid, dpi64_t *rd_value,
+                          dpi8_t rd_ready) {
         static_cast<DPIModule *>(self)->MemDPI(req_valid, req_opcode, req_len,
                                                req_addr, wr_valid, wr_value,
                                                rd_valid, rd_value, rd_ready);
