@@ -24,4 +24,5 @@ val_n = 3
 events = dsim.sim(ptrs = [a_s], vars= [val_n], debugs=[],numRets=1, numEvents=1, hwlib = hw_lib_path)
 
 print("Cycle: " + str(events[0]))
+print(val_a)
 print(a_s.getData_UInt64())

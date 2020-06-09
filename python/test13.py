@@ -26,6 +26,7 @@ elif platform.system() == 'Darwin':
 
 
 a = init()
+# a = [ 7.8,  7.34,17.76,17.02,13.74 ]
 a_s = dsim.DArray(a, Type.Double)
 b_s = dsim.DArray(np.zeros(data_size), Type.Double)
 
@@ -42,5 +43,4 @@ else:
     print("Failed!\nRet: ")
     print(b_s.getData_Double())
     print(" --- Expected: " + str(res))
-    print(res)
 

@@ -120,11 +120,11 @@ class MemDevice {
    public:
     void SetRequest(uint8_t opcode, uint64_t addr, uint32_t len);
     MemResponse ReadData(uint8_t ready);
-    void WriteData(uint64_t value);
+    void WriteData(const svLogicVecVal* value);
 
    private:
     uint64_t *raddr_{0};
-    uint64_t *waddr_{0};
+    svLogicVecVal *waddr_{0};
     uint32_t rlen_{0};
     uint32_t wlen_{0};
     std::mutex mutex_;
@@ -184,7 +184,7 @@ void MemDevice::SetRequest(uint8_t opcode, uint64_t addr, uint32_t len) {
 
     if (opcode == 1) {
         wlen_ = len + 1;
-        waddr_ = reinterpret_cast<uint64_t *>(vaddr);
+        waddr_ = reinterpret_cast<svLogicVecVal *>(vaddr);
     } else {
         rlen_ = len + 1;
         raddr_ = reinterpret_cast<uint64_t *>(vaddr);
@@ -203,10 +203,10 @@ MemResponse MemDevice::ReadData(uint8_t ready) {
     return r;
 }
 
-void MemDevice::WriteData(uint64_t value) {
+void MemDevice::WriteData(const svLogicVecVal* value) {
     std::lock_guard<std::mutex> lock(mutex_);
     if (wlen_ > 0) {
-        *waddr_ = value;
+        *waddr_ = *value;
         waddr_++;
         wlen_ -= 1;
     }
@@ -297,7 +297,7 @@ class DPIModule final : public DPIModuleNode {
     }
 
     void MemDPI(dpi8_t req_valid, dpi8_t req_opcode, dpi8_t req_len,
-                dpi64_t req_addr, dpi8_t wr_valid, dpi64_t wr_value,
+                dpi64_t req_addr, dpi8_t wr_valid, const svLogicVecVal* wr_value,
                 dpi8_t *rd_valid, dpi64_t *rd_value, dpi8_t rd_ready) {
         MemResponse r = mem_device_.ReadData(rd_ready);
         *rd_valid = r.valid;
@@ -325,7 +325,7 @@ class DPIModule final : public DPIModuleNode {
 
     static void VTAMemDPI(VTAContextHandle self, dpi8_t req_valid,
                           dpi8_t req_opcode, dpi8_t req_len, dpi64_t req_addr,
-                          dpi8_t wr_valid, dpi64_t wr_value, dpi8_t *rd_valid,
+                          dpi8_t wr_valid, const svLogicVecVal* wr_value, dpi8_t *rd_valid,
                           dpi64_t *rd_value, dpi8_t rd_ready) {
         static_cast<DPIModule *>(self)->MemDPI(req_valid, req_opcode, req_len,
                                                req_addr, wr_valid, wr_value,

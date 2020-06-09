@@ -46,7 +46,7 @@ module VTAMemDPI #
     input  byte     unsigned req_len,
     input  longint  unsigned req_addr,
     input  byte     unsigned wr_valid,
-    input  longint  unsigned wr_value,
+    input  logic [DATA_BITS - 1 : 0] wr_value,
     output byte     unsigned rd_valid,
     output longint  unsigned rd_value,
     input  byte     unsigned rd_ready

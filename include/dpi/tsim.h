@@ -69,7 +69,7 @@ typedef void (*VTAHostDPIFunc)(VTAContextHandle self, dpi8_t *req_valid,
 typedef void (*VTAMemDPIFunc)(VTAContextHandle self, dpi8_t req_valid,
                               dpi8_t req_opcode, dpi8_t req_len,
                               dpi64_t req_addr, dpi8_t wr_valid,
-                              dpi64_t wr_value, dpi8_t *rd_valid,
+                              const svLogicVecVal* wr_value, dpi8_t *rd_valid,
                               dpi64_t *rd_value, dpi8_t rd_ready);
 
 /*! \brief The type of VTADPIInit function pointer */
