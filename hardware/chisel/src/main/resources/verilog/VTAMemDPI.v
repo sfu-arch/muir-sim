@@ -48,7 +48,7 @@ module VTAMemDPI #
     input  byte     unsigned wr_valid,
     input  logic [DATA_BITS - 1 : 0] wr_value,
     output byte     unsigned rd_valid,
-    output longint  unsigned rd_value,
+    output logic [DATA_BITS - 1 : 0] rd_value,
     input  byte     unsigned rd_ready
   );
 
@@ -68,7 +68,7 @@ module VTAMemDPI #
   dpi8_t  __wr_valid;
   dpiMem_t __wr_value;
   dpi8_t  __rd_valid;
-  dpi64_t __rd_value;
+  dpiMem_t __rd_value;
   dpi8_t  __rd_ready;
 
   always_ff @(posedge clock) begin

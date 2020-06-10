@@ -47,6 +47,7 @@
  */
 #define DATA_SIZE 64
 #define WORD_SIZE 32
+#define DATA_LEN DATA_SIZE / WORD_SIZE
 
 namespace vta {
 namespace dpi {
@@ -65,13 +66,13 @@ struct HostResponse {
     uint32_t value;
 };
 
-struct MemResponse {
-    uint8_t valid;
-    uint64_t value;
-};
-
 struct dpiVec_st_t {
     uint32_t val[DATA_SIZE / WORD_SIZE];
+};
+
+struct MemResponse {
+    uint8_t valid;
+    dpiVec_st_t value;
 };
 
 template <typename T>
@@ -138,7 +139,7 @@ class MemDevice {
     void WriteData(const svLogicVecVal *value);
 
    private:
-    uint64_t *raddr_{0};
+    dpiVec_st_t *raddr_{0};
     dpiVec_st_t *waddr_{0};
     uint32_t rlen_{0};
     uint32_t wlen_{0};
@@ -202,7 +203,7 @@ void MemDevice::SetRequest(uint8_t opcode, uint64_t addr, uint32_t len) {
         waddr_ = reinterpret_cast<dpiVec_st_t *>(vaddr);
     } else {
         rlen_ = len + 1;
-        raddr_ = reinterpret_cast<uint64_t *>(vaddr);
+        raddr_ = reinterpret_cast<dpiVec_st_t *>(vaddr);
     }
 }
 
@@ -210,7 +211,15 @@ MemResponse MemDevice::ReadData(uint8_t ready) {
     std::lock_guard<std::mutex> lock(mutex_);
     MemResponse r;
     r.valid = rlen_ > 0;
-    r.value = rlen_ > 0 ? *raddr_ : 0xdeadbeefdeadbeef;
+    // r.value = rlen_ > 0 ? *raddr_ : 0xdeadbeefdeadbeef;
+    // if(rlen_ > 0)
+    // raddr_ += 1;
+    for (int i = 0; i < DATA_LEN; i++) {
+        if (rlen_ > 0)
+            r.value.val[i] = raddr_->val[i];
+        else
+            r.value.val[i] = 0xdeadbeef;
+    }
     if (ready == 1 && rlen_ > 0) {
         raddr_++;
         rlen_ -= 1;
@@ -301,7 +310,7 @@ class DPIModule final : public DPIModuleNode {
         *exit = sim_device_.GetExitStatus();
     }
 
-    void HostDPI(dpi8_t *req_valid, dpi8_t *req_opcode, dpi8_t *req_addr,
+    void HostDPI(dpi8_t *req_valid, dpi8_t *req_opcode, dpi16_t *req_addr,
                  dpi32_t *req_value, dpi8_t req_deq, dpi8_t resp_valid,
                  dpi32_t resp_value) {
         HostRequest *r = new HostRequest;
@@ -318,10 +327,14 @@ class DPIModule final : public DPIModuleNode {
     void MemDPI(dpi8_t req_valid, dpi8_t req_opcode, dpi8_t req_len,
                 dpi64_t req_addr, dpi8_t wr_valid,
                 const svLogicVecVal *wr_value, dpi8_t *rd_valid,
-                dpi64_t *rd_value, dpi8_t rd_ready) {
+                svLogicVecVal *rd_value, dpi8_t rd_ready) {
         MemResponse r = mem_device_.ReadData(rd_ready);
         *rd_valid = r.valid;
-        *rd_value = r.value;
+        //*rd_value = r.value;
+        for (int i = 0; i < DATA_LEN; i++) {
+            rd_value->aval = r.value.val[i];
+            rd_value++;
+        }
         if (wr_valid) {
             mem_device_.WriteData(wr_value);
         }
@@ -335,7 +348,7 @@ class DPIModule final : public DPIModuleNode {
     }
 
     static void VTAHostDPI(VTAContextHandle self, dpi8_t *req_valid,
-                           dpi8_t *req_opcode, dpi8_t *req_addr,
+                           dpi8_t *req_opcode, dpi16_t *req_addr,
                            dpi32_t *req_value, dpi8_t req_deq,
                            dpi8_t resp_valid, dpi32_t resp_value) {
         static_cast<DPIModule *>(self)->HostDPI(req_valid, req_opcode, req_addr,
@@ -346,7 +359,7 @@ class DPIModule final : public DPIModuleNode {
     static void VTAMemDPI(VTAContextHandle self, dpi8_t req_valid,
                           dpi8_t req_opcode, dpi8_t req_len, dpi64_t req_addr,
                           dpi8_t wr_valid, const svLogicVecVal *wr_value,
-                          dpi8_t *rd_valid, dpi64_t *rd_value,
+                          dpi8_t *rd_valid, svLogicVecVal *rd_value,
                           dpi8_t rd_ready) {
         static_cast<DPIModule *>(self)->MemDPI(req_valid, req_opcode, req_len,
                                                req_addr, wr_valid, wr_value,

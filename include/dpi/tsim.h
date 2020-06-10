@@ -12,6 +12,8 @@ extern "C" {
 
 typedef unsigned char dpi8_t;
 
+typedef unsigned short dpi16_t;
+
 typedef unsigned int dpi32_t;
 
 typedef unsigned long long dpi64_t;
@@ -33,7 +35,7 @@ typedef void (*VTASimDPIFunc)(VTAContextHandle self, dpi8_t *wait,
  * \return 0 if success,
  */
 typedef void (*VTAHostDPIFunc)(VTAContextHandle self, dpi8_t *req_valid,
-                               dpi8_t *req_opcode, dpi8_t *req_addr,
+                               dpi8_t *req_opcode, dpi16_t *req_addr,
                                dpi32_t *req_value, dpi8_t req_deq,
                                dpi8_t resp_valid, dpi32_t resp_value);
 
@@ -51,7 +53,7 @@ typedef void (*VTAMemDPIFunc)(VTAContextHandle self, dpi8_t req_valid,
                               dpi8_t req_opcode, dpi8_t req_len,
                               dpi64_t req_addr, dpi8_t wr_valid,
                               const svLogicVecVal* wr_value, dpi8_t *rd_valid,
-                              dpi64_t *rd_value, dpi8_t rd_ready);
+                              svLogicVecVal *rd_value, dpi8_t rd_ready);
 
 /*! \brief The type of VTADPIInit function pointer */
 typedef void (*VTADPIInitFunc)(VTAContextHandle handle, VTASimDPIFunc sim_dpi,
