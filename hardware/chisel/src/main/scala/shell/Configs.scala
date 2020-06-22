@@ -99,7 +99,8 @@ class WithF1Config(vcrParams: DandelionDCRParams = DandelionDCRParams(),
                      addrBits = 64, dataBits = 512, userBits = 10,
                      lenBits = 8, // limit to 16 beats, instead of 256 beats in AXI4
                      coherent = false),
-                   nastiParams: NastiParameters = NastiParameters(dataBits = 64, addrBits = 32, idBits = 13))
+                   nastiParams: NastiParameters = NastiParameters(dataBits = 64, addrBits = 32, idBits = 13),
+                   dbgParams: DebugParams = DebugParams())
   extends Config((site, here, up) => {
     // Core
     case DCRKey => vcrParams
@@ -107,13 +108,17 @@ class WithF1Config(vcrParams: DandelionDCRParams = DandelionDCRParams(),
     case HostParamKey => hostParams
     case MemParamKey => memParams
     case NastiKey => nastiParams
+    case DebugParamKey => dbgParams
   }
   )
 
-class WithF1ShellConfig(dLen: Int = 64, pLog: Boolean = false)
-                       (nPtrs: Int, nVals: Int, nRets: Int, nEvents: Int, nCtrls: Int) extends Config(
-  new WithAccelConfig(DandelionAccelParams(dataLen = dLen, printLog = pLog)) ++
-    new WithF1Config(DandelionDCRParams(numCtrl = nCtrls, numEvent = nEvents, numPtrs = nPtrs, numVals = nVals, numRets = nRets)))
+class WithF1ShellConfig(dLen: Int = 64, pLog: Boolean = false, cLog: Boolean = false)
+                       (nPtrs: Int, nVals: Int, nRets: Int, nEvents: Int, nCtrls: Int, nDbgs:Int = 0) extends Config(
+  new WithAccelConfig(DandelionAccelParams(dataLen = dLen, printLog = pLog, printCLog = cLog)) ++
+    new WithF1Config(vcrParams = DandelionDCRParams(numCtrl = nCtrls, numEvent = nEvents, numPtrs = nPtrs + nDbgs, numVals = nVals, numRets = nRets),
+      dmeParams = DandelionDMEParams(numRead = 1, numWrite = 1 + nDbgs), dbgParams = DebugParams(len_data = dLen))
+
+)
 
 
 /**
@@ -150,5 +155,6 @@ class WithDe10ShellConfig(dLen: Int = 64, pLog: Boolean = false, cLog: Boolean =
                          (nPtrs: Int, nVals: Int, nRets: Int, nEvents: Int, nCtrls: Int, nDbgs: Int = 0) extends Config(
   new WithAccelConfig(DandelionAccelParams(dataLen = dLen, printLog = pLog, printCLog = cLog)) ++
     new WithDe10Config(vcrParams = DandelionDCRParams(numCtrl = nCtrls, numEvent = nEvents, numPtrs = nPtrs + nDbgs, numVals = nVals, numRets = nRets),
-      dmeParams = DandelionDMEParams(numRead = 1, numWrite = 1 + nDbgs), dbgParams = DebugParams(len_data = dLen)))
+      dmeParams = DandelionDMEParams(numRead = 1, numWrite = 1 + nDbgs), dbgParams = DebugParams(len_data = dLen))
+)
 

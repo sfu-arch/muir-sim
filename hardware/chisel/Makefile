@@ -46,6 +46,7 @@ numRets= 0
 numEnts= 1
 numCtrls= 1
 dataLen= 64
+fpga= f1
 printLog=true
 cacheLog=false
 boreIDs = 
@@ -120,9 +121,9 @@ verilog: $(chisel_build_dir)/$(TOP).v
 $(chisel_build_dir)/$(TOP).v: $(shell find . -type f -name "*.scala" | sed 's/ /\\ /g')
 	sbt 'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --print-log $(printLog) --cache-log $(cacheLog) --bore-ids $(boreIDs)'
 
-cyclone: $(chisel_build_dir)/$(TOP).v
+fpga: $(chisel_build_dir)/$(TOP).v
 $(chisel_build_dir)/$(TOP).v: $(shell find . -type f -name "*.scala" | sed 's/ /\\ /g')
-	sbt 'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --print-log $(printLog) --cache-log $(cacheLog) --bore-ids $(boreIDs)'
+	sbt 'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --fpga $(fpga) --print-log $(printLog) --cache-log $(cacheLog) --bore-ids $(boreIDs)'
 
 
 

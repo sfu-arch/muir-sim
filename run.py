@@ -132,7 +132,7 @@ def ParseArguments():
                         help='Building accelerator model')
     parser.add_argument('--build-dsim', action='store_true', dest='dsim',
                         help='Building dsim library')
-    parser.add_argument('--cyclone', action='store', dest='cyclone', type=dir_path,
+    parser.add_argument('--fpga', action='store', dest='fpga', type=dir_path,
                         help='Building dsim library')
     parser.add_argument('--accel-config', action='store', dest='accel_config', type=dir_path,
                         help='The accelerator name that will we passed to hardware generator')
@@ -165,7 +165,7 @@ def BuildAccel(config):
         CheckCall(['make', 'chisel'] + make_params)
 
 
-def GetCyclone(config):
+def GetFPGA(config):
     make_params = []
     with open(config, 'r') as configFile:
         configData = json.load(configFile)
@@ -182,11 +182,10 @@ def GetCyclone(config):
                     make_params += ["{}={} ".format(str(config),
                                                     str(configData['Accel'][config]))]
 
-        # print(make_params)
+        print(make_params)
         print(bcolors.OKGREEN + " ".join(str(val)
-                                         for val in ['make', 'chisel'] + make_params) + bcolors.ENDC)
-        CheckCall(['make', 'cyclone'] + ['TOP=DCRAccel'] + make_params)
-
+                                         for val in ['make', 'fpga'] + make_params) + bcolors.ENDC)
+        CheckCall(['make', 'fpga'] + ['TOP=DCRAccel'] + make_params)
 
 
 
@@ -206,8 +205,8 @@ def Main():
 
     if args.dsim:
         BuildDsim()
-    elif args.cyclone:
-        GetCyclone(args.cyclone)
+    elif args.fpga:
+        GetFPGA(args.fpga)
     else:
         BuildAccel(args.accel_config)
 

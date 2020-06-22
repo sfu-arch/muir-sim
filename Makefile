@@ -29,11 +29,8 @@ verilog:
 chisel:
 	make -C hardware/chisel
 
-f1:
-	make -C hardware/chisel verilog
-
-cyclone:
-	make -C hardware/chisel cyclone
+fpga:
+	make -C hardware/chisel fpga
 
 clean:
 	-rm -rf $(build_dir)
