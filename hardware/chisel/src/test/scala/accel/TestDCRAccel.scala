@@ -78,6 +78,12 @@ object DandelionTestDebugDCRAccel {
       case "test15" => (() => new test15RootDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
       case "test16" => (() => new test16RootDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
 
+      //Debug tests
+      //
+      case "dbranch" => (() => new branchRootDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
+      case "dcarried" => (() => new carriedRootDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
+      case "dparallel" => (() => new parallelRootDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
+
       //Real examples
       case "relu" => (() => new reluDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
       case "stencil" => (() => new stencilDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))

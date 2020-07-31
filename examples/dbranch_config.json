@@ -1,0 +1,18 @@
+{
+    "Accel" : {
+        "nameAccel" : "dbranch",
+        "numPtrs"  : 0,
+        "numDbgs"  : 0,
+        "numVals"  : 2,
+        "numRets"  : 1,
+        "numEnts"  : 1,
+        "numCtrls" : 1,
+        "dataLen"  : 64,
+        "fpga"     : "f1",
+        "boreIDs"  : [],
+        "Build" : {
+            "printLog" : true,
+            "cacheLog" : false
+        }
+    }
+}
