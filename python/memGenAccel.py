@@ -1,9 +1,12 @@
 import numpy as np
 import platform
 import dsim
+import csv
 
 
-mainMem = np.array([i for i in range (100000)], dtype = np.uint64)
+
+
+mainMem = np.array([i for i in range (10000000)], dtype = np.uint64)
 localMem =  np.array([i for i in range (100)], dtype = np.uint64)
 if platform.system() == 'Linux':
     hw_lib_path = "./hardware/chisel/build/libhw.so"
@@ -20,7 +23,7 @@ input_data = np.zeros(nVals, dtype=np.uint64)
 
 vals = [list(inst) for inst in zip(input_inst, input_addr, input_data)]
 vals = [item  for sublist in vals for item in sublist  ]
-print(vals)
+# print(vals)
 
 # LD 0x1000
 # LD 0x1020
@@ -38,6 +41,24 @@ print(vals)
                             #        inst|addr|data
 #events = dsim.sim(ptrs = [mainMem ], vars= [0, 4, 2,
  #                                    0,128,2], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
+
+vals = []
+with open("python/trace.csv") as trace:
+    trigger = csv.reader(trace)
+    for i, row in enumerate(trigger):
+        if(int(row[0]) != 2 ):
+            for item in row:
+                vals.append(int(item,16))
+            vals.append(0)
+        else:
+            vals.append(int(row[0]))
+            vals.append(0)
+            vals.append(int(row[1]))
+        print(row)
+        if (i > 9):
+            break
+
+    print(vals)
 
 events = dsim.sim(ptrs = [mainMem, localMem ], vars= vals, debugs=[], numRets=0, numEvents=4, hwlib = hw_lib_path)
 
