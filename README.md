@@ -39,7 +39,10 @@ python3 run.py --accel-config examples/test01_config.json
 python3 run.py --build-dsim
 python3 python/test01.py
 ```
-
+**StackOverFlow Error:**
+```bash
+export SBT_OPTS="-Xmx16G -Xms16G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=16G -Xss8M  -Duser.timezone=GMT"
+```
 
 **Step four:** Running the simulation:
 
