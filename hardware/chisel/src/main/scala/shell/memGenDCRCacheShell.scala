@@ -8,6 +8,7 @@ import dandelion.interfaces.{ControlBundle, DataBundle}
 import dandelion.interfaces.axi._
 import dandelion.memory.cache._
 import dandelion.accel._
+import dsptools.counters.CounterWithReset
 import memGen.memory._
 import memGen.shell._
 
@@ -21,6 +22,10 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
 
   val numInputs  = 3
+  val is_data = 2
+  val is_addr = 1
+  val is_inst = 0
+  val is_ack = 2
   // comment test
 
   val regBits = dcrParams.regBits
@@ -30,8 +35,9 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
   val accel = Module(accelModule())
 
-  val sIdle :: sBusy :: sFlush :: sDone :: Nil = Enum(4)
+  val sIdle :: sBusy :: sFlush :: sAck :: sDone :: Nil = Enum(5)
 
+  val resetAckCounter = RegInit(false.B)
   val state = RegInit(sIdle)
   val cycles = RegInit(0.U(regBits.W))
   val cnt = RegInit(0.U(regBits.W))
@@ -64,6 +70,8 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     * @note This part needs to be changes for each function
     */
     val (nextChunk,_) = Counter(accel.io.in.fire, 1000)
+    val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000, resetAckCounter )
+
     val DataReg = Reg(Vec(numVals, new DataBundle))
     val (cycle,stopSim) = Counter(true.B, 300)
 
@@ -85,19 +93,26 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
 
   for (i <- 0 until numVals) {
-    if( i % 3 == 1 )
+    if( i % 3 == is_addr )
       DataReg(i) := DataBundle(vals(i) + ptrs(0))
     else
      DataReg(i) := DataBundle(vals(i) )
   }
 
+  // field_0 => is_inst
+  // field_1 => is_addr
+  // field_2 => is_data
+
   for (i <- 0 until numInputs) {
     accel.io.in.bits.dataVals(s"field${i}") := DataReg(nextChunk * numInputs.U + i.U)
   }
 
+
+
   accel.io.in.bits.enable := ControlBundle.active()
   accel.io.in.valid := false.B
   accel.io.out.ready := is_busy | state === sDone
+  resetAckCounter := false.B
 
 
   switch(state) {
@@ -119,8 +134,16 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
         accel.io.in.valid := true.B
         when(nextChunk * numInputs.U > numVals.U ) {
           state := sDone
+        }.elsewhen( (DataReg(nextChunk * numInputs.U + is_inst.U).data === is_ack.U)) {
+          state := sAck
         }
 
+    }
+    is(sAck){
+      when (ackCounter === (DataReg(nextChunk * numInputs.U + is_data.U).data)){
+        state := sBusy
+        resetAckCounter === true.B
+      }
     }
 
     is(sDone) {
