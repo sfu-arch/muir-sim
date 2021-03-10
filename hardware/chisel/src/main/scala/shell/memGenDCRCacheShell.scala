@@ -26,6 +26,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   val is_addr = 1
   val is_inst = 0
   val is_ack = 2
+  val is_nop = 3
   // comment test
 
   val regBits = dcrParams.regBits
@@ -37,7 +38,8 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
   val sIdle :: sBusy :: sFlush :: sAck :: sDone :: Nil = Enum(5)
 
-  val resetAckCounter = RegInit(false.B)
+  val resetAckCounter = WireInit(false.B)
+  val incChunkCounter = WireInit(false.B)
   val state = RegInit(sIdle)
   val cycles = RegInit(0.U(regBits.W))
   val cnt = RegInit(0.U(regBits.W))
@@ -69,7 +71,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   /**
     * @note This part needs to be changes for each function
     */
-    val (nextChunk,_) = Counter(accel.io.in.fire, 1000)
+    val (nextChunk,_) = Counter(incChunkCounter, 1000)
     val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000, resetAckCounter )
 
     val DataReg = Reg(Vec(numVals, new DataBundle))
@@ -113,6 +115,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   accel.io.in.valid := false.B
   accel.io.out.ready := is_busy | state === sDone
   resetAckCounter := false.B
+  incChunkCounter := false.B
 
 
   switch(state) {
@@ -131,18 +134,24 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
       //   printf(p"\n")
       // }
       
-        accel.io.in.valid := true.B
-        when(nextChunk * numInputs.U > numVals.U ) {
+        when(nextChunk * numInputs.U  >= numVals.U ) {
           state := sDone
         }.elsewhen( (DataReg(nextChunk * numInputs.U + is_inst.U).data === is_ack.U)) {
           state := sAck
+        }.elsewhen((DataReg(nextChunk * numInputs.U + is_inst.U).data === is_nop.U)){
+          incChunkCounter := true.B
+        }.otherwise {
+            accel.io.in.valid := true.B
+            incChunkCounter := true.B
+
         }
 
     }
     is(sAck){
       when (ackCounter === (DataReg(nextChunk * numInputs.U + is_data.U).data)){
         state := sBusy
-        resetAckCounter === true.B
+        resetAckCounter := true.B
+        incChunkCounter := true.B
       }
     }
 
