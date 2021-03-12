@@ -133,6 +133,7 @@ class VTAMemDPIToAXI(debug: Boolean = false)(implicit val p: Parameters)
       opcode := true.B
       len := io.axi.aw.bits.len
       addr := io.axi.aw.bits.addr
+
     }
   }.elsewhen(state === sReadData) {
     when(io.axi.r.ready && io.dpi.rd.valid && len =/= 0.U) {
