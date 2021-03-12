@@ -29,7 +29,7 @@ extern "C"
 #endif
 
     typedef unsigned char dpi8_t;
-
+    typedef uint16_t dpi16_t;
     typedef unsigned int dpi32_t;
 
     typedef unsigned long long dpi64_t; // NOLINT(*)
@@ -57,7 +57,8 @@ extern "C"
         VTAContextHandle self,
         dpi8_t *req_valid,
         dpi8_t *req_opcode,
-        dpi8_t *req_addr,
+        dpi32_t *req_addr,
+
         dpi32_t *req_value,
         dpi8_t req_deq,
         dpi8_t resp_valid,

@@ -9,7 +9,7 @@ import dandelion.shell._
 
 /** Host DPI parameters */
 trait VTAHostDPIParams {
-  val dpiAddrBits = 8
+  val dpiAddrBits = 32
   val dpiDataBits = 32
 }
 
