@@ -114,7 +114,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
   accel.io.in.bits.enable := ControlBundle.active()
   accel.io.in.valid := false.B
-  accel.io.out.ready := is_busy | state === sDone
+  accel.io.out.ready := is_busy | state === sDone | state === sAck
   resetAckCounter := false.B
   incChunkCounter := false.B
 
