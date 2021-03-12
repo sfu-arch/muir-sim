@@ -6,7 +6,7 @@ import csv
 
 
 
-mainMem = np.array([i for i in range (10000000)], dtype = np.uint64)
+mainMem = np.array([i for i in range (100000)], dtype = np.uint64)
 localMem =  np.array([i for i in range (100)], dtype = np.uint64)
 if platform.system() == 'Linux':
     hw_lib_path = "./hardware/chisel/build/libhw.so"
@@ -16,7 +16,7 @@ elif platform.system() == 'Darwin':
 mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt64)
 localMem = dsim.DArray(localMem ,  dsim.DArray.DType.UInt64)
 
-nVals = 10 
+nVals = 30 
 input_inst = np.zeros(nVals, dtype=np.uint64)
 input_addr = np.array([i*4 for i in range (nVals)], dtype = np.uint64)
 input_data = np.zeros(nVals, dtype=np.uint64)
@@ -55,12 +55,15 @@ with open("python/trace.csv") as trace:
             vals.append(0)
             vals.append(int(row[1]))
         print(row)
-        if (i > 9):
+        if (i == nVals - 1):
             break
 
-    print(vals)
 
-events = dsim.sim(ptrs = [mainMem, localMem ], vars= vals, debugs=[], numRets=0, numEvents=4, hwlib = hw_lib_path)
+#vals = np.array(vals, dtype=np.uint64)
+print(vals)
+
+events = dsim.sim(ptrs = [mainMem ], vars= vals, debugs=[], numRets=0, numEvents=4, hwlib = hw_lib_path)
+print(vals)
 
 #print(localMem)
 print("Cycle: " + str(events[0]))

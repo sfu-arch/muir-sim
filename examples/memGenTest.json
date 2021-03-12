@@ -1,9 +1,9 @@
 {
     "Accel" : {
         "nameAccel" : "memGenAccel",
-        "numPtrs"  : 2,
+        "numPtrs"  : 1,
         "numDbgs"  : 0,
-        "numVals"  : 30,
+        "numVals"  : 90,
         "numRets"  : 0,
         "numEnts"  : 4,
         "numCtrls" : 1,

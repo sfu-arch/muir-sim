@@ -71,15 +71,16 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   /**
     * @note This part needs to be changes for each function
     */
-    val (nextChunk,_) = Counter(incChunkCounter, 1000)
+    val (nextChunk,_) = Counter(incChunkCounter, 10000)
     val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000, resetAckCounter )
 
     val DataReg = Reg(Vec(numVals, new DataBundle))
     val (cycle,stopSim) = Counter(true.B, 300)
 
   val vals = Seq.tabulate(numVals) { i => RegEnable(next = vcr.io.dcr.vals(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) }
-  val ptrs = Seq.tabulate(2) { i => RegEnable(next = vcr.io.dcr.ptrs(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) }
+  val ptrs = Seq.tabulate(numPtrs) { i => RegEnable(next = vcr.io.dcr.ptrs(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) }
 
+  
   when(accel.io.out.fire()){
     // when(accel.io.out.bits.data("field0").data === 0.U){
       printf(p"addr ${accel.io.out.bits.data("field1").data} data ${accel.io.out.bits.data("field2").data} cycle ${cycles} \n") 
@@ -122,7 +123,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     is(sIdle) {
       when(vcr.io.dcr.launch) {
         printf(p"\nVals: ")
-        vals.zipWithIndex.foreach(t => printf(p"val(${t._2}): ${t._1}, "))
+        vcr.io.dcr.vals.zipWithIndex.foreach(t => printf(p"val(${t._2}): ${t._1}, "))
         printf(p" \n")
         state := sBusy
       }
