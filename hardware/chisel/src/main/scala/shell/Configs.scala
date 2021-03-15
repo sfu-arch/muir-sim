@@ -79,7 +79,7 @@ class WithDebugSimShellConfig(dLen: Int = 64, pLog: Boolean = false, cLog: Boole
                              (nPtrs: Int, nVals: Int, nRets: Int, nEvents: Int, nCtrls: Int, nDbgs: Int = 0) extends Config(
   new WithAccelConfig(DandelionAccelParams(dataLen = dLen, printLog = pLog, printCLog = cLog)) ++
     new WithShellConfig(vcrParams = DandelionDCRParams(numCtrl = nCtrls, numEvent = nEvents, numPtrs = nPtrs + nDbgs, numVals = nVals, numRets = nRets),
-      dmeParams = DandelionDMEParams(numRead = 1, numWrite = 1 + nDbgs), dbgParams = DebugParams(len_data = dLen)))
+      dmeParams = DandelionDMEParams(numRead = 1 + (nDbgs/2), numWrite = 1 + (nDbgs/2)), dbgParams = DebugParams(len_data = dLen)))
 
 
 /**

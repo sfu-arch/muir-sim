@@ -33,7 +33,7 @@ ifeq (, $(VERILATOR_INC_DIR))
 endif
 
 #TOP = DandelionSimDCRAccel
-TOP = DandelionSimDebugAccel
+TOP = DandelionSimStreamDebugAccel
 BUILD_NAME = build
 USE_TRACE = 1
 LIBNAME = libhw

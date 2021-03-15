@@ -12,8 +12,10 @@ def test04(a, b, n):
 
 
 # Debug container
-a = np.zeros(20)
+a = np.arange(20)
+b = np.zeros(20)
 a_s = dsim.DArray(a, dsim.DArray.DType.UInt64)
+b_s = dsim.DArray(b, dsim.DArray.DType.UInt64)
 
 if platform.system() == 'Linux':
     hw_lib_path = "./hardware/chisel/build/libhw.so"
@@ -24,7 +26,7 @@ val_a = 5
 val_b = 3
 val_n = 5
 
-events = dsim.sim(ptrs = [], debugs = [a_s], vars= [val_a, val_b, val_n], numRets=1, numEvents=1, hwlib = hw_lib_path)
+events = dsim.sim(ptrs = [], debugs = [a_s, b_s], vars= [val_a, val_b, val_n], numRets=1, numEvents=1, hwlib = hw_lib_path)
 
 if events[1] == test04(val_a, val_b, val_n):
     print(bcolors.OKGREEN + "[Success] Ret: " + str(events[1]) + bcolors.ENDC)
@@ -37,3 +39,4 @@ print(bcolors.OKBLUE + "Ret: " + str(events[1]) + bcolors.ENDC)
 
 print('Debug buffer1:')
 print([ hex(int(x) & ((1 << 64) - 1)) for x in a_s.getData_UInt64()])
+print([ hex(int(x) & ((1 << 64) - 1)) for x in b_s.getData_UInt64()])

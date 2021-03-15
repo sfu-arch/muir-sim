@@ -26,7 +26,12 @@ c_s = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
 d_s = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
 e_s = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
 
-events = dsim.sim(ptrs = [a_s], debugs=[b_s, c_s, d_s, e_s], vars= [], numRets=1, numEvents=1, hwlib = hw_lib_path)
+
+aa = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
+bb = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
+cc = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
+
+events = dsim.sim(ptrs = [a_s], input_debugs=[aa, bb, cc, dd], debugs=[b_s, c_s, d_s, e_s], vars= [], numRets=1, numEvents=1, hwlib = hw_lib_path)
 
 print("Cycle: " + str(events[0]))
 print("Output array:\t")
