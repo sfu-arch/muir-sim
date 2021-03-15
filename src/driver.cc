@@ -237,7 +237,7 @@ class Device {
 
         for (auto dbg : debugs_) {
             dpi_->WriteReg(address + ((cnt)*4),
-                           this->MemGetPhyAddr(dbg));  // ptr
+                           this->MemGetPhyAddr(dbg));  // dbg
 
             cnt++;
         }
