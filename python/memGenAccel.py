@@ -2,6 +2,7 @@ import numpy as np
 import platform
 import dsim
 import csv
+import sys
 
 
 
@@ -16,7 +17,7 @@ elif platform.system() == 'Darwin':
 mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt64)
 localMem = dsim.DArray(localMem ,  dsim.DArray.DType.UInt64)
 
-nVals = 30 
+nVals = int(sys.argv[1])
 input_inst = np.zeros(nVals, dtype=np.uint64)
 input_addr = np.array([i*4 for i in range (nVals)], dtype = np.uint64)
 input_data = np.zeros(nVals, dtype=np.uint64)
