@@ -55,16 +55,14 @@ with open("python/trace.csv") as trace:
             vals.append(int(row[0]))
             vals.append(0)
             vals.append(int(row[1]))
-        print(row)
         if (i == nVals - 1):
             break
 
 
-#vals = np.array(vals, dtype=np.uint64)
+vals = np.array(vals, dtype=np.uint64)
 print(vals)
 
 events = dsim.sim(ptrs = [mainMem ], vars= vals, debugs=[], numRets=0, numEvents=4, hwlib = hw_lib_path)
-print(vals)
 
 #print(localMem)
 print("Cycle: " + str(events[0]))

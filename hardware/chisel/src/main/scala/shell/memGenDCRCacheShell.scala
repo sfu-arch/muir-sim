@@ -71,8 +71,8 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   /**
     * @note This part needs to be changes for each function
     */
-    val (nextChunk,_) = Counter(incChunkCounter, 10000)
-    val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000, resetAckCounter )
+    val (nextChunk,_) = Counter(incChunkCounter, 1000000)
+    val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000000, resetAckCounter )
 
     val DataReg = Reg(Vec(numVals, new DataBundle))
     val (cycle,stopSim) = Counter(true.B, 300)
@@ -83,7 +83,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   
   when(accel.io.out.fire()){
     // when(accel.io.out.bits.data("field0").data === 0.U){
-      printf(p"addr ${accel.io.out.bits.data("field1").data} data ${accel.io.out.bits.data("field2").data} cycle ${cycles} \n") 
+      printf(p"Data back for addr ${accel.io.out.bits.data("field1").data} cycle ${cycles} \n") 
       // DataBundle(accel.io.out.bits.data("field1").data - ptrs(0) + ptrs(1)) := DataBundle(accel.io.out.bits.data("field2").data)
     //  }
   }
@@ -122,9 +122,9 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   switch(state) {
     is(sIdle) {
       when(vcr.io.dcr.launch) {
-        printf(p"\nVals: ")
-        vcr.io.dcr.vals.zipWithIndex.foreach(t => printf(p"val(${t._2}): ${t._1}, "))
-        printf(p" \n")
+        // printf(p"\nVals: ")
+        // vals.zipWithIndex.foreach(t => printf(p"val(${t._2}): ${t._1}, "))
+        // printf(p" \n")
         state := sBusy
       }
     }
@@ -139,12 +139,13 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
           state := sDone
         }.elsewhen( (DataReg(nextChunk * numInputs.U + is_inst.U).data === is_ack.U)) {
           state := sAck
+          printf(p"Ack \n")
         }.elsewhen((DataReg(nextChunk * numInputs.U + is_inst.U).data === is_nop.U)){
           incChunkCounter := true.B
         }.otherwise {
+            printf(p"\nInst : ${(DataReg(nextChunk * numInputs.U + is_inst.U).data)} for addr ${DataReg(nextChunk * numInputs.U + is_addr.U).data} cycle ${cycles} \n")
             accel.io.in.valid := true.B
             incChunkCounter := true.B
-
         }
 
     }
