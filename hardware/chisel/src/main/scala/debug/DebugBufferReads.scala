@@ -28,17 +28,17 @@ class DebugBufferReads(numDebug: Int, val boreIDsList: Seq[Int])
   val read_buf_data = List.fill(numDebug)(Wire(UInt(xlen.W)))
   val read_buf_valid = List.fill(numDebug)(Wire(Bool()))
   val read_buf_ready = List.fill(numDebug)(Wire(Bool()))
-  val read_buf_start = List.fill(numDebug)(Wire(Bool()))
+//  val read_buf_start = List.fill(numDebug)(Wire(Bool()))
 
   read_buf_data.foreach(_ := 0.U)
   read_buf_valid.foreach(_ := false.B)
   read_buf_ready.foreach(_ := false.B)
-  read_buf_start.foreach(_ := false.B)
+//  read_buf_start.foreach(_ := false.B)
 
 
   for(i <- 0 until numDebug){
     read_buffers(i).io.addrDebug := io.addrDebug(i)
-    read_buffers(i).io.start := read_buf_start(i)
+//    read_buffers(i).io.start := read_buf_start(i)
     io.vmeIn(i) <> read_buffers(i).io.vmeOut
 
 
@@ -49,7 +49,7 @@ class DebugBufferReads(numDebug: Int, val boreIDsList: Seq[Int])
     BoringUtils.addSource(read_buf_data(i), s"in_log_data${boreIDsList(i)}")
     BoringUtils.addSource(read_buf_valid(i), s"in_log_Buffer_valid${boreIDsList(i)}")
 
-    BoringUtils.addSink(read_buf_start(i), s"in_log_Buffer_start${boreIDsList(i)}")
+//    BoringUtils.addSink(read_buf_start(i), s"in_log_Buffer_start${boreIDsList(i)}")
     BoringUtils.addSink(read_buf_ready(i), s"in_log_Buffer_ready${boreIDsList(i)}")
   }
 
