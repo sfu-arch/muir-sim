@@ -75,6 +75,11 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000000, resetAckCounter )
 
     val DataReg = Reg(Vec(numVals, new DataBundle))
+
+    val inputQ = for (i <- 0 until numInputs) yield {
+      val queue = Module(new Queue(new DataBundle, entries = 16, pipe  =true))
+      queue
+    }
     val (cycle,stopSim) = Counter(true.B, 300)
 
   val vals = Seq.tabulate(numVals) { i => RegEnable(next = vcr.io.dcr.vals(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) }
@@ -94,22 +99,25 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 //    DQ
 //  }
 
+  
+  for (i <- 0 until numInputs){
+    inputQ(i).io.enq.valid := true.B
+    inputQ(i).io.deq.ready := accel.io.in.valid 
 
-  for (i <- 0 until numVals) {
-    if( i % 3 == is_addr )
-      DataReg(i) := DataBundle(vals(i) + ptrs(0))
-    else
-     DataReg(i) := DataBundle(vals(i) )
   }
+
+
+      inputQ(is_addr.U).io.enq.bits := DataBundle(vals(nextChunk * numInputs.U + is_addr.U) + ptrs(0))
+     inputQ(is_data.U).io.enq.bits := DataBundle(vals(nextChunk * numInputs.U + is_data.U) )
+     inputQ(is_inst.U).io.enq.bits := DataBundle(vals(nextChunk * numInputs.U + is_inst.U) )
 
   // field_0 => is_inst
   // field_1 => is_addr
   // field_2 => is_data
 
   for (i <- 0 until numInputs) {
-    accel.io.in.bits.dataVals(s"field${i}") := DataReg(nextChunk * numInputs.U + i.U)
+    accel.io.in.bits.dataVals(s"field${i}") := inputQ(i).io.deq.bits
   }
-
 
 
   accel.io.in.bits.enable := ControlBundle.active()
