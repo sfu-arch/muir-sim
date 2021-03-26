@@ -44,7 +44,7 @@ vals = [item  for sublist in vals for item in sublist  ]
  #                                    0,128,2], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
 
 vals = []
-with open("python/trace.csv") as trace:
+with open("python/" + sys.argv[2]+".csv") as trace:
     trigger = csv.reader(trace)
     for i, row in enumerate(trigger):
         if(int(row[0]) != 2 ):
