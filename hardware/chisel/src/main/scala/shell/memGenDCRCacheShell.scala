@@ -77,14 +77,13 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     val DataReg = Reg(Vec(numVals, new DataBundle))
 
     val inputQ = for (i <- 0 until numInputs) yield {
-      val queue = Module(new Queue(new DataBundle, entries = 16, pipe  =true))
+      val queue = Module(new Queue(new DataBundle, entries = 16, pipe  =true, flow = true))
       queue
     }
     val (cycle,stopSim) = Counter(true.B, 300)
-
-  val vals = Seq.tabulate(numVals) { i => RegEnable(next = vcr.io.dcr.vals(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) }
-  val ptrs = Seq.tabulate(numPtrs) { i => RegEnable(next = vcr.io.dcr.ptrs(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) }
-
+ 
+  val vals = VecInit(Seq.tabulate(numVals) { i => RegEnable(next = vcr.io.dcr.vals(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) })
+  val ptrs = VecInit(Seq.tabulate(numPtrs) { i => RegEnable(next = vcr.io.dcr.ptrs(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) })
   
   when(accel.io.out.fire()){
     // when(accel.io.out.bits.data("field0").data === 0.U){
@@ -101,15 +100,15 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
   
   for (i <- 0 until numInputs){
-    inputQ(i).io.enq.valid := true.B
+    inputQ(i).io.enq.valid :=  accel.io.in.valid
     inputQ(i).io.deq.ready := accel.io.in.valid 
 
   }
 
 
-      inputQ(is_addr.U).io.enq.bits := DataBundle(vals(nextChunk * numInputs.U + is_addr.U) + ptrs(0))
-     inputQ(is_data.U).io.enq.bits := DataBundle(vals(nextChunk * numInputs.U + is_data.U) )
-     inputQ(is_inst.U).io.enq.bits := DataBundle(vals(nextChunk * numInputs.U + is_inst.U) )
+     inputQ(is_addr).io.enq.bits := DataBundle(vals (nextChunk * numInputs.U + is_addr.U) + ptrs(0))
+     inputQ(is_data).io.enq.bits := DataBundle(vals (nextChunk * numInputs.U + is_data.U) )
+     inputQ(is_inst).io.enq.bits := DataBundle(vals (nextChunk * numInputs.U + is_inst.U) )
 
   // field_0 => is_inst
   // field_1 => is_addr
@@ -145,20 +144,20 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
       
         when(nextChunk * numInputs.U  >= numVals.U ) {
           state := sDone
-        }.elsewhen( (DataReg(nextChunk * numInputs.U + is_inst.U).data === is_ack.U)) {
+        }.elsewhen( inputQ(is_inst).io.deq.bits.data === is_ack.U) {
           state := sAck
           printf(p"Ack \n")
-        }.elsewhen((DataReg(nextChunk * numInputs.U + is_inst.U).data === is_nop.U)){
+        }.elsewhen(inputQ(is_inst).io.deq.bits.data === is_nop.U){
           incChunkCounter := true.B
         }.otherwise {
-            printf(p"\nInst : ${(DataReg(nextChunk * numInputs.U + is_inst.U).data)} for addr ${DataReg(nextChunk * numInputs.U + is_addr.U).data} cycle ${cycles} \n")
+            printf(p"\nInst : ${inputQ(is_inst).io.deq.bits.data} for addr ${inputQ(is_addr).io.deq.bits.data} cycle ${cycles} \n")
             accel.io.in.valid := true.B
             incChunkCounter := true.B
         }
 
     }
     is(sAck){
-      when (ackCounter === (DataReg(nextChunk * numInputs.U + is_data.U).data)){
+      when (ackCounter === (inputQ(is_data).io.deq.bits.data)){
         state := sBusy
         resetAckCounter := true.B
         incChunkCounter := true.B
