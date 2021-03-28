@@ -41,26 +41,30 @@ input_data = []
 #events = dsim.sim(ptrs = [mainMem ], vars= [0, 4, 2,
  #                                    0,128,2], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
 
-vals = []
 with open("python/" + sys.argv[2]+".csv") as trace:
     trigger = csv.reader(trace)
     for i, row in enumerate(trigger):
         if(int(row[0]) != 2 ):
-            for item in row:
-                vals.append(int(item,16))
-            vals.append(0)
+            input_inst.append(int(row[0],16))
+            input_addr.append(int(row[1],16))
+            input_data.append(0)
         else:
-            vals.append(int(row[0]))
-            vals.append(0)
-            vals.append(int(row[1]))
+            input_inst.append(int(row[0]))
+            input_addr.append(0)
+            input_data.append(int(row[1]))
         if (i == nVals - 1):
             break
 
 
-vals = np.array(vals, dtype=np.uint64)
-print(vals)
+print(input_inst)
+print(input_addr)
+print(input_data)
 
-events = dsim.sim(ptrs = [mainMem ], vars= vals, debugs=[], numRets=0, numEvents=4, hwlib = hw_lib_path)
+input_inst = dsim.DArray(input_inst ,  dsim.DArray.DType.UInt64)
+input_addr = dsim.DArray(input_addr ,  dsim.DArray.DType.UInt64)
+input_data = dsim.DArray(input_data ,  dsim.DArray.DType.UInt64)
+
+events = dsim.sim(ptrs = [mainMem,input_inst,input_addr,input_data ], vars= [nVals], debugs=[], numRets=0, numEvents=4, hwlib = hw_lib_path)
 
 #print(localMem)
 print("Cycle: " + str(events[0]))
