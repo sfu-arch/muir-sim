@@ -8,22 +8,20 @@ import sys
 
 
 mainMem = np.array([i for i in range (100000)], dtype = np.uint64)
-localMem =  np.array([i for i in range (100)], dtype = np.uint64)
 if platform.system() == 'Linux':
     hw_lib_path = "./hardware/chisel/build/libhw.so"
 elif platform.system() == 'Darwin':
     hw_lib_path = "./hardware/chisel/build/libhw.dylib"
 
 mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt64)
-localMem = dsim.DArray(localMem ,  dsim.DArray.DType.UInt64)
 
 nVals = int(sys.argv[1])
-input_inst = np.zeros(nVals, dtype=np.uint64)
-input_addr = np.array([i*4 for i in range (nVals)], dtype = np.uint64)
-input_data = np.zeros(nVals, dtype=np.uint64)
+input_inst = []
+input_addr = []
+input_data = [] 
 
-vals = [list(inst) for inst in zip(input_inst, input_addr, input_data)]
-vals = [item  for sublist in vals for item in sublist  ]
+#vals = [list(inst) for inst in zip(input_inst, input_addr, input_data)]
+#vals = [item  for sublist in vals for item in sublist  ]
 # print(vals)
 
 # LD 0x1000

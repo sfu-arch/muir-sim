@@ -33,10 +33,12 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   val ptrBits = regBits * 2
 
   val vcr = Module(new DCR)
+  val dmem = Module(new DME)
+
 
   val accel = Module(accelModule())
 
-  val sIdle :: sBusy :: sFlush :: sAck :: sDone :: Nil = Enum(5)
+  val sIdle :: sReq:: sBusy :: sFlush :: sAck :: sDone :: Nil = Enum(6)
 
   val resetAckCounter = WireInit(false.B)
   val incChunkCounter = WireInit(false.B)
@@ -46,9 +48,17 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   val last = state === sDone
   val is_busy = state === sBusy
 
-  when(state === sIdle) {
+  val (nextChunk,_) = Counter(incChunkCounter, 1000000)
+  val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000000, resetAckCounter )
+  val (fillCounter,_) = Counter(dmem.io.mem.r.fire() && dmem.io.mem.r.bits.last , 4)
+
+  val goToBusy = Wire(Bool())
+  goToBusy := (dmem.io.mem.r.fire() && dmem.io.mem.r.bits.last && fillCounter === 2.U)
+
+
+  when(goToBusy) {
     cycles := 0.U
-  }.elsewhen(state =/= sFlush & (state =/=sIdle)) {
+  }.otherwise {
     cycles := cycles + 1.U
   }
 
@@ -64,51 +74,42 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     }
   }
 
-
  vcr.io.dcr.ecnt(0).valid := last
  vcr.io.dcr.ecnt(0).bits := cycles
 
   /**
     * @note This part needs to be changes for each function
     */
-    val (nextChunk,_) = Counter(incChunkCounter, 1000000)
-    val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000000, resetAckCounter )
-
-    val DataReg = Reg(Vec(numVals, new DataBundle))
-
-    val inputQ = for (i <- 0 until numInputs) yield {
-      val queue = Module(new Queue(new DataBundle, entries = 16, pipe  =true, flow = true))
-      queue
-    }
-    val (cycle,stopSim) = Counter(true.B, 300)
+  
+    val (cycle,stopSim) = Counter(true.B, 300000)
  
   val vals = VecInit(Seq.tabulate(numVals) { i => RegEnable(next = vcr.io.dcr.vals(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) })
-  val ptrs = VecInit(Seq.tabulate(numPtrs) { i => RegEnable(next = vcr.io.dcr.ptrs(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) })
-  
+  val ptrs = VecInit(Seq.tabulate(numPtrs) { i => RegEnable(next = vcr.io.dcr.ptrs(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) })  
+
   when(accel.io.out.fire()){
-    // when(accel.io.out.bits.data("field0").data === 0.U){
       printf(p"Data back for addr ${accel.io.out.bits.data("field1").data} cycle ${cycles} \n") 
-      // DataBundle(accel.io.out.bits.data("field1").data - ptrs(0) + ptrs(1)) := DataBundle(accel.io.out.bits.data("field2").data)
-    //  }
   }
 
+    val inputQ = for (i <- 0 until numInputs) yield {
+      val queue = Module(new Queue(new DataBundle, entries = 1000000, pipe  =true, flow = true))
+      queue
+    }
 
-//  val DataQueue = for (i <- 0 until numInputs) yield {
-//    val DQ = Module( new Queue( DataBundle(vals(i-numPtrs)), entries = numVals/numInputs))
-//    DQ
-//  }
+    for (i <- 0 until numInputs){
+      dmem.io.dme.rd(i).cmd.bits.addr := vcr.io.dcr.ptrs(1 + i)
+      dmem.io.dme.rd(i).cmd.bits.len  := vcr.io.dcr.vals(0)
+      dmem.io.dme.rd(i).cmd.valid := false.B
 
-  
+      inputQ(i).io.enq.bits := DataBundle(dmem.io.dme.rd(i).data.bits)
+      dmem.io.dme.rd(i).data.ready := inputQ(i).io.enq.ready
+    }
+    dmem.io.dme.wr := DontCare
+    dmem.io.dme.rd(fillCounter).cmd.valid :=  (state === sReq)
+
   for (i <- 0 until numInputs){
-    inputQ(i).io.enq.valid :=  accel.io.in.valid
-    inputQ(i).io.deq.ready := accel.io.in.valid 
-
+    inputQ(i).io.enq.valid :=  dmem.io.dme.rd(i).data.valid
+    inputQ(i).io.deq.ready := incChunkCounter
   }
-
-
-     inputQ(is_addr).io.enq.bits := DataBundle(vals (nextChunk * numInputs.U + is_addr.U) + ptrs(0))
-     inputQ(is_data).io.enq.bits := DataBundle(vals (nextChunk * numInputs.U + is_data.U) )
-     inputQ(is_inst).io.enq.bits := DataBundle(vals (nextChunk * numInputs.U + is_inst.U) )
 
   // field_0 => is_inst
   // field_1 => is_addr
@@ -118,31 +119,28 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     accel.io.in.bits.dataVals(s"field${i}") := inputQ(i).io.deq.bits
   }
 
-
   accel.io.in.bits.enable := ControlBundle.active()
   accel.io.in.valid := false.B
   accel.io.out.ready := is_busy | state === sDone | state === sAck
   resetAckCounter := false.B
   incChunkCounter := false.B
 
-
+  
   switch(state) {
     is(sIdle) {
       when(vcr.io.dcr.launch) {
-        // printf(p"\nVals: ")
-        // vals.zipWithIndex.foreach(t => printf(p"val(${t._2}): ${t._1}, "))
-        // printf(p" \n")
+        state := sReq
+      }
+    }
+    is(sReq){
+      when(goToBusy){
         state := sBusy
       }
     }
+
     is(sBusy) {
-      // when(accel.io.in.fire() ){
-      //   printf(p"\nVals: ")
-      //   vals.zipWithIndex.foreach(t => printf(p"val(${t._2}): ${t._1}, "))
-      //   printf(p"\n")
-      // }
-      
-        when(nextChunk * numInputs.U  >= numVals.U ) {
+
+        when(inputQ(0).io.deq.valid === false.B ) {
           state := sDone
         }.elsewhen( inputQ(is_inst).io.deq.bits.data === is_ack.U) {
           state := sAck
@@ -171,8 +169,16 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     }
   }
 
-  vcr.io.dcr.finish := last & stopSim
-  io.mem <> accel.io.mem
+  vcr.io.dcr.finish := last
+
+  when(state === sReq){
+    io.mem <> dmem.io.mem
+    accel.io.mem <> DontCare
+  }.otherwise{
+     io.mem <> accel.io.mem
+     dmem.io.mem <> DontCare
+  }
+
   io.host <> vcr.io.host
 
 }
