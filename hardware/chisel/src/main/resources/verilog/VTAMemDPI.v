@@ -18,7 +18,7 @@
  */
 
 module VTAMemDPI #
-( parameter LEN_BITS = 8,
+( parameter LEN_BITS = 32,
   parameter ADDR_BITS = 64,
   parameter DATA_BITS = 64
 )
@@ -40,7 +40,7 @@ module VTAMemDPI #
   (
     input  byte     unsigned req_valid,
     input  byte     unsigned req_opcode,
-    input  byte     unsigned req_len,
+    input  int      unsigned req_len,
     input  longint  unsigned req_addr,
     input  byte     unsigned wr_valid,
     input  longint  unsigned wr_value,
@@ -57,7 +57,7 @@ module VTAMemDPI #
   dpi1_t  __reset;
   dpi8_t  __req_valid;
   dpi8_t  __req_opcode;
-  dpi8_t  __req_len;
+  dpi32_t  __req_len;
   dpi64_t __req_addr;
   dpi8_t  __wr_valid;
   dpi64_t __wr_value;

@@ -296,7 +296,7 @@ protected:
     delete r;
   }
 
-  void MemDPI(dpi8_t req_valid, dpi8_t req_opcode, dpi8_t req_len,
+  void MemDPI(dpi8_t req_valid, dpi8_t req_opcode, dpi32_t req_len,
               dpi64_t req_addr, dpi8_t wr_valid, dpi64_t wr_value,
               dpi8_t *rd_valid, dpi64_t *rd_value, dpi8_t rd_ready) {
     MemResponse r = mem_device_.ReadData(rd_ready);
@@ -324,7 +324,7 @@ protected:
   }
 
   static void VTAMemDPI(VTAContextHandle self, dpi8_t req_valid,
-                        dpi8_t req_opcode, dpi8_t req_len, dpi64_t req_addr,
+                        dpi8_t req_opcode, dpi32_t req_len, dpi64_t req_addr,
                         dpi8_t wr_valid, dpi64_t wr_value, dpi8_t *rd_valid,
                         dpi64_t *rd_value, dpi8_t rd_ready) {
     static_cast<DPIModule *>(self)->MemDPI(req_valid, req_opcode, req_len,

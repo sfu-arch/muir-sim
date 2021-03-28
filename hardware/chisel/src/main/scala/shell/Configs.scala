@@ -25,7 +25,7 @@ class WithShellConfig(vcrParams: DandelionDCRParams = DandelionDCRParams(),
                         addrBits = 32, dataBits = 64, idBits = 13, lenBits = 8),
                       memParams: AXIParams = AXIParams(
                         addrBits = 32, dataBits = 64, userBits = 5,
-                        lenBits = 16, // limit to 16 beats, instead of 256 beats in AXI4
+                        lenBits = 32, // limit to 16 beats, instead of 256 beats in AXI4
                         coherent = true),
                       nastiParams: NastiParameters = NastiParameters(dataBits = 64, addrBits = 32, idBits = 13),
                       dbgParams: DebugParams = DebugParams())

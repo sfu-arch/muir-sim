@@ -58,7 +58,7 @@ void VTAHostDPI(dpi8_t *req_valid,
 
 void VTAMemDPI(dpi8_t req_valid,
                dpi8_t req_opcode,
-               dpi8_t req_len,
+               dpi32_t req_len,
                dpi64_t req_addr,
                dpi8_t wr_valid,
                dpi64_t wr_value,
