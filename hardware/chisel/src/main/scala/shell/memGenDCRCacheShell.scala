@@ -20,21 +20,18 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     val mem = new AXIMaster(memParams)
   })
 
-
   val numInputs  = 3
   val is_data = 2
   val is_addr = 1
   val is_inst = 0
   val is_ack = 2
   val is_nop = 3
-  // comment test
 
   val regBits = dcrParams.regBits
   val ptrBits = regBits * 2
 
   val vcr = Module(new DCR)
   val dmem = Module(new DME)
-
 
   val accel = Module(accelModule())
 
@@ -48,7 +45,6 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   val last = state === sDone
   val is_busy = state === sBusy
 
-
   /**
     * Connecting event controls and return values
     * Event zero always contains the cycle count
@@ -60,9 +56,6 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
       vcr.io.dcr.ecnt(i).valid := accel.io.out.valid
     }
   }
-
-
-
 
   /**
     * @note This part needs to be changes for each function
@@ -90,7 +83,6 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   val goToBusy = Wire(Bool())
   goToBusy := (dmem.io.mem.r.fire() && dmem.io.mem.r.bits.last && numQ === 2.U && fillWrap )
 
-
   when(goToBusy) {
     cycles := 0.U
   }.otherwise {
@@ -99,6 +91,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
  vcr.io.dcr.ecnt(0).valid := last
  vcr.io.dcr.ecnt(0).bits := cycles
+
   when(accel.io.out.fire()){
       printf(p"Data back for addr ${accel.io.out.bits.data("field1").data} cycle ${cycles} \n") 
   }
@@ -137,7 +130,6 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   accel.io.out.ready := is_busy | state === sDone | state === sAck
   resetAckCounter := false.B
   incChunkCounter := false.B
-
   
   switch(state) {
     is(sIdle) {
