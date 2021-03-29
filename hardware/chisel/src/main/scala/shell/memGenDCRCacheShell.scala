@@ -48,19 +48,6 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   val last = state === sDone
   val is_busy = state === sBusy
 
-  val (nextChunk,_) = Counter(incChunkCounter, 1000000)
-  val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000000, resetAckCounter )
-  val (fillCounter,_) = Counter(dmem.io.mem.r.fire() && dmem.io.mem.r.bits.last , 4)
-
-  val goToBusy = Wire(Bool())
-  goToBusy := (dmem.io.mem.r.fire() && dmem.io.mem.r.bits.last && fillCounter === 2.U)
-
-
-  when(goToBusy) {
-    cycles := 0.U
-  }.otherwise {
-    cycles := cycles + 1.U
-  }
 
   /**
     * Connecting event controls and return values
@@ -74,8 +61,8 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     }
   }
 
- vcr.io.dcr.ecnt(0).valid := last
- vcr.io.dcr.ecnt(0).bits := cycles
+
+
 
   /**
     * @note This part needs to be changes for each function
@@ -86,6 +73,32 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   val vals = VecInit(Seq.tabulate(numVals) { i => RegEnable(next = vcr.io.dcr.vals(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) })
   val ptrs = VecInit(Seq.tabulate(numPtrs) { i => RegEnable(next = vcr.io.dcr.ptrs(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) })  
 
+  val (nextChunk,_) = Counter(incChunkCounter, 1000000)
+  val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000000, resetAckCounter )
+  val fillCounter = RegInit(0.U(32.W))
+  val fillWrap = Wire(Bool())
+
+  when (fillWrap && dmem.io.mem.r.fire() && dmem.io.mem.r.bits.last){
+    fillCounter := 0.U
+  }.elsewhen(dmem.io.mem.r.fire() && dmem.io.mem.r.bits.last){
+    fillCounter := fillCounter + 1.U
+  }
+  fillWrap := RegNext(fillCounter) === ((vals(0) / 64.U) - 1.U)
+
+  val (numQ, _) = Counter(fillWrap && dmem.io.mem.r.fire() && dmem.io.mem.r.bits.last , 4 )
+
+  val goToBusy = Wire(Bool())
+  goToBusy := (dmem.io.mem.r.fire() && dmem.io.mem.r.bits.last && numQ === 2.U && fillWrap )
+
+
+  when(goToBusy) {
+    cycles := 0.U
+  }.otherwise {
+    cycles := cycles + 1.U
+  }
+
+ vcr.io.dcr.ecnt(0).valid := last
+ vcr.io.dcr.ecnt(0).bits := cycles
   when(accel.io.out.fire()){
       printf(p"Data back for addr ${accel.io.out.bits.data("field1").data} cycle ${cycles} \n") 
   }
@@ -96,15 +109,15 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     }
 
     for (i <- 0 until numInputs){
-      dmem.io.dme.rd(i).cmd.bits.addr := vcr.io.dcr.ptrs(1 + i)
-      dmem.io.dme.rd(i).cmd.bits.len  := vcr.io.dcr.vals(0)
+      dmem.io.dme.rd(i).cmd.bits.addr := vcr.io.dcr.ptrs(1 + i) + fillCounter * 64.U * 8.U
+      dmem.io.dme.rd(i).cmd.bits.len  := 64.U
       dmem.io.dme.rd(i).cmd.valid := false.B
 
       inputQ(i).io.enq.bits := DataBundle(dmem.io.dme.rd(i).data.bits)
       dmem.io.dme.rd(i).data.ready := inputQ(i).io.enq.ready
     }
     dmem.io.dme.wr := DontCare
-    dmem.io.dme.rd(fillCounter).cmd.valid :=  (state === sReq)
+    dmem.io.dme.rd(numQ).cmd.valid :=  (state === sReq)
 
   for (i <- 0 until numInputs){
     inputQ(i).io.enq.valid :=  dmem.io.dme.rd(i).data.valid
@@ -140,7 +153,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
     is(sBusy) {
 
-        when(inputQ(0).io.deq.valid === false.B ) {
+        when(inputQ(0).io.deq.valid === false.B || inputQ(0).io.deq.bits.data > 3.U ) {
           state := sDone
         }.elsewhen( inputQ(is_inst).io.deq.bits.data === is_ack.U) {
           state := sAck
@@ -155,7 +168,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
     }
     is(sAck){
-      when (ackCounter === (inputQ(is_data).io.deq.bits.data)){
+      when (  ackCounter === (inputQ(is_data).io.deq.bits.data)){
         state := sBusy
         resetAckCounter := true.B
         incChunkCounter := true.B
