@@ -110,7 +110,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
     for (i <- 0 until numInputs){
       dmem.io.dme.rd(i).cmd.bits.addr := vcr.io.dcr.ptrs(1 + i) + fillCounter * 64.U * 8.U
-      dmem.io.dme.rd(i).cmd.bits.len  := 64.U
+      dmem.io.dme.rd(i).cmd.bits.len  := 63.U
       dmem.io.dme.rd(i).cmd.valid := false.B
 
       inputQ(i).io.enq.bits := DataBundle(dmem.io.dme.rd(i).data.bits)
