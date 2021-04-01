@@ -87,6 +87,10 @@ object DandelionSimDCRAccelMain extends App {
   var num_events = 1
   var num_ctrls = 1
 
+  var num_sets = 2
+  var num_ways = 2
+  var lock_depth = 2
+  var tbe_depth = 2
   /**
     * Make sure accel name is added to TestDCRAccel class
     */
@@ -96,8 +100,10 @@ object DandelionSimDCRAccelMain extends App {
     * Accel config values
     */
   var data_len = 64
+
   var print_log = true
   var cache_log = false
+
 
   args.sliding(2, 2).toList.collect {
     case Array("--accel-name", argAccel: String) => accel_name = argAccel
@@ -109,7 +115,14 @@ object DandelionSimDCRAccelMain extends App {
     case Array("--data-len", dlen: String) => data_len = dlen.toInt
     case Array("--print-log", printLog: String) => print_log = printLog.toBoolean
     case Array("--cache-log", cacheLog: String) => cache_log = cacheLog.toBoolean
+    case Array("--num-ways", argWays: String) => num_ways = argWays.toInt
+    case Array("--num-sets", argSets: String) => num_sets = argSets.toInt
+    case Array("--tbe-depth", argTbe: String) => tbe_depth = argTbe.toInt
+    case Array("--lock-depth", argLock: String) => lock_depth = argLock.toInt
   }
+  println(num_ways)
+    println(num_sets)
+
 
   /**
     * @note make sure for simulation dataLen is equal to 64
@@ -118,7 +131,11 @@ object DandelionSimDCRAccelMain extends App {
   implicit val p =
     new WithSimShellConfig(dLen = data_len, pLog = print_log, cLog = cache_log)(
       nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls) ++
-      new memGen.config.WithAccelConfig() ++
+      new memGen.config.WithAccelConfig(memGen.config.DandelionAccelParams(                               
+                                cacheNWays  = num_ways,
+                                 cacheNSets = num_sets,
+                                 tbeSize   = tbe_depth,
+                                 lockSize   = lock_depth) ) ++
       new WithTestConfig()
   chisel3.Driver.execute(args.take(4),
     () => new DandelionSimDCRAccel(() => DandelionTestDCRAccel(accel_name))(

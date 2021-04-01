@@ -57,7 +57,7 @@ class WithShellConfig(vcrParams: DandelionDCRParams = DandelionDCRParams(),
  */
 class WithSimShellConfig(dLen: Int = 64, pLog: Boolean = false, cLog: Boolean = false)
                         (nPtrs: Int, nVals: Int, nRets: Int, nEvents: Int, nCtrls: Int) extends Config(
-  new WithAccelConfig(DandelionAccelParams(dataLen = dLen, printLog = pLog, printCLog = cLog)) ++
+    new WithAccelConfig(DandelionAccelParams(dataLen = dLen, printLog = pLog, printCLog = cLog)) ++
     new WithShellConfig(vcrParams = DandelionDCRParams(numCtrl = nCtrls, numEvent = nEvents, numPtrs = nPtrs, numVals = nVals, numRets = nRets)))
 
 /**
@@ -114,8 +114,8 @@ class WithF1Config(vcrParams: DandelionDCRParams = DandelionDCRParams(),
 
 class WithF1ShellConfig(dLen: Int = 64, pLog: Boolean = false, cLog: Boolean = false)
                          (nPtrs: Int, nVals: Int, nRets: Int, nEvents: Int, nCtrls: Int, nDbgs: Int = 0) extends Config(
-  new WithAccelConfig(DandelionAccelParams(dataLen = dLen, printLog = pLog, printCLog = cLog)) ++
-    new WithF1Config(vcrParams = DandelionDCRParams(numCtrl = nCtrls, numEvent = nEvents, numPtrs = nPtrs + nDbgs, numVals = nVals, numRets = nRets),
+  new WithAccelConfig(DandelionAccelParams()) ++    
+          new WithF1Config(vcrParams = DandelionDCRParams(numCtrl = nCtrls, numEvent = nEvents, numPtrs = nPtrs + nDbgs, numVals = nVals, numRets = nRets),
       dmeParams = DandelionDMEParams(numRead = 1, numWrite = 1 + nDbgs), dbgParams = DebugParams(len_data = dLen)))
 
 
