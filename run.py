@@ -138,12 +138,18 @@ def ParseArguments():
                         help='Building dsim library')
     parser.add_argument('--accel-config', action='store', dest='accel_config', type=dir_path,
                         help='The accelerator name that will we passed to hardware generator')
+    parser.add_argument('--nWays', action='store', dest='nWays', type= int)
+    parser.add_argument('--nSets', action='store', dest='nSets', type = int)
+    parser.add_argument('--tbe-depth', action='store', dest='tbeDepth', type = int)
+    parser.add_argument('--lock-depth', action='store', dest='lockDepth', type = int)
+
     args = parser.parse_args()
+    print(args)
 
     return args
 
 
-def BuildAccel(config):
+def BuildAccel(config,args):
 
     make_params = []
     with open(config, 'r') as configFile:
@@ -161,7 +167,11 @@ def BuildAccel(config):
                     make_params += ["{}={} ".format(str(config),
                                                     str(configData['Accel'][config]))]
 
-        # print(make_params)
+        
+        make_cache = ["nWays","nSets", "tbeDepth","lockDepth"]
+        for name in make_cache:
+            make_params += ["{}={} ".format(str(name),str(vars(args)[str(name)]))]
+        print(make_params)
         print(bcolors.OKGREEN + " ".join(str(val)
                                          for val in ['make', 'chisel'] + make_params) + bcolors.ENDC)
         CheckCall(['make', 'chisel'] + make_params)
@@ -184,10 +194,10 @@ def GetCyclone(config):
                     make_params += ["{}={} ".format(str(config),
                                                     str(configData['Accel'][config]))]
 
-        # print(make_params)
-        print(bcolors.OKGREEN + " ".join(str(val)
+    print(make_params)
+    print(bcolors.OKGREEN + " ".join(str(val)
                                          for val in ['make', 'chisel'] + make_params) + bcolors.ENDC)
-        CheckCall(['make', 'cyclone'] + ['TOP=DCRAccel'] + make_params)
+    CheckCall(['make', 'cyclone'] + ['TOP=DCRAccel'] + make_params)
 
 
 def GetF1(config):
@@ -207,7 +217,6 @@ def GetF1(config):
                     make_params += ["{}={} ".format(str(config),
                                                     str(configData['Accel'][config]))]
 
-        # print(make_params)
         print(bcolors.OKGREEN + " ".join(str(val)
                                          for val in ['make', 'chisel'] + make_params) + bcolors.ENDC)
         CheckCall(['make', 'f1', 'TOP=DandelionF1Accel'] + make_params)
@@ -237,7 +246,7 @@ def Main():
     elif args.f1:
         GetF1(args.f1)
     else:
-        BuildAccel(args.accel_config)
+        BuildAccel(args.accel_config, args)
 
 
 if __name__ == "__main__":
