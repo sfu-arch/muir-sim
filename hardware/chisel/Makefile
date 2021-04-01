@@ -48,7 +48,13 @@ numCtrls= 1
 dataLen= 64
 printLog=false
 cacheLog=false
-boreIDs = 
+nWays= 0
+nSets= 0
+tbeDepth= 0 
+lockDepth= 0
+boreIDs= 0 
+
+
 
 vta_dir = $(abspath ../../)
 tvm_dir = $(abspath ../../include/)
@@ -119,15 +125,15 @@ $(verilator_build_dir)/V$(TOP).cpp: $(chisel_build_dir)/$(TOP).v
 
 verilog: $(chisel_build_dir)/$(TOP).v
 $(chisel_build_dir)/$(TOP).v: $(shell find . -type f -name "*.scala" | sed 's/ /\\ /g')
-	sbt 'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --print-log $(printLog) --cache-log $(cacheLog) --bore-ids $(boreIDs)'
+	sbt x'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --print-log $(printLog) --cache-log $(cacheLog) --bore-ids $(boreIDs) --num-ways $(nWays) --num-sets ${nSets} --tbe-depth ${tbeDepth} --lock-depth ${lockDepth}'
 
 cyclone: $(chisel_build_dir)/$(TOP).v
 $(chisel_build_dir)/$(TOP).v: $(shell find . -type f -name "*.scala" | sed 's/ /\\ /g')
-	sbt 'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --print-log $(printLog) --cache-log $(cacheLog) --bore-ids $(boreIDs)'
+	sbt  y'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --print-log $(printLog) --cache-log $(cacheLog) --bore-ids $(boreIDs)'
 
-f1: $(chisel_build_dir)/$(TOP).v
+f1:  $(chisel_build_dir)/$(TOP).v
 $(chisel_build_dir)/$(TOP).v: $(shell find . -type f -name "*.scala" | sed 's/ /\\ /g')
-	sbt 'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --print-log $(printLog) --cache-log $(cacheLog) --bore-ids $(boreIDs)'
+	sbt 'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --print-log $(printLog) --cache-log $(cacheLog) --num-ways $(nWays) --num-sets $(nSets) --tbe-depth $(tbeDepth) --lock-depth $(lockDepth)'
 
 
 
