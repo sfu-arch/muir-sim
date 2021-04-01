@@ -153,9 +153,11 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
         }.elsewhen(inputQ(is_inst).io.deq.bits.data === is_nop.U){
           incChunkCounter := true.B
         }.otherwise {
-            printf(p"\nInst : ${inputQ(is_inst).io.deq.bits.data} for addr ${inputQ(is_addr).io.deq.bits.data} cycle ${cycles} \n")
             accel.io.in.valid := true.B
-            incChunkCounter := true.B
+            when(accel.io.in.fire){
+              printf(p"\nInst : ${inputQ(is_inst).io.deq.bits.data} for addr ${inputQ(is_addr).io.deq.bits.data} cycle ${cycles} \n")
+              incChunkCounter := true.B
+            }
         }
 
     }

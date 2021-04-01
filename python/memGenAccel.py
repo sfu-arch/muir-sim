@@ -7,7 +7,7 @@ import sys
 
 
 
-mainMem = np.array([i for i in range (100000)], dtype = np.uint64)
+mainMem = np.zeros(10000000, dtype = np.uint64) #10 Milions 
 if platform.system() == 'Linux':
     hw_lib_path = "./hardware/chisel/build/libhw.so"
 elif platform.system() == 'Darwin':
