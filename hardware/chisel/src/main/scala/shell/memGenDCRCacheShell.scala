@@ -50,10 +50,10 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
     * Event zero always contains the cycle count
     */
 
-  if (accel.RetsOut.size > 0) {
-    for (i <- 1 to accel.RetsOut.size) {
-      vcr.io.dcr.ecnt(i).bits := accel.io.out.bits.data(s"field${i - 1}").data
-      vcr.io.dcr.ecnt(i).valid := accel.io.out.valid
+  if (numEvents > 0) {
+    for (i <- 1 until numEvents) {
+      vcr.io.dcr.ecnt(i).bits := accel.io.events.bits(i - 1)
+      vcr.io.dcr.ecnt(i).valid := accel.io.events.valid
     }
   }
 
@@ -94,6 +94,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
   when(accel.io.out.fire()){
       printf(p"Data back for addr ${accel.io.out.bits.data("field1").data} cycle ${cycles} \n") 
+      printf(p"ackCounter :${ ackCounter}\n")
   }
 
     val inputQ = for (i <- 0 until numInputs) yield {
