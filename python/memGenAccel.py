@@ -79,7 +79,7 @@ input_data = dsim.DArray(input_data ,  dsim.DArray.DType.UInt64)
 events = dsim.sim(ptrs = [mainMem,input_inst,input_addr,input_data ], vars= [nVals], debugs=[], numRets=0, numEvents=17, hwlib = hw_lib_path)
 
 #print(localMem)
-Events = ["missLD","hitLD", "InstCount", "CPUReq", "memCtrlReq"] + [""]*11
+Events = ["missLD","hitLD", "InstCount", "CPUReq", "memCtrlReq", "numLoadReq", "numReplace"] + [""]*10
 print("\nDone!\n")
 print("Cycle: " + str(events[0]))
 for i in range(16):
