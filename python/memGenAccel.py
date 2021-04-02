@@ -7,11 +7,23 @@ import sys
 
 
 
+nw   = int(sys.argv[3])
+ns   = int(sys.argv[4])
+tbe  = int(sys.argv[5])
+lock = int(sys.argv[6])
+nparal   = int(sys.argv[7])
+
+
 mainMem = np.zeros(10000000, dtype = np.uint64) #10 Milions 
 if platform.system() == 'Linux':
-    hw_lib_path = "./hardware/chisel/build/libhw.so"
+    if(nparal == 0):
+        hw_lib_path = "./python/build/libhw_{}_{}_{}_{}.so".format(nw,ns,tbe,lock)
+    else:
+        hw_lib_path = "./python/build/libhw_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal)
 elif platform.system() == 'Darwin':
     hw_lib_path = "./hardware/chisel/build/libhw.dylib"
+
+print(hw_lib_path)
 
 mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt64)
 
@@ -56,9 +68,9 @@ with open("python/" + sys.argv[2]+".csv") as trace:
             break
 
 
-print(input_inst)
-print(input_addr)
-print(input_data)
+# print(input_inst)
+# print(input_addr)
+# print(input_data)
 
 input_inst = dsim.DArray(input_inst ,  dsim.DArray.DType.UInt64)
 input_addr = dsim.DArray(input_addr ,  dsim.DArray.DType.UInt64)

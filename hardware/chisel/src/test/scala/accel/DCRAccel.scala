@@ -91,6 +91,7 @@ object DandelionSimDCRAccelMain extends App {
   var num_ways = 2
   var lock_depth = 2
   var tbe_depth = 2
+  var num_paral = 2
   /**
     * Make sure accel name is added to TestDCRAccel class
     */
@@ -119,6 +120,8 @@ object DandelionSimDCRAccelMain extends App {
     case Array("--num-sets", argSets: String) => num_sets = argSets.toInt
     case Array("--tbe-depth", argTbe: String) => tbe_depth = argTbe.toInt
     case Array("--lock-depth", argLock: String) => lock_depth = argLock.toInt
+    case Array("--num-paral", argParal: String) => num_paral= argParal.toInt
+
   }
   println(num_ways)
     println(num_sets)
@@ -135,7 +138,8 @@ object DandelionSimDCRAccelMain extends App {
                                 cacheNWays  = num_ways,
                                  cacheNSets = num_sets,
                                  tbeSize   = tbe_depth,
-                                 lockSize   = lock_depth) ) ++
+                                 lockSize   = lock_depth,
+                                 nparal = num_paral) ) ++
       new WithTestConfig()
   chisel3.Driver.execute(args.take(4),
     () => new DandelionSimDCRAccel(() => DandelionTestDCRAccel(accel_name))(

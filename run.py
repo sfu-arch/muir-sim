@@ -142,6 +142,8 @@ def ParseArguments():
     parser.add_argument('--nSets', action='store', dest='nSets', type = int)
     parser.add_argument('--tbe-depth', action='store', dest='tbeDepth', type = int)
     parser.add_argument('--lock-depth', action='store', dest='lockDepth', type = int)
+    parser.add_argument('--num-paral', action='store', dest='nParal', type = int)
+
 
     args = parser.parse_args()
     print(args)
@@ -168,7 +170,7 @@ def BuildAccel(config,args):
                                                     str(configData['Accel'][config]))]
 
         
-        make_cache = ["nWays","nSets", "tbeDepth","lockDepth"]
+        make_cache = ["nWays","nSets", "tbeDepth","lockDepth","nParal"]
         for name in make_cache:
             make_params += ["{}={} ".format(str(name),str(vars(args)[str(name)]))]
         print(make_params)
