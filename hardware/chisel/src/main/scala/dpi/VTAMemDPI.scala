@@ -76,7 +76,7 @@ class VTAMemDPI extends BlackBox with HasBlackBoxResource {
   addResource("/verilog/VTAMemDPI.v")
 }
 
-class VTAMemDPIToAXI(debug: Boolean = true)(implicit val p: Parameters)
+class VTAMemDPIToAXI(debug: Boolean = false)(implicit val p: Parameters)
     extends Module with HasAccelShellParams {
   val io = IO(new Bundle {
     val dpi = new VTAMemDPIMaster

@@ -31,10 +31,13 @@ class memGenAccel ( PtrsIn: Seq[Int] = List(),
 
  
    io.out <> DontCare
+   
 
   io.out.bits.data("field0").data := accel.io.resp.bits.inst
   io.out.bits.data("field1").data := Mux(accel.io.resp.valid, accel.io.resp.bits.addr,0.U)
   io.out.bits.data("field2").data := accel.io.resp.bits.data
+
+  io.events <> accel.io.events
 
   // io.out.bits.data("field0").asControlBundle()
   // io.out.bits.data("field1").asControlBundle()

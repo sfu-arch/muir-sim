@@ -7,7 +7,7 @@ import sys
 
 
 
-mainMem = np.array([i for i in range (100000)], dtype = np.uint64)
+mainMem = np.zeros(10000000, dtype = np.uint64) #10 Milions 
 if platform.system() == 'Linux':
     hw_lib_path = "./hardware/chisel/build/libhw.so"
 elif platform.system() == 'Darwin':
@@ -64,13 +64,15 @@ input_inst = dsim.DArray(input_inst ,  dsim.DArray.DType.UInt64)
 input_addr = dsim.DArray(input_addr ,  dsim.DArray.DType.UInt64)
 input_data = dsim.DArray(input_data ,  dsim.DArray.DType.UInt64)
 
-events = dsim.sim(ptrs = [mainMem,input_inst,input_addr,input_data ], vars= [nVals], debugs=[], numRets=0, numEvents=4, hwlib = hw_lib_path)
+events = dsim.sim(ptrs = [mainMem,input_inst,input_addr,input_data ], vars= [nVals], debugs=[], numRets=0, numEvents=17, hwlib = hw_lib_path)
 
 #print(localMem)
+Events = ["missLD","hitLD", "InstCount", "CPUReq", "memCtrlReq"] + [""]*11
+print("\nDone!\n")
 print("Cycle: " + str(events[0]))
-#for i in range(3):
-    #print("field{}".format(i+1))
-    #print(events[i+1])
+for i in range(16):
+    if(Events[i] != ""):
+        print("\n{},{}".format(Events[i], events[i+1]))
 
 
 #if events[1] == test01(5,3):
