@@ -3,6 +3,7 @@ import platform
 import dsim
 import csv
 import sys
+import os
 
 
 
@@ -12,6 +13,8 @@ ns   = int(sys.argv[4])
 tbe  = int(sys.argv[5])
 lock = int(sys.argv[6])
 nparal   = int(sys.argv[7])
+numLine = int(sys.argv[1])
+bm= sys.argv[2]
 
 
 mainMem = np.zeros(10000000, dtype = np.uint64) #10 Milions 
@@ -27,7 +30,7 @@ print(hw_lib_path)
 
 mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt64)
 
-nVals = int(sys.argv[1])
+nVals = numLine
 input_inst = []
 input_addr = []
 input_data = [] 
@@ -79,12 +82,37 @@ input_data = dsim.DArray(input_data ,  dsim.DArray.DType.UInt64)
 events = dsim.sim(ptrs = [mainMem,input_inst,input_addr,input_data ], vars= [nVals], debugs=[], numRets=0, numEvents=17, hwlib = hw_lib_path)
 
 #print(localMem)
-Events = ["missLD","hitLD", "InstCount", "CPUReq", "memCtrlReq", "numLoadReq", "numReplace"] + [""]*10
+Events = ["Cycles","missLD","hitLD", "InstCount", "CPUReq", "memCtrlReq", "numLoadReq", "numReplace"] + [""]*9
 print("\nDone!\n")
-print("Cycle: " + str(events[0]))
-for i in range(16):
+for i in range(17):
     if(Events[i] != ""):
-        print("\n{},{}".format(Events[i], events[i+1]))
+        print("\n{},{}".format(Events[i], events[i]))
+
+
+header = ["numLine", "bm", "nw", "ns", "tbe", "lock", "nParal", 
+            "cycles", "nHit", "nMiss", "nLoadInst","nInst","cpuReq","mmReqs"]
+file =open ("{}_Ran.csv".format(bm),'a')
+with file:
+    fnames = header   
+    writer = csv.DictWriter(file, fieldnames=fnames)    
+    if (os.stat("{}_Ran.csv".format(bm)).st_size == 0):
+        writer.writeheader()
+    
+    writer.writerow({ 'numLine': numLine,
+        'bm': bm,
+        'nw': nw,
+        'ns': ns,
+        'tbe':tbe,
+        'lock':lock,
+        'nParal':nparal,
+        'cycles':events[0],
+        'nMiss':events[1],
+        'nHit':events[2],
+        'nLoadInst':events[6],
+        'nInst':events[3],
+        'cpuReq':events[4],
+        'mmReqs':events[5]
+    })
 
 
 #if events[1] == test01(5,3):
