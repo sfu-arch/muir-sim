@@ -357,6 +357,79 @@ object DandelionF1AccelMain extends App {
   verilogWriter.close()
 }
 
+
+
+/**
+  * This is the F1 accel shell to run on AWS
+  * The difference between F1 shell and the other shells is AXILite interface
+  * For F1 we have used a custom interface instead of AXI lite and the memory
+  * is mapped to sepecific addresses.
+  * For more details please read Dandelion-Tutorial
+  */
+
+object DandelionTaigaAccelMain extends App {
+
+  //These are default values for DCR
+  var num_ptrs = 0
+  var num_dbgs = 1
+  var num_vals = 0
+  var num_returns = 1
+  var num_events = 1
+  var num_ctrls = 1
+
+  /**
+    * Make sure accel name is added to TestDCRAccel class
+    */
+  var accel_name = "test09"
+
+  /**
+    * Accel config values
+    */
+  var data_len = 64
+  var print_log = true
+  var cache_log = false
+  var bore_ids = List[Int]()
+
+  args.sliding(2, 2).toList.collect {
+    case Array("--accel-name", argAccel: String) => accel_name = argAccel
+    case Array("--num-ptrs", argPtrs: String) => num_ptrs = argPtrs.toInt
+    case Array("--num-dbgs", argDbgs: String) => num_dbgs = argDbgs.toInt
+    case Array("--num-vals", argVals: String) => num_vals = argVals.toInt
+    case Array("--num-rets", argRets: String) => num_returns = argRets.toInt
+    case Array("--num-events", argEvent: String) => num_events = argEvent.toInt
+    case Array("--num-ctrls", argCtrl: String) => num_ctrls = argCtrl.toInt
+    case Array("--data-len", dlen: String) => data_len = dlen.toInt
+    case Array("--print-log", printLog: String) => print_log = printLog.toBoolean
+    case Array("--cache-log", cacheLog: String) => cache_log = cacheLog.toBoolean
+    case Array("--bore-ids", boreids: String) => bore_ids = boreids.split(',').map(_.toInt).toList
+  }
+
+  val dir = new File("RTL/" + accel_name);
+  dir.mkdirs
+  /**
+    * @note make sure for simulation dataLen is equal to 64
+    *       Pass generated accelerator to TestAccel
+    */
+  implicit val p =
+    new WithTaigaShellConfig(dLen = data_len, pLog = print_log)(
+      nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls, nDbgs = num_dbgs)
+
+  lazy val accel_module = DandelionTestDebugDCRAccel(accel_name, num_dbgs, bore_ids)
+
+  val chirrtl = firrtl.Parser.parse(chisel3.Driver.emit(
+    () => new TaigaShell(accel_module._1)(accel_module._2)
+    (nPtrs = num_ptrs, nDbgs = num_dbgs, nVals = num_vals, numRets = num_returns, numEvents = num_events, numCtrls = num_ctrls)))
+
+  val verilogFile = new File(dir, s"${chirrtl.main}.v")
+  val verilogWriter = new FileWriter(verilogFile)
+  val compileResult = (new firrtl.VerilogCompiler).compileAndEmit(firrtl.CircuitState(chirrtl, firrtl.ChirrtlForm))
+  val compiledStuff = compileResult.getEmittedCircuit
+  verilogWriter.write(compiledStuff.value)
+  verilogWriter.close()
+}
+
+
+
 /**
   * Main object for compatible DCR accelerator with Dandelion generator
   *

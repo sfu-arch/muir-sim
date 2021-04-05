@@ -32,6 +32,9 @@ chisel:
 f1:
 	make -C hardware/chisel f1
 
+taiga:
+	make -C hardware/chisel taiga
+
 cyclone:
 	make -C hardware/chisel cyclone
 

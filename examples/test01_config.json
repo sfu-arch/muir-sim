@@ -7,7 +7,7 @@
         "numRets"  : 1,
         "numEnts"  : 1,
         "numCtrls" : 1,
-        "dataLen"  : 64,
+        "dataLen"  : 32,
         "boreIDs"  : [],
 
         "Build" : {

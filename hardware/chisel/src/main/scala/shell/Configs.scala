@@ -119,8 +119,45 @@ class WithF1ShellConfig(dLen: Int = 64, pLog: Boolean = false, cLog: Boolean = f
       dmeParams = DandelionDMEParams(numRead = 1, numWrite = 1 + nDbgs), dbgParams = DebugParams(len_data = dLen)))
 
 
+
 /**
- * F1 Config
+  * Taiga Config
+  * AXI -- memParams:dataBits
+  *
+  * @param vcrParams
+  * @param dmeParams
+  * @param hostParams
+  * @param memParams
+  */
+class WithTaigaConfig(vcrParams: DandelionDCRParams = DandelionDCRParams(),
+                   dmeParams: DandelionDMEParams = DandelionDMEParams(),
+                   hostParams: AXIParams = AXIParams(
+                     addrBits = 16, dataBits = 32, idBits = 13, lenBits = 4),
+                   memParams: AXIParams = AXIParams(
+                     addrBits = 32, dataBits = 32, userBits = 10,
+                     lenBits = 8, // limit to 16 beats, instead of 256 beats in AXI4
+                     coherent = false),
+                   dbgParams: DebugParams = DebugParams())
+  extends Config((site, here, up) => {
+    // Core
+    case DCRKey => vcrParams
+    case DMEKey => dmeParams
+    case HostParamKey => hostParams
+    case MemParamKey => memParams
+    case DebugParamKey => dbgParams
+  }
+  )
+
+class WithTaigaShellConfig(dLen: Int = 64, pLog: Boolean = false, cLog: Boolean = false)
+                       (nPtrs: Int, nVals: Int, nRets: Int, nEvents: Int, nCtrls: Int, nDbgs: Int = 0) extends Config(
+  new WithAccelConfig(DandelionAccelParams(dataLen = dLen, printLog = pLog, printCLog = cLog)) ++
+    new WithTaigaConfig(vcrParams = DandelionDCRParams(numCtrl = nCtrls, numEvent = nEvents, numPtrs = nPtrs + nDbgs, numVals = nVals, numRets = nRets),
+      dmeParams = DandelionDMEParams(numRead = 1, numWrite = 1 + nDbgs), dbgParams = DebugParams(len_data = dLen)))
+
+
+
+/**
+  * F1 Config
  * AXI -- memParams:dataBits
  *
  * @param vcrParams
