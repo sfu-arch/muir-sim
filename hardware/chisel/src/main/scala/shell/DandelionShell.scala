@@ -1211,7 +1211,8 @@ class DandelionDebugTaigaShell(accelModule: () => DandelionAccelDCRModule)
                               (numPtrs: Int, numDbgs: Int, numVals: Int, numRets: Int, numEvents: Int, numCtrls: Int)
                               (implicit val p: Parameters) extends Module with HasAccelParams with HasAccelShellParams {
   val io = IO(new Bundle {
-    val host = new AXILiteClient(hostParams)
+//    val host = new AXILiteClient(hostParams)
+    val host = new TaigaAXILiteClient(hostParams)
     val mem = new AXIMaster(memParams)
   })
 
@@ -1228,7 +1229,7 @@ class DandelionDebugTaigaShell(accelModule: () => DandelionAccelDCRModule)
       regBits
 
 
-  val dcr = Module(new DCR)
+  val dcr = Module(new TaigaDCR)
   val dmem = Module(new DME())
   val cache = Module(new DMECache())
 

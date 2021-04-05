@@ -108,7 +108,7 @@ class TaigaShell(accelModule: () => DandelionAccelDCRModule)
   val ap_clk = IO(Input(Clock()))
   val ap_rst_n = IO(Input(Bool()))
   val cl_axi_mstr_bus = IO(new XilinxAXIMaster(mp))
-  val axi_mstr_cfg_bus = IO(Flipped(new XilinxAXILiteClient(hp)))
+  val axi_mstr_cfg_bus = IO(new TaigaAXILiteClient(hp))
 
   val shell = withClockAndReset(clock = ap_clk, reset = ~ap_rst_n) {
     //    Module(new DandelionF1DTAShell())
@@ -170,14 +170,7 @@ class TaigaShell(accelModule: () => DandelionAccelDCRModule)
   shell.io.mem.r.bits.user := cl_axi_mstr_bus.RUSER
 
   // host
-  shell.io.host <> DontCare
-  axi_mstr_cfg_bus <> DontCare
-//  shell.io.host.addr := axi_mstr_cfg_bus.ARADDR
-//  shell.io.host.wdata := axi_mstr_cfg_bus.WDATA
-//  shell.io.host.wr := axi_mstr_cfg_bus.WR
-//  shell.io.host.rd := axi_mstr_cfg_bus.rd
-//  axi_mstr_cfg_bus.ack := shell.io.host.ack
-//  axi_mstr_cfg_bus.rdata := shell.io.host.rdata
+  axi_mstr_cfg_bus <> shell.io.host
 
 }
 
