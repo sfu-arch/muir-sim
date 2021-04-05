@@ -110,7 +110,7 @@ class TaigaShell(accelModule: () => DandelionAccelDCRModule)
   val cl_axi_mstr_bus = IO(new TaigaAXIMaster(mp))
   val axi_mstr_cfg_bus = IO(new TaigaAXILiteClient(hp))
 
-  val shell = withClockAndReset(clock = ap_clk, reset = ~ap_rst_n) {
+  val shell = withClockAndReset(clock = ap_clk, reset = ap_rst_n) {
     //    Module(new DandelionF1DTAShell())
     Module(new DandelionDebugTaigaShell(accelModule)
     (debugModule)
