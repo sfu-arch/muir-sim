@@ -136,7 +136,7 @@ class WithTaigaConfig(vcrParams: DandelionDCRParams = DandelionDCRParams(),
                    memParams: AXIParams = AXIParams(
                      addrBits = 32, dataBits = 32, userBits = 10,
                      lenBits = 8, // limit to 16 beats, instead of 256 beats in AXI4
-                     coherent = false),
+                     coherent = false, idBits = 6),
                    dbgParams: DebugParams = DebugParams())
   extends Config((site, here, up) => {
     // Core
