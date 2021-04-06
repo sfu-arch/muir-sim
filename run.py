@@ -140,6 +140,8 @@ def ParseArguments():
                         help='Building dsim library')
     parser.add_argument('--accel-config', action='store', dest='accel_config', type=dir_path,
                         help='The accelerator name that will we passed to hardware generator')
+    parser.add_argument('--sim', action='store', dest='sim', type=dir_path,
+                        help='The accelerator name that will we passed to hardware generator')
     args = parser.parse_args()
 
     return args
@@ -264,6 +266,8 @@ def Main():
         GetF1(args.f1)
     elif args.taiga:
         GetTaiga(args.taiga)
+    elif args.sim:
+        BuildAccel(args.sim)
     else:
         BuildAccel(args.accel_config)
 

@@ -2,13 +2,13 @@
     "Accel" : {
         "nameAccel" : "test04",
         "numPtrs"  : 0,
-        "numDbgs"  : 1,
+        "numDbgs"  : 0,
         "numVals"  : 3,
         "numRets"  : 1,
         "numEnts"  : 1,
         "numCtrls" : 1,
         "dataLen"  : 64,
-        "boreIDs"  : [4],
+        "boreIDs"  : [  ],
 
         "Build" : {
             "printLog" : true,

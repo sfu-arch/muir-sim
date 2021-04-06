@@ -2,13 +2,13 @@
     "Accel" : {
         "nameAccel" : "conv2d",
         "numPtrs"  : 3,
-        "numDbgs"  : 4,
+        "numDbgs"  : 0,
         "numVals"  : 4,
         "numRets"  : 0,
         "numEnts"  : 1,
         "numCtrls" : 1,
         "dataLen"  : 64,
-        "boreIDs"  : [2,3,4,33],
+        "boreIDs"  : [],
 
         "Build" : {
             "printLog" : false,

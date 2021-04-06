@@ -27,19 +27,9 @@ d_s = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
 e_s = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
 
 
-aa = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
-bb = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
-cc = dsim.DArray(np.zeros(30), dsim.DArray.DType.UInt64)
-
-events = dsim.sim(ptrs = [a_s], input_debugs=[aa, bb, cc, dd], debugs=[b_s, c_s, d_s, e_s], vars= [], numRets=1, numEvents=1, hwlib = hw_lib_path)
+events = dsim.sim(ptrs = [a_s], input_debugs=[aa, bb, cc, dd], debugs=[], vars= [], numRets=1, numEvents=1, hwlib = hw_lib_path)
 
 print("Cycle: " + str(events[0]))
 print("Output array:\t")
 print(list(a_s.getData_UInt64()))
 print(test05(val_a))
-
-print("Debug output:")
-print([ hex(int(x) & ((1 << 64) - 1)) for x in b_s.getData_UInt64()])
-print([ hex(int(x) & ((1 << 64) - 1)) for x in c_s.getData_UInt64()])
-print([ hex(int(x) & ((1 << 64) - 1)) for x in d_s.getData_UInt64()])
-print([ hex(int(x) & ((1 << 64) - 1)) for x in e_s.getData_UInt64()])

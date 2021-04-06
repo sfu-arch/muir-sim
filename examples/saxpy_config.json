@@ -2,13 +2,13 @@
     "Accel" : {
         "nameAccel" : "saxpy",
         "numPtrs"  : 2,
-        "numDbgs"  : 5,
+        "numDbgs"  : 0,
         "numVals"  : 2,
         "numRets"  : 0,
         "numEnts"  : 1,
         "numCtrls" : 1,
         "dataLen"  : 64,
-        "boreIDs"  : [0,12,15,18,20],
+        "boreIDs"  : [],
 
         "Build" : {
             "printLog" : false,

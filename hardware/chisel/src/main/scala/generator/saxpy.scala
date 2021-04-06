@@ -89,7 +89,7 @@ class saxpyDF(PtrsIn: Seq[Int] = List(64, 64), ValsIn: Seq[Int] = List(64, 64), 
   val ret_10 = Module(new RetNode2(retTypes = List(32), ID = 10))
 
   //  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.body ], !UID !44
-  val phiindvars_iv12 = Module(new PhiFastNode(NumInputs = 2, NumOutputs = 3, ID = 12, Res = true, Debug = true, GuardVals=Seq.tabulate(1000)(n => n)))
+  val phiindvars_iv12 = Module(new PhiFastNode(NumInputs = 2, NumOutputs = 3, ID = 12, Res = true, Debug = false, GuardVals=Seq.tabulate(1000)(n => n)))
 
   //  %arrayidx = getelementptr inbounds i32, i32* %x, i64 %indvars.iv, !dbg !45, !UID !47
   val Gep_arrayidx13 = Module(new GepNode(NumIns = 1, NumOuts = 1, ID = 13)(ElementSize = 8, ArraySize = List()))
@@ -98,7 +98,7 @@ class saxpyDF(PtrsIn: Seq[Int] = List(64, 64), ValsIn: Seq[Int] = List(64, 64), 
   val ld_14 = Module(new UnTypLoadCache(NumPredOps = 0, NumSuccOps = 0, NumOuts = 1, ID = 14, RouteID = 0))
 
   //  %mul = mul nsw i32 %0, %a, !dbg !53, !UID !54
-  val binaryOp_mul15 = Module(new ComputeNode(NumOuts = 1, ID = 15, opCode = "mul")(sign = false, Debug = true, GuardVals=Seq.tabulate(1000)(n => n)))
+  val binaryOp_mul15 = Module(new ComputeNode(NumOuts = 1, ID = 15, opCode = "mul")(sign = false, Debug = false, GuardVals=Seq.tabulate(1000)(n => n)))
 
   //  %arrayidx2 = getelementptr inbounds i32, i32* %y, i64 %indvars.iv, !dbg !55, !UID !56
   val Gep_arrayidx216 = Module(new GepNode(NumIns = 1, NumOuts = 2, ID = 16)(ElementSize = 8, ArraySize = List()))
@@ -107,13 +107,13 @@ class saxpyDF(PtrsIn: Seq[Int] = List(64, 64), ValsIn: Seq[Int] = List(64, 64), 
   val ld_17 = Module(new UnTypLoadCache(NumPredOps = 0, NumSuccOps = 0, NumOuts = 1, ID = 17, RouteID = 1))
 
   //  %add = add nsw i32 %mul, %1, !dbg !58, !UID !59
-  val binaryOp_add18 = Module(new ComputeNode(NumOuts = 1, ID = 18, opCode = "add")(sign = false, Debug = true, GuardVals=Seq.tabulate(1000)(n => n)))
+  val binaryOp_add18 = Module(new ComputeNode(NumOuts = 1, ID = 18, opCode = "add")(sign = false, Debug = false, GuardVals=Seq.tabulate(1000)(n => n)))
 
   //  store i32 %add, i32* %arrayidx2, align 4, !dbg !60, !tbaa !48, !UID !61
   val st_19 = Module(new UnTypStoreCache(NumPredOps = 0, NumSuccOps = 1, ID = 19, RouteID = 2))
 
   //  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !62, !UID !63
-  val binaryOp_indvars_iv_next20 = Module(new ComputeNode(NumOuts = 2, ID = 20, opCode = "add")(sign = false, Debug = true, GuardVals=Seq.tabulate(1000)(n => n)))
+  val binaryOp_indvars_iv_next20 = Module(new ComputeNode(NumOuts = 2, ID = 20, opCode = "add")(sign = false, Debug = false, GuardVals=Seq.tabulate(1000)(n => n)))
 
   //  %exitcond = icmp eq i64 %indvars.iv.next, %wide.trip.count, !dbg !30, !UID !64
   val icmp_exitcond15 = Module(new ComputeNode(NumOuts = 1, ID = 15, opCode = "eq")(sign = false, Debug = false))

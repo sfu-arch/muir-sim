@@ -73,7 +73,7 @@ class test04DF(PtrsIn: Seq[Int] = List(), ValsIn: Seq[Int] = List(32, 32, 32), R
    * Correct vals are: 5, 30, 105, 330, 1005
     * GuardReader, reads gaurd value from src/main/resoureces/guards/test04.dbg
    */
-  val phisum_064 = Module(new PhiFastNode(NumInputs = 2, NumOutputs = 1, ID = 4, Res = false, Debug = true,
+  val phisum_064 = Module(new PhiFastNode(NumInputs = 2, NumOutputs = 1, ID = 4, Res = false, Debug = false,
     GuardVals = GuardReader("test04.dbg"){4}))
 
   //  %add = add i32 %sum.06, %a, !dbg !31, !UID !36

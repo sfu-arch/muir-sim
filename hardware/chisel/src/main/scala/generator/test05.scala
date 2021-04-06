@@ -81,7 +81,7 @@ class test05DF(PtrsIn: Seq[Int] = List(32), ValsIn: Seq[Int] = List(), Returns: 
   val Gep_arrayidx5 = Module(new GepNode(NumIns = 1, NumOuts = 1, ID = 5)(ElementSize = 8, ArraySize = List()))
 
   //  %1 = load i32, i32* %arrayidx, align 4, !dbg !33, !tbaa !24, !UID !37
-  val ld_6 = Module(new UnTypLoadCache(NumPredOps = 0, NumSuccOps = 0, NumOuts = 1, ID = 6, RouteID = 1, Debug = true,
+  val ld_6 = Module(new UnTypLoadCache(NumPredOps = 0, NumSuccOps = 0, NumOuts = 1, ID = 6, RouteID = 1, Debug = false,
     GuardAddress = List(4096, 4104, 4112, 4120, 4128, 4136, 4144, 4152, 4160, 4168),
     GuardData = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)))
 
@@ -89,14 +89,14 @@ class test05DF(PtrsIn: Seq[Int] = List(32), ValsIn: Seq[Int] = List(), Returns: 
   val binaryOp_mul7 = Module(new ComputeNode(NumOuts = 1, ID = 7, opCode = "shl")(sign = false, Debug = false))
 
   //  %2 = add nuw nsw i64 %indvars.iv, 5, !dbg !40, !UID !41
-  val binaryOp_8 = Module(new ComputeNode(NumOuts = 1, ID = 8, opCode = "add")(sign = false, Debug = true,
+  val binaryOp_8 = Module(new ComputeNode(NumOuts = 1, ID = 8, opCode = "add")(sign = false, Debug = false,
     GuardVals = List(5, 6, 7, 8, 9)))
 
   //  %arrayidx2 = getelementptr inbounds i32, i32* %a, i64 %2, !dbg !42, !UID !43
   val Gep_arrayidx29 = Module(new GepNode(NumIns = 1, NumOuts = 1, ID = 9)(ElementSize = 8, ArraySize = List()))
 
   //  store i32 %mul, i32* %arrayidx2, align 4, !dbg !44, !tbaa !24, !UID !45
-  val st_10 = Module(new UnTypStoreCache(NumPredOps = 0, NumSuccOps = 1, ID = 10, RouteID = 2, Debug = true,
+  val st_10 = Module(new UnTypStoreCache(NumPredOps = 0, NumSuccOps = 1, ID = 10, RouteID = 2, Debug = false,
     GuardAddress = List(4136, 4144, 4152, 4160, 4168)))
 
   //  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !46, !UID !47
