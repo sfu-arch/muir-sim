@@ -34,6 +34,7 @@ endif
 
 #TOP = DandelionSimDCRAccel
 TOP = DandelionSimStreamDebugAccel
+#TOP = DandelionSimDebugAccel
 BUILD_NAME = build
 USE_TRACE = 1
 LIBNAME = libhw

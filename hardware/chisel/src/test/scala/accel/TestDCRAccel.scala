@@ -125,6 +125,19 @@ object DandelionTestDebugStreamDCRAccel {
       case "test04" => (() => new test04DF(),
         () => new DebugBufferWriters(numDbgs, boreIDsList),
         () => new DebugBufferReads(numDbgs, boreIDsList))
+      case "relu" => (() => new reluDF(),
+        () => new DebugBufferWriters(numDbgs, boreIDsList),
+        () => new DebugBufferReads(numDbgs, boreIDsList))
+      case "stencil" => (() => new stencilRootDF(),
+        () => new DebugBufferWriters(numDbgs, boreIDsList),
+        () => new DebugBufferReads(numDbgs, boreIDsList))
+      case "saxpy" => (() => new saxpyDF(),
+        () => new DebugBufferWriters(numDbgs, boreIDsList),
+        () => new DebugBufferReads(numDbgs, boreIDsList))
+      case "conv2d" => (() => new conv2dDF(),
+        () => new DebugBufferWriters(numDbgs, boreIDsList),
+        () => new DebugBufferReads(numDbgs, boreIDsList))
+      //case "relu" => (() => new reluDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
 
       case _ => throw new Exception(s"[EXCEPTION] The accel's name is not defined -- " +
         s"Please check the accel name you have passed: ${testName}")

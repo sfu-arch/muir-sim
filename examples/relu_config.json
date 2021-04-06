@@ -2,13 +2,13 @@
     "Accel" : {
         "nameAccel" : "relu",
         "numPtrs"  : 2,
-        "numDbgs"  : 3,
+        "numDbgs"  : 0,
         "numVals"  : 1,
         "numRets"  : 0,
         "numEnts"  : 1,
         "numCtrls" : 1,
         "dataLen"  : 64,
-        "boreIDs"  : [12, 13, 16],
+        "boreIDs"  : [ ],
 
         "Build" : {
             "printLog" : true,

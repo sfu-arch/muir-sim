@@ -1,0 +1,13 @@
+Ptrs: ptr(0): 0x0000000000000003, ptr(1): 0x0000000000000000, 
+Vals: val(0): 0x0000000000000000, val(1): 0x0000000000000005, 
+[LOG] [Saxpy] [TID:  0] [BB] [bb_entry0] [Out: 1] [Cycle:    14]
+[LOG] [Saxpy] [TID:  0] [CONST] [Saxpy] [Pred: 0] [Val: 0x0000000000000000] [Cycle:    14]
+[LOG] [Saxpy] [TID:  0] [COMPUTE] [icmp_cmp110] [Pred: 1] [In(0): 0x0000000000000000] [In(1) 0x0000000000000000] [Out: 0x0000000000000000] [OpCode: sgt] [Cycle:    15]
+[LOG] [Saxpy] [TID:  0] [CBR] [br_1] [Out: T:0 - F:1] [Cycle:    16]
+[LOG] [Saxpy] [TID:  0] [BB] [bb_for_body_lr_ph1] [Out: 0] [Cycle:    17]
+[LOG] [Saxpy] [TID:  0] [ZEXT][sextwide_trip_count2] [Pred: 0] [Out:                    0] [Cycle:    17]
+[LOG] [Saxpy] [TID:  0] [UBR] [br_3] [Out: 0] [Cycle:    18]
+[LOG] [Saxpy] [TID:  0] [BB] [bb_for_cond_cleanup_loopexit2] [Out: 0] [Cycle:    20]
+[LOG] [Saxpy] [TID:  0] [UBR] [br_4] [Out: 0] [Cycle:    21]
+[LOG] [Saxpy] [TID:  0] [BB] [bb_for_cond_cleanup3] [Out: 1] [Cycle:    21]
+[LOG] [Saxpy] [TID:  0] [ret_5] [Cycle:    24]

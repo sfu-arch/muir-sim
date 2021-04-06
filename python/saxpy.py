@@ -33,6 +33,7 @@ b_s = dsim.DArray(b, dsim.DArray.DType.UInt64)
 constant_val = 10
 
 
+# events = dsim.sim(ptrs = [a_s, b_s], vars= [array_size, constant_val], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
 events = dsim.sim(ptrs = [a_s, b_s], vars= [array_size, constant_val], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
 
 correct_res = saxpy(array_size, constant_val, a.tolist(), b.tolist())

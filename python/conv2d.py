@@ -55,6 +55,7 @@ coeffs_s = dsim.DArray(coeffs, dsim.DArray.DType.UInt64)
 img_out_s = dsim.DArray(img_out, dsim.DArray.DType.UInt64)
 
 
+# events = dsim.sim(ptrs = [img_in_s, img_out_s, coeffs_s], vars= [IMG_SIZE, IMG_SIZE, 5, 8], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
 events = dsim.sim(ptrs = [img_in_s, img_out_s, coeffs_s], vars= [IMG_SIZE, IMG_SIZE, 5, 8], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
 
 # Running software version
