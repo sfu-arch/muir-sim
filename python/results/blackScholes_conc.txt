@@ -1,0 +1,24 @@
+###################### CONCURRENT RESULTS #####################
+Total loads: 3276811
+Concurrent Loads: 3276800
+Ratio: 0.999997
+###################### CONCURRENT RESULTS #####################
+Total loads: 3276811
+Concurrent Loads: 3276800
+Ratio: 0.999997
+###################### CONCURRENT RESULTS #####################
+Total loads: 3276811
+Concurrent Loads: 3276800
+Ratio: 0.999997
+###################### CONCURRENT RESULTS #####################
+Total loads: 3276811
+Concurrent Loads: 3276800
+Ratio: 0.999997
+###################### CONCURRENT RESULTS #####################
+Total loads: 3276811
+Concurrent Loads: 3276800
+Ratio: 0.999997
+###################### CONCURRENT RESULTS #####################
+Total loads: 3276811
+Concurrent Loads: 3276800
+Ratio: 0.999997

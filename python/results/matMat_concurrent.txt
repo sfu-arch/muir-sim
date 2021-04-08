@@ -1,0 +1,36 @@
+###################### CONCURRENT RESULTS #####################
+Total loads: 181507
+Concurrent Loads: 181504
+Ratio: 0.999983
+###################### CONCURRENT RESULTS #####################
+Total loads: 181507
+Concurrent Loads: 181504
+Ratio: 0.999983
+###################### CONCURRENT RESULTS #####################
+Total loads: 181507
+Concurrent Loads: 181504
+Ratio: 0.999983
+###################### CONCURRENT RESULTS #####################
+Total loads: 181507
+Concurrent Loads: 181504
+Ratio: 0.999983
+###################### CONCURRENT RESULTS #####################
+Total loads: 181507
+Concurrent Loads: 181504
+Ratio: 0.999983
+###################### CONCURRENT RESULTS #####################
+Total loads: 181507
+Concurrent Loads: 181504
+Ratio: 0.999983
+###################### CONCURRENT RESULTS #####################
+Total loads: 181507
+Concurrent Loads: 181504
+Ratio: 0.999983
+###################### CONCURRENT RESULTS #####################
+Total loads: 181507
+Concurrent Loads: 181504
+Ratio: 0.999983
+###################### CONCURRENT RESULTS #####################
+Total loads: 181507
+Concurrent Loads: 181504
+Ratio: 0.999983

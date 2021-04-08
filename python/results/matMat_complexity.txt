@@ -1,0 +1,36 @@
+###################### COMPLEXITY RESULTS #####################
+Total loads and stores: 460802
+Total Complex Ops: 153600
+Ratio: 0.333332
+###################### COMPLEXITY RESULTS #####################
+Total loads and stores: 460802
+Total Complex Ops: 153600
+Ratio: 0.333332
+###################### COMPLEXITY RESULTS #####################
+Total loads and stores: 460802
+Total Complex Ops: 153600
+Ratio: 0.333332
+###################### COMPLEXITY RESULTS #####################
+Total loads and stores: 460802
+Total Complex Ops: 153600
+Ratio: 0.333332
+###################### COMPLEXITY RESULTS #####################
+Total loads and stores: 460802
+Total Complex Ops: 153600
+Ratio: 0.333332
+###################### COMPLEXITY RESULTS #####################
+Total loads and stores: 460802
+Total Complex Ops: 153600
+Ratio: 0.333332
+###################### COMPLEXITY RESULTS #####################
+Total loads and stores: 460802
+Total Complex Ops: 153600
+Ratio: 0.333332
+###################### COMPLEXITY RESULTS #####################
+Total loads and stores: 460802
+Total Complex Ops: 153600
+Ratio: 0.333332
+###################### COMPLEXITY RESULTS #####################
+Total loads and stores: 460802
+Total Complex Ops: 153600
+Ratio: 0.333332
