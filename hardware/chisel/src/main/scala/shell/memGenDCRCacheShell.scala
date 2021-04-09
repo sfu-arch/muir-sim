@@ -146,7 +146,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
     is(sBusy) {
 
-        when(inputQ(0).io.deq.valid === false.B || inputQ(0).io.deq.bits.data > 3.U ) {
+        when(inputQ(0).io.deq.valid === false.B || inputQ(0).io.deq.bits.data > 5.U ) {
           state := sDone
         }.elsewhen( inputQ(is_inst).io.deq.bits.data === is_ack.U) {
           state := sAck

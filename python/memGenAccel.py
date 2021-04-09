@@ -56,7 +56,7 @@ input_data = []
 #events = dsim.sim(ptrs = [mainMem ], vars= [0, 4, 2,
  #                                    0,128,2], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
 
-with open("python/" + sys.argv[2]+".csv") as trace:
+with open(sys.argv[2]) as trace:
     trigger = csv.reader(trace)
     for i, row in enumerate(trigger):
         if(int(row[0]) == 2 ):
