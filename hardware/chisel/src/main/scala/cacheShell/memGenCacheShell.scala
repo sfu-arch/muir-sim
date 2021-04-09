@@ -51,13 +51,14 @@ class memGenAccel ( PtrsIn: Seq[Int] = List(),
 
     when(io.in.bits.dataVals("field0").asUInt() === is_wideLd){
       dstNode := io.in.bits.dataVals("field2").asUInt()
+      accel.io.instruction(dstNode).bits.inst := 0.U // Load
     }.otherwise{
-      dstNode := 0.U
+        accel.io.instruction(dstNode).bits.inst := io.in.bits.dataVals("field0").asUInt() // Load
+        dstNode := 0.U
     }
 
     io.in.ready := accel.io.instruction(dstNode).ready
     accel.io.instruction(dstNode).valid := io.in.valid
-    accel.io.instruction(dstNode).bits.inst := io.in.bits.dataVals("field0").asUInt()
     accel.io.instruction(dstNode).bits.addr := io.in.bits.dataVals("field1").asUInt()
     accel.io.instruction(dstNode).bits.data := io.in.bits.dataVals("field2").asTypeOf(UInt((accelParams.cacheBlockBits).W))
  
