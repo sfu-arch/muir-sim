@@ -59,14 +59,18 @@ input_data = []
 with open("python/" + sys.argv[2]+".csv") as trace:
     trigger = csv.reader(trace)
     for i, row in enumerate(trigger):
-        if(int(row[0]) != 2 ):
-            input_inst.append(int(row[0],16))
-            input_addr.append(int(row[1],16))
-            input_data.append(0)
-        else:
+        if(int(row[0]) == 2 ):
             input_inst.append(int(row[0]))
             input_addr.append(0)
             input_data.append(int(row[1]))
+        if (int(row[0]) == 4 ):
+            input_inst.append(int(row[0]))
+            input_addr.append(int(row[1],16))
+            input_data.append(int(row[2]))
+        else:
+            input_inst.append(int(row[0],16))
+            input_addr.append(int(row[1],16))
+            input_data.append(0)
         if (i == nVals - 1):
             break
 
