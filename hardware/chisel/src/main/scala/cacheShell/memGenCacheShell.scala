@@ -20,41 +20,57 @@ class memGenAccel ( PtrsIn: Seq[Int] = List(),
                                RetsOut: Seq[Int] = List(8,32,256))
                              (implicit p:Parameters) extends  memGenModule (PtrsIn, ValsIn, RetsOut){
 
+  
   val accel = Module (new memGenTopLevel())
 
 //  val ArgSplitter = Module(new SplitCallDCR(ptrsArgTypes = List(1, 1, 1, 1), valsArgTypes = List()))
 //  ArgSplitter.io.In <> io.in
+  val is_wideLd = WireInit(4.U)
+  val dstNode = WireInit(0.U)
+  val numCache = accel.numCache
 
-  accel.io.instruction.bits.inst := io.in.bits.dataVals("field0").asUInt()
-  accel.io.instruction.bits.addr := io.in.bits.dataVals("field1").asUInt()
-  accel.io.instruction.bits.data := io.in.bits.dataVals("field2").asTypeOf(UInt((accelParams.cacheBlockBits).W))
 
+  val outArb = Module(new Arbiter(UInt(), n = numCache))
+
+  val outAddrQueue = for (i <- 0 until accel.numCache) yield {
+    val Q = Module(new Queue(UInt(), entries = 16, pipe = true, flow = true))
+    Q
+  }
+
+
+  accel.io.instruction.map(i => i.valid := false.B)
+  io.in.ready := false.B
+
+    when(io.in.bits.dataVals("field0").asUInt() === is_wideLd){
+      dstNode := io.in.bits.dataVals("field2").asUInt()
+    }.otherwise{
+      dstNode := 0.U
+    }
+
+    io.in.ready := accel.io.instruction(dstNode).ready
+    accel.io.instruction(dstNode).valid := io.in.valid
+    accel.io.instruction(dstNode).bits.inst := io.in.bits.dataVals("field0").asUInt()
+    accel.io.instruction(dstNode).bits.addr := io.in.bits.dataVals("field1").asUInt()
+    accel.io.instruction(dstNode).bits.data := io.in.bits.dataVals("field2").asTypeOf(UInt((accelParams.cacheBlockBits).W))
  
    io.out <> DontCare
-   
+  
+    io.out.bits.data("field0").data := accel.io.resp(0).bits.inst
+    io.out.bits.data("field2").data := accel.io.resp(0).bits.data
 
-  io.out.bits.data("field0").data := accel.io.resp.bits.inst
-  io.out.bits.data("field1").data := Mux(accel.io.resp.valid, accel.io.resp.bits.addr,0.U)
-  io.out.bits.data("field2").data := accel.io.resp.bits.data
+  for (i <- 0 until numCache){
+    outAddrQueue(i).io.enq.bits := Mux(accel.io.resp(i).valid, accel.io.resp(i).bits.addr,0.U)
+    outAddrQueue(i).io.enq.valid := accel.io.resp(i).valid
+    accel.io.resp(i).ready := outAddrQueue(i).io.enq.ready
+
+    outArb.io.in(i) <> outAddrQueue(i).io.deq
+  }
+
+  io.out.valid := outArb.io.out.valid
+  io.out.bits.data("field1").data := outArb.io.out.bits
+  outArb.io.out.ready := io.out.ready
 
   io.events <> accel.io.events
 
-  // io.out.bits.data("field0").asControlBundle()
-  // io.out.bits.data("field1").asControlBundle()
-  // io.out.bits.data("field2").asControlBundle()
-  io.out.valid := accel.io.resp.valid
-
-  accel.io.resp.ready := io.out.ready
-
-
-//  ArgSplitter.io.Out.enable.bits.debug := false.B
-//  ArgSplitter.io.Out.enable.bits.taskID := 0.U
-//  ArgSplitter.io.Out.enable.bits.control := accel.io.instruction.ready
-
-  accel.io.instruction.valid := io.in.valid
-  // io.out <> DontCare
-
-  io.in.ready := accel.io.instruction.ready
   io.mem <> accel.io.mem
-
 }
