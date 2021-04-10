@@ -4,8 +4,13 @@ import dsim
 import csv
 import sys
 import os
+import ntpath
 
+ntpath.basename("a/b/c")
 
+def path_leaf(path):
+    head, tail = ntpath.split(path)
+    return tail or ntpath.basename(head)
 
 
 nw   = int(sys.argv[3])
@@ -13,16 +18,16 @@ ns   = int(sys.argv[4])
 tbe  = int(sys.argv[5])
 lock = int(sys.argv[6])
 nparal   = int(sys.argv[7])
+nc = int(sys.argv[8])
+nword = int(sys.argv[9])
 numLine = int(sys.argv[1])
-bm= sys.argv[2]
+bm= path_leaf(sys.argv[2])[:-4] #remove csv
+print(bm)
 
 
 mainMem = np.zeros(10000000, dtype = np.uint64) #10 Milions 
 if platform.system() == 'Linux':
-    if(nparal == 0):
-        hw_lib_path = "./python/build/libhw_{}_{}_{}_{}.so".format(nw,ns,tbe,lock)
-    else:
-        hw_lib_path = "./python/build/libhw_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal)
+        hw_lib_path = "./python/build/libhw_{}_{}_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal,nc,nword)
 elif platform.system() == 'Darwin':
     hw_lib_path = "./hardware/chisel/build/libhw.dylib"
 
@@ -85,21 +90,19 @@ input_data = dsim.DArray(input_data ,  dsim.DArray.DType.UInt64)
 
 events = dsim.sim(ptrs = [mainMem,input_inst,input_addr,input_data ], vars= [nVals], debugs=[], numRets=0, numEvents=17, hwlib = hw_lib_path)
 
-#print(localMem)
 Events = ["Cycles","missLD","hitLD", "InstCount", "CPUReq", "memCtrlReq", "numLoadReq", "numReplace"] + [""]*9
 print("\nDone!\n")
 for i in range(17):
     if(Events[i] != ""):
         print("\n{},{}".format(Events[i], events[i]))
 
-
-header = ["numLine", "bm", "nw", "ns", "tbe", "lock", "nParal", 
+header = ["numLine", "bm", "nw", "ns", "tbe", "lock", "nParal","nc", "nword", 
             "cycles", "nHit", "nMiss", "nLoadInst","nInst","cpuReq","mmReqs"]
-file =open ("{}_Ran.csv".format(bm),'a')
+file =open ("python/{}_Ran.csv".format(bm),'a')
 with file:
     fnames = header   
     writer = csv.DictWriter(file, fieldnames=fnames)    
-    if (os.stat("{}_Ran.csv".format(bm)).st_size == 0):
+    if (os.stat("python/{}_Ran.csv".format(bm)).st_size == 0):
         writer.writeheader()
     
     writer.writerow({ 'numLine': numLine,
@@ -109,6 +112,8 @@ with file:
         'tbe':tbe,
         'lock':lock,
         'nParal':nparal,
+	    'nc':nc,
+	    'nword':nword,
         'cycles':events[0],
         'nMiss':events[1],
         'nHit':events[2],
