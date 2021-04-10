@@ -1,2 +1,3 @@
 numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
 64000,axpy,4,8,8,8,1,1,8,190354,0,0,0,0,0,0
+1000,axpy,4,8,32,8,2,2,8,13413,50,52,102,206,153,53
