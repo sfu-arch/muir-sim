@@ -36,31 +36,27 @@ class memGenAccel ( PtrsIn: Seq[Int] = List(),
     val Q = Module(new Queue(UInt(), entries = 16, pipe = true, flow = true))
     Q
   }
-
-
   accel.io.instruction.map(i => i.valid := false.B)
   accel.io.instruction.map(i => i.bits.inst := 0.U)
   accel.io.instruction.map(i => i.bits.addr := 0.U)
   accel.io.instruction.map(i => i.bits.data := 0.U)
 
 
-
-
-
   io.in.ready := false.B
 
-    when(io.in.bits.dataVals("field0").asUInt() === is_wideLd){
-      dstNode := io.in.bits.dataVals("field2").asUInt()
+    when(io.in.bits.dataVals("field0").data.asUInt() === is_wideLd){
+      // printf(p"Wide LD ${dstNode}\n")
+      dstNode := io.in.bits.dataVals("field2").data.asUInt()
       accel.io.instruction(dstNode).bits.inst := 0.U // Load
     }.otherwise{
-        accel.io.instruction(dstNode).bits.inst := io.in.bits.dataVals("field0").asUInt() // Load
+        accel.io.instruction(dstNode).bits.inst := io.in.bits.dataVals("field0").data.asUInt() // Load
         dstNode := 0.U
     }
 
     io.in.ready := accel.io.instruction(dstNode).ready
     accel.io.instruction(dstNode).valid := io.in.valid
-    accel.io.instruction(dstNode).bits.addr := io.in.bits.dataVals("field1").asUInt()
-    accel.io.instruction(dstNode).bits.data := io.in.bits.dataVals("field2").asTypeOf(UInt((accelParams.cacheBlockBits).W))
+    accel.io.instruction(dstNode).bits.addr := io.in.bits.dataVals("field1").data.asUInt()
+    accel.io.instruction(dstNode).bits.data := io.in.bits.dataVals("field2").data.asTypeOf(UInt((accelParams.cacheBlockBits).W))
  
    io.out <> DontCare
   
