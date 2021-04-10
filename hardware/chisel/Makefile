@@ -53,6 +53,8 @@ nSets= 0
 tbeDepth= 0 
 lockDepth= 0
 nParal=0
+nCache=0
+nWord=0
 boreIDs= 0 
 
 
@@ -134,7 +136,7 @@ $(chisel_build_dir)/$(TOP).v: $(shell find . -type f -name "*.scala" | sed 's/ /
 
 f1:  $(chisel_build_dir)/$(TOP).v
 $(chisel_build_dir)/$(TOP).v: $(shell find . -type f -name "*.scala" | sed 's/ /\\ /g')
-	sbt 'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --print-log $(printLog) --cache-log $(cacheLog) --num-ways $(nWays) --num-sets $(nSets) --tbe-depth $(tbeDepth) --lock-depth $(lockDepth) --num-paral $(nParal)'
+	sbt 'test:runMain test.${TOP}Main --target-dir $(chisel_build_dir) --top-name $(TOP) --accel-name $(nameAccel) --num-ptrs $(numPtrs) --num-dbgs $(numDbgs) --num-vals $(numVals) --num-rets $(numRets) --num-events $(numEnts)  --num-ctrls $(numCtrls) --data-len $(dataLen) --print-log $(printLog) --cache-log $(cacheLog) --num-ways $(nWays) --num-sets $(nSets) --tbe-depth $(tbeDepth) --lock-depth $(lockDepth) --num-paral $(nParal) --num-cache $(nCache) --num-word $(nWord)'
 
 
 

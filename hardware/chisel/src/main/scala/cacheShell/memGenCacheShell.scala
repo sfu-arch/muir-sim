@@ -26,7 +26,7 @@ class memGenAccel ( PtrsIn: Seq[Int] = List(),
 //  val ArgSplitter = Module(new SplitCallDCR(ptrsArgTypes = List(1, 1, 1, 1), valsArgTypes = List()))
 //  ArgSplitter.io.In <> io.in
   val is_wideLd = WireInit(4.U)
-  val dstNode = WireInit(0.U(8.W))
+  val dstNode = Wire(UInt(8.W))
   val numCache = accel.numCache
 
 
