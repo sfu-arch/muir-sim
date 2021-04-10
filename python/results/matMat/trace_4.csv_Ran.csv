@@ -1,0 +1,3 @@
+numLine,bm,nw,ns,tbe,lock,nParal,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+6400,python/results/matMat/trace_4.csv,4,8,8,8,1,23005,0,0,0,0,0,0
+64000,python/results/matMat/trace_4.csv,4,8,8,8,1,229638,0,0,0,0,0,0

@@ -66,7 +66,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   val vals = VecInit(Seq.tabulate(numVals) { i => RegEnable(next = vcr.io.dcr.vals(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) })
   val ptrs = VecInit(Seq.tabulate(numPtrs) { i => RegEnable(next = vcr.io.dcr.ptrs(i), init = 0.U(ptrBits.W), enable =  (state === sIdle)) })  
 
-  val (nextChunk,_) = Counter(incChunkCounter, 1000000)
+  val (nextChunk,_) = Counter(incChunkCounter, 10000000)
   val (ackCounter,_ ) = CounterWithReset(accel.io.out.valid ,1000000, resetAckCounter )
   val fillCounter = RegInit(0.U(32.W))
   val fillWrap = Wire(Bool())
@@ -146,7 +146,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
     is(sBusy) {
 
-        when(inputQ(0).io.deq.valid === false.B || inputQ(0).io.deq.bits.data > 3.U ) {
+        when(inputQ(0).io.deq.valid === false.B || inputQ(0).io.deq.bits.data > 5.U ) {
           state := sDone
         }.elsewhen( inputQ(is_inst).io.deq.bits.data === is_ack.U) {
           state := sAck
@@ -163,7 +163,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
     }
     is(sAck){
-      when (  ackCounter === (inputQ(is_data).io.deq.bits.data)){
+      when (  ackCounter >= (inputQ(is_data).io.deq.bits.data)){
         state := sBusy
         resetAckCounter := true.B
         incChunkCounter := true.B

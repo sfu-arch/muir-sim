@@ -1,0 +1,3 @@
+numLine,bm,nw,ns,tbe,lock,nParal,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+640,python/results/matVec/trace_2.csv,4,8,8,8,1,1875,0,0,0,0,0,0
+6400,python/results/matVec/trace_2.csv,4,8,8,8,1,18457,0,0,0,0,0,0

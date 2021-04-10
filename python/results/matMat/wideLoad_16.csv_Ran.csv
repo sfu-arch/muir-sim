@@ -1,0 +1,4 @@
+numLine,bm,nw,ns,tbe,lock,nParal,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+2000,python/results/matMat/wideLoad_16.csv,4,8,8,8,1,0,0,0,0,0,0,0
+64,python/results/matMat/wideLoad_16.csv,4,8,8,8,1,163,0,0,0,0,0,0
+64,python/results/matMat/wideLoad_16.csv,4,8,8,8,1,142,0,0,0,0,0,0
