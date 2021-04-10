@@ -1,0 +1,14 @@
+numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+64,blackscholes,4,8,8,8,1,1,8,337,0,0,0,0,0,0
+6400,blackscholes,4,8,8,8,1,1,8,33637,0,0,0,0,0,0
+64000,blackscholes,4,8,8,8,1,1,8,0,0,0,0,0,0,0
+64,blackscholes,4,8,8,8,1,1,8,384,0,0,0,0,0,0
+64,blackscholes,4,8,8,8,1,1,8,383,0,0,0,0,0,0
+64,blackscholes,4,8,8,8,1,1,8,382,0,0,0,0,0,0
+64,blackscholes,4,8,8,8,1,1,8,424,0,0,0,0,0,0
+64,blackscholes,4,8,8,8,1,1,8,1338,0,0,0,0,0,0
+64,blackscholes,4,8,8,8,1,1,8,70,0,0,0,0,0,0
+64,blackscholes,4,8,8,8,1,1,8,71,0,0,0,0,0,0
+64,blackscholes,4,8,8,8,1,1,8,70,0,0,0,0,0,0
+64,blackscholes,4,8,8,8,1,1,8,71,0,0,0,0,0,0
+64,blackscholes,4,8,8,8,1,1,8,70,0,0,0,0,0,0

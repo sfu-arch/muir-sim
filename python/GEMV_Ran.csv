@@ -1,0 +1,4 @@
+numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+64000,GEMV,4,8,8,8,1,1,8,192033,0,0,0,0,0,0
+64,GEMV,4,8,8,8,1,1,8,1023,0,0,0,0,0,0
+64000,GEMV,4,8,8,8,1,1,8,684635,0,0,0,0,0,0
