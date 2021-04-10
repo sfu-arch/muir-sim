@@ -117,9 +117,3 @@ with file:
         'cpuReq':events[4],
         'mmReqs':events[5]
     })
-
-
-#if events[1] == test01(5,3):
-#    print("Success!\nRet: " + str(events[1]))
-#else:
-#    print("Failed!\nRet: " + str(events[1]))
