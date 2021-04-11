@@ -1,0 +1,2 @@
+numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+200,GEMM_prefetch_16,4,128,32,8,1,2,32,5992,86,1073,1159,1184,1159,25
