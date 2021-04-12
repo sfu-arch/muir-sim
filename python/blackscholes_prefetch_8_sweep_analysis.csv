@@ -1,0 +1,4 @@
+numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+10000,blackscholes_prefetch_8,4,64,16,12,8,1,8,153015,1060,2478,3538,4531,3831,700
+10000,blackscholes_prefetch_8,4,64,16,12,8,1,8,153014,1060,2478,3538,4531,3831,700
+10000,blackscholes_prefetch_8,4,64,32,12,8,1,8,153015,1060,2478,3538,4531,3831,700
