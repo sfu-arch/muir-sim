@@ -13,3 +13,4 @@ numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuR
 10000,blackscholes_Normal,4,128,32,8,2,1,8,202374,1204,866,2070,3280,2414,866
 10000,blackscholes_Normal,4,128,16,8,8,1,8,189025,1335,807,2142,3305,2498,807
 10000,blackscholes_Normal,4,128,32,8,8,1,8,189023,1335,807,2142,3305,2498,807
+10000,blackscholes_Normal,8,256,6,8,2,2,8,130154,1597,545,2142,3043,2498,545

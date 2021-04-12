@@ -1,0 +1,7 @@
+numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+10000,blackscholes_wideLoad_2,4,128,8,8,4,2,32,331065,1099,665,1764,2722,2057,665
+10000,blackscholes_wideLoad_2,4,128,16,8,4,2,32,331065,1099,665,1764,2722,2057,665
+10000,blackscholes_wideLoad_2,4,128,32,8,4,2,32,331063,1099,665,1764,2722,2057,665
+10000,blackscholes_wideLoad_2,4,128,8,8,8,2,32,331067,1099,665,1764,2722,2057,665
+10000,blackscholes_wideLoad_2,4,128,16,8,8,2,32,331065,1099,665,1764,2722,2057,665
+10000,blackscholes_wideLoad_2,4,128,32,8,8,2,32,331064,1099,665,1764,2722,2057,665
