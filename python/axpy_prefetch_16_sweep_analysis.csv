@@ -1,0 +1,2 @@
+numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+10000,axpy_prefetch_16,4,64,8,12,1,1,8,0,1,218,219,226,221,5
