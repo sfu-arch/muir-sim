@@ -125,6 +125,9 @@ object DandelionTestDebugStreamDCRAccel {
       case "test04" => (() => new test04DF(),
         () => new DebugBufferWriters(numDbgs, boreIDsList),
         () => new DebugBufferReads(numDbgs, boreIDsList))
+      case "test09" => (() => new test09DF(),
+        () => new DebugBufferWriters(numDbgs, boreIDsList),
+        () => new DebugBufferReads(numDbgs, boreIDsList))
       case "relu" => (() => new reluDF(),
         () => new DebugBufferWriters(numDbgs, boreIDsList),
         () => new DebugBufferReads(numDbgs, boreIDsList))
@@ -137,7 +140,19 @@ object DandelionTestDebugStreamDCRAccel {
       case "conv2d" => (() => new conv2dDF(),
         () => new DebugBufferWriters(numDbgs, boreIDsList),
         () => new DebugBufferReads(numDbgs, boreIDsList))
+      case "spmvCRS" => (() => new spmvCRSDF(),
+        () => new DebugBufferWriters(numDbgs, boreIDsList),
+        () => new DebugBufferReads(numDbgs, boreIDsList))
+      case "fftStrided" => (() => new fftDF(),
+        () => new DebugBufferWriters(numDbgs, boreIDsList),
+        () => new DebugBufferReads(numDbgs, boreIDsList))
+      case "bbgemm" => (() => new bbgemmDF(),
+        () => new DebugBufferWriters(numDbgs, boreIDsList),
+        () => new DebugBufferReads(numDbgs, boreIDsList))
       //case "relu" => (() => new reluDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
+      //case "spmvCRS" => (() => new spmvCRSDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
+      //case "fftStrided" => (() => new fftDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
+      //case "bbgemm" => (() => new bbgemmDF(), () => new DebugBufferWriters(numDbgs, boreIDsList))
 
       case _ => throw new Exception(s"[EXCEPTION] The accel's name is not defined -- " +
         s"Please check the accel name you have passed: ${testName}")
