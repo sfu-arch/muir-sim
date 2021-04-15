@@ -128,6 +128,9 @@ object DandelionTestDebugStreamDCRAccel {
       case "test09" => (() => new test09DF(),
         () => new DebugBufferWriters(numDbgs, boreIDsList),
         () => new DebugBufferReads(numDbgs, boreIDsList))
+      case "vadd" => (() => new vaddRootDF(),
+        () => new DebugBufferWriters(numDbgs, boreIDsList),
+        () => new DebugBufferReads(numDbgs, boreIDsList))
       case "relu" => (() => new reluDF(),
         () => new DebugBufferWriters(numDbgs, boreIDsList),
         () => new DebugBufferReads(numDbgs, boreIDsList))

@@ -23,7 +23,7 @@ import regfile._
 import util._
 
 
-class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Returns: Seq[Int] = List())
+class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(64), Returns: Seq[Int] = List())
 			(implicit p: Parameters) extends DandelionAccelDCRModule(PtrsIn, ValsIn, Returns){
 
 
@@ -37,7 +37,7 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
   io.MemReq <> mem_ctrl_cache.io.cache.MemReq
   mem_ctrl_cache.io.cache.MemResp <> io.MemResp
 
-  val ArgSplitter = Module(new SplitCallDCR(ptrsArgTypes = List(1, 1, 1), valsArgTypes = List()))
+  val ArgSplitter = Module(new SplitCallDCR(ptrsArgTypes = List(1, 1, 1), valsArgTypes = List(2)))
   ArgSplitter.io.In <> io.in
 
 
@@ -46,7 +46,7 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   PRINTING LOOP HEADERS                            *
    * ================================================================== */
 
-  val Loop_0 = Module(new LoopBlockNode(NumIns = List(1, 1, 1), NumOuts = List(), NumCarry = List(1), NumExits = 1, ID = 0))
+  val Loop_0 = Module(new LoopBlockNode(NumIns = List(1, 1, 1, 1), NumOuts = List(), NumCarry = List(1), NumExits = 1, ID = 0))
 
 
 
@@ -54,11 +54,15 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   PRINTING BASICBLOCK NODES                        *
    * ================================================================== */
 
-  val bb_entry1 = Module(new BasicBlockNoMaskFastNode(NumInputs = 1, NumOuts = 1, BID = 1))
+  val bb_entry1 = Module(new BasicBlockNoMaskFastNode(NumInputs = 1, NumOuts = 3, BID = 1))
 
-  val bb_for_cond_cleanup3 = Module(new BasicBlockNoMaskFastNode(NumInputs = 1, NumOuts = 1, BID = 3))
+  val bb_for_body_lr_ph4 = Module(new BasicBlockNoMaskFastNode(NumInputs = 1, NumOuts = 2, BID = 4))
 
-  val bb_for_body5 = Module(new BasicBlockNode(NumInputs = 2, NumOuts = 14, NumPhi = 1, BID = 5))
+  val bb_for_cond_cleanup_loopexit7 = Module(new BasicBlockNoMaskFastNode(NumInputs = 1, NumOuts = 1, BID = 7))
+
+  val bb_for_cond_cleanup9 = Module(new BasicBlockNoMaskFastNode(NumInputs = 2, NumOuts = 1, BID = 9))
+
+  val bb_for_body11 = Module(new BasicBlockNode(NumInputs = 2, NumOuts = 13, NumPhi = 1, BID = 11))
 
 
 
@@ -66,44 +70,56 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   PRINTING INSTRUCTION NODES                       *
    * ================================================================== */
 
-  //  br label %for.body, !dbg !23, !UID !24, !BB_UID !25
-  val br_2 = Module(new UBranchNode(ID = 2))
+  //  %cmp10 = icmp eq i32 %n, 0, !dbg !25, !UID !27
+  val icmp_cmp102 = Module(new ComputeNode(NumOuts = 1, ID = 2, opCode = "eq")(sign = false, Debug = false))
 
-  //  ret void, !dbg !26, !UID !27, !BB_UID !28
-  val ret_4 = Module(new RetNode2(retTypes = List(), ID = 4))
+  //  br i1 %cmp10, label %for.cond.cleanup, label %for.body.lr.ph, !dbg !28, !UID !29, !BB_UID !30
+  val br_3 = Module(new CBranchNodeVariable(NumTrue = 1, NumFalse = 1, NumPredecessor = 0, ID = 3))
 
-  //  %indvars.iv = phi i64 [ 0, %entry ], [ %indvars.iv.next, %for.body ], !UID !29
-  val phiindvars_iv6 = Module(new PhiFastNode(NumInputs = 2, NumOutputs = 4, ID = 6, Res = true))
+  //  %wide.trip.count = zext i32 %n to i64, !UID !31
+  val sextwide_trip_count5 = Module(new ZextNode(NumOuts = 1))
 
-  //  %arrayidx = getelementptr inbounds i32, i32* %a, i64 %indvars.iv, !dbg !30, !UID !33
-  val Gep_arrayidx7 = Module(new GepNode(NumIns = 1, NumOuts = 1, ID = 7)(ElementSize = 8, ArraySize = List()))
+  //  br label %for.body, !dbg !28, !UID !32, !BB_UID !33
+  val br_6 = Module(new UBranchNode(ID = 6))
 
-  //  %0 = load i32, i32* %arrayidx, align 4, !dbg !30, !tbaa !34, !UID !38
-  val ld_8 = Module(new UnTypLoadCache(NumPredOps = 0, NumSuccOps = 0, NumOuts = 1, ID = 8, RouteID = 0))
+  //  br label %for.cond.cleanup, !dbg !34, !UID !35, !BB_UID !36
+  val br_8 = Module(new UBranchNode(ID = 8))
 
-  //  %arrayidx2 = getelementptr inbounds i32, i32* %b, i64 %indvars.iv, !dbg !39, !UID !40
-  val Gep_arrayidx29 = Module(new GepNode(NumIns = 1, NumOuts = 1, ID = 9)(ElementSize = 8, ArraySize = List()))
+  //  ret void, !dbg !34, !UID !37, !BB_UID !38
+  val ret_10 = Module(new RetNode2(retTypes = List(), ID = 10))
 
-  //  %1 = load i32, i32* %arrayidx2, align 4, !dbg !39, !tbaa !34, !UID !41
-  val ld_10 = Module(new UnTypLoadCache(NumPredOps = 0, NumSuccOps = 0, NumOuts = 1, ID = 10, RouteID = 1))
+  //  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.body ], !UID !39
+  val phiindvars_iv12 = Module(new PhiFastNode(NumInputs = 2, NumOutputs = 4, ID = 12, Res = true))
 
-  //  %add = add i32 %1, %0, !dbg !42, !UID !43
-  val binaryOp_add11 = Module(new ComputeNode(NumOuts = 1, ID = 11, opCode = "add")(sign = false, Debug= true, GuardVals = Seq.tabulate(1000)(n=>n)))
+  //  %arrayidx = getelementptr inbounds i32, i32* %a, i64 %indvars.iv, !dbg !40, !UID !42
+  val Gep_arrayidx13 = Module(new GepNode(NumIns = 1, NumOuts = 1, ID = 13)(ElementSize = 8, ArraySize = List()))
 
-  //  %arrayidx4 = getelementptr inbounds i32, i32* %c, i64 %indvars.iv, !dbg !44, !UID !45
-  val Gep_arrayidx412 = Module(new GepNode(NumIns = 1, NumOuts = 1, ID = 12)(ElementSize = 8, ArraySize = List()))
+  //  %0 = load i32, i32* %arrayidx, align 4, !dbg !40, !tbaa !43, !UID !47
+  val ld_14 = Module(new UnTypLoadCache(NumPredOps = 0, NumSuccOps = 0, NumOuts = 1, ID = 14, RouteID = 0))
 
-  //  store i32 %add, i32* %arrayidx4, align 4, !dbg !46, !tbaa !34, !UID !47
-  val st_13 = Module(new UnTypStoreCache(NumPredOps = 0, NumSuccOps = 1, ID = 13, RouteID = 2))
+  //  %arrayidx2 = getelementptr inbounds i32, i32* %b, i64 %indvars.iv, !dbg !48, !UID !49
+  val Gep_arrayidx215 = Module(new GepNode(NumIns = 1, NumOuts = 1, ID = 15)(ElementSize = 8, ArraySize = List()))
 
-  //  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !48, !UID !49
-  val binaryOp_indvars_iv_next14 = Module(new ComputeNode(NumOuts = 2, ID = 14, opCode = "add")(sign = false, Debug= true, GuardVals = Seq.tabulate(1000)(n=>n)))
+  //  %1 = load i32, i32* %arrayidx2, align 4, !dbg !48, !tbaa !43, !UID !50
+  val ld_16 = Module(new UnTypLoadCache(NumPredOps = 0, NumSuccOps = 0, NumOuts = 1, ID = 16, RouteID = 1))
 
-  //  %exitcond = icmp eq i64 %indvars.iv.next, 2048, !dbg !50, !UID !51
-  val icmp_exitcond15 = Module(new ComputeNode(NumOuts = 1, ID = 15, opCode = "eq")(sign = false, Debug= true, GuardVals = Seq.tabulate(1000)(n=>n)))
+  //  %add = add i32 %1, %0, !dbg !51, !UID !52
+  val binaryOp_add17 = Module(new ComputeNode(NumOuts = 1, ID = 17, opCode = "add")(sign = false, Debug = false))
 
-  //  br i1 %exitcond, label %for.cond.cleanup, label %for.body, !dbg !23, !llvm.loop !52, !UID !54, !BB_UID !55
-  val br_16 = Module(new CBranchNodeVariable(NumTrue = 1, NumFalse = 1, NumPredecessor = 1, ID = 16))
+  //  %arrayidx4 = getelementptr inbounds i32, i32* %c, i64 %indvars.iv, !dbg !53, !UID !54
+  val Gep_arrayidx418 = Module(new GepNode(NumIns = 1, NumOuts = 1, ID = 18)(ElementSize = 8, ArraySize = List()))
+
+  //  store i32 %add, i32* %arrayidx4, align 4, !dbg !55, !tbaa !43, !UID !56
+  val st_19 = Module(new UnTypStoreCache(NumPredOps = 0, NumSuccOps = 1, ID = 19, RouteID = 2))
+
+  //  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !57, !UID !58
+  val binaryOp_indvars_iv_next20 = Module(new ComputeNode(NumOuts = 2, ID = 20, opCode = "add")(sign = false, Debug = false))
+
+  //  %exitcond = icmp eq i64 %indvars.iv.next, %wide.trip.count, !dbg !25, !UID !59
+  val icmp_exitcond21 = Module(new ComputeNode(NumOuts = 1, ID = 21, opCode = "eq")(sign = false, Debug = false))
+
+  //  br i1 %exitcond, label %for.cond.cleanup.loopexit, label %for.body, !dbg !28, !llvm.loop !60, !UID !62, !BB_UID !63
+  val br_22 = Module(new CBranchNodeVariable(NumTrue = 1, NumFalse = 1, NumPredecessor = 1, ID = 22))
 
 
 
@@ -111,14 +127,14 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   PRINTING CONSTANTS NODES                         *
    * ================================================================== */
 
-  //i64 0
+  //i32 0
   val const0 = Module(new ConstFastNode(value = 0, ID = 0))
 
-  //i64 1
-  val const1 = Module(new ConstFastNode(value = 1, ID = 1))
+  //i64 0
+  val const1 = Module(new ConstFastNode(value = 0, ID = 1))
 
-  //i64 2048
-  val const2 = Module(new ConstFastNode(value = 2048, ID = 2))
+  //i64 1
+  val const2 = Module(new ConstFastNode(value = 1, ID = 2))
 
 
 
@@ -128,17 +144,23 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
 
   bb_entry1.io.predicateIn(0) <> ArgSplitter.io.Out.enable
 
+  bb_for_body_lr_ph4.io.predicateIn(0) <> br_3.io.FalseOutput(0)
+
+  bb_for_cond_cleanup9.io.predicateIn(1) <> br_3.io.TrueOutput(0)
+
+  bb_for_cond_cleanup9.io.predicateIn(0) <> br_8.io.Out(0)
+
 
 
   /* ================================================================== *
    *                   BASICBLOCK -> PREDICATE LOOP                     *
    * ================================================================== */
 
-  bb_for_cond_cleanup3.io.predicateIn(0) <> Loop_0.io.loopExit(0)
+  bb_for_cond_cleanup_loopexit7.io.predicateIn(0) <> Loop_0.io.loopExit(0)
 
-  bb_for_body5.io.predicateIn(1) <> Loop_0.io.activate_loop_start
+  bb_for_body11.io.predicateIn(1) <> Loop_0.io.activate_loop_start
 
-  bb_for_body5.io.predicateIn(0) <> Loop_0.io.activate_loop_back
+  bb_for_body11.io.predicateIn(0) <> Loop_0.io.activate_loop_back
 
 
 
@@ -152,11 +174,11 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   LOOP -> PREDICATE INSTRUCTION                    *
    * ================================================================== */
 
-  Loop_0.io.enable <> br_2.io.Out(0)
+  Loop_0.io.enable <> br_6.io.Out(0)
 
-  Loop_0.io.loopBack(0) <> br_16.io.FalseOutput(0)
+  Loop_0.io.loopBack(0) <> br_22.io.FalseOutput(0)
 
-  Loop_0.io.loopFinish(0) <> br_16.io.TrueOutput(0)
+  Loop_0.io.loopFinish(0) <> br_22.io.TrueOutput(0)
 
 
 
@@ -176,17 +198,21 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
 
   Loop_0.io.InLiveIn(2) <> ArgSplitter.io.Out.dataPtrs.elements("field2")(0)
 
+  Loop_0.io.InLiveIn(3) <> sextwide_trip_count5.io.Out(0)
+
 
 
   /* ================================================================== *
    *                   LOOP DATA LIVE-IN DEPENDENCIES                   *
    * ================================================================== */
 
-  Gep_arrayidx7.io.baseAddress <> Loop_0.io.OutLiveIn.elements("field0")(0)
+  Gep_arrayidx13.io.baseAddress <> Loop_0.io.OutLiveIn.elements("field0")(0)
 
-  Gep_arrayidx29.io.baseAddress <> Loop_0.io.OutLiveIn.elements("field1")(0)
+  Gep_arrayidx215.io.baseAddress <> Loop_0.io.OutLiveIn.elements("field1")(0)
 
-  Gep_arrayidx412.io.baseAddress <> Loop_0.io.OutLiveIn.elements("field2")(0)
+  Gep_arrayidx418.io.baseAddress <> Loop_0.io.OutLiveIn.elements("field2")(0)
+
+  icmp_exitcond21.io.RightIO <> Loop_0.io.OutLiveIn.elements("field3")(0)
 
 
 
@@ -206,7 +232,7 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   LOOP CARRY DEPENDENCIES                          *
    * ================================================================== */
 
-  Loop_0.io.CarryDepenIn(0) <> binaryOp_indvars_iv_next14.io.Out(0)
+  Loop_0.io.CarryDepenIn(0) <> binaryOp_indvars_iv_next20.io.Out(0)
 
 
 
@@ -214,7 +240,7 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   LOOP DATA CARRY DEPENDENCIES                     *
    * ================================================================== */
 
-  phiindvars_iv6.io.InData(1) <> Loop_0.io.CarryDepenOut.elements("field0")(0)
+  phiindvars_iv12.io.InData(1) <> Loop_0.io.CarryDepenOut.elements("field0")(0)
 
 
 
@@ -222,49 +248,61 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   BASICBLOCK -> ENABLE INSTRUCTION                 *
    * ================================================================== */
 
-  br_2.io.enable <> bb_entry1.io.Out(0)
+  const0.io.enable <> bb_entry1.io.Out(0)
+
+  icmp_cmp102.io.enable <> bb_entry1.io.Out(1)
 
 
-  ret_4.io.In.enable <> bb_for_cond_cleanup3.io.Out(0)
+  br_3.io.enable <> bb_entry1.io.Out(2)
 
 
-  const0.io.enable <> bb_for_body5.io.Out(0)
-
-  const1.io.enable <> bb_for_body5.io.Out(1)
-
-  const2.io.enable <> bb_for_body5.io.Out(2)
-
-  phiindvars_iv6.io.enable <> bb_for_body5.io.Out(3)
+  sextwide_trip_count5.io.enable <> bb_for_body_lr_ph4.io.Out(0)
 
 
-  Gep_arrayidx7.io.enable <> bb_for_body5.io.Out(4)
+  br_6.io.enable <> bb_for_body_lr_ph4.io.Out(1)
 
 
-  ld_8.io.enable <> bb_for_body5.io.Out(5)
+  br_8.io.enable <> bb_for_cond_cleanup_loopexit7.io.Out(0)
 
 
-  Gep_arrayidx29.io.enable <> bb_for_body5.io.Out(6)
+  ret_10.io.In.enable <> bb_for_cond_cleanup9.io.Out(0)
 
 
-  ld_10.io.enable <> bb_for_body5.io.Out(7)
+  const1.io.enable <> bb_for_body11.io.Out(0)
+
+  const2.io.enable <> bb_for_body11.io.Out(1)
+
+  phiindvars_iv12.io.enable <> bb_for_body11.io.Out(2)
 
 
-  binaryOp_add11.io.enable <> bb_for_body5.io.Out(8)
+  Gep_arrayidx13.io.enable <> bb_for_body11.io.Out(3)
 
 
-  Gep_arrayidx412.io.enable <> bb_for_body5.io.Out(9)
+  ld_14.io.enable <> bb_for_body11.io.Out(4)
 
 
-  st_13.io.enable <> bb_for_body5.io.Out(10)
+  Gep_arrayidx215.io.enable <> bb_for_body11.io.Out(5)
 
 
-  binaryOp_indvars_iv_next14.io.enable <> bb_for_body5.io.Out(11)
+  ld_16.io.enable <> bb_for_body11.io.Out(6)
 
 
-  icmp_exitcond15.io.enable <> bb_for_body5.io.Out(12)
+  binaryOp_add17.io.enable <> bb_for_body11.io.Out(7)
 
 
-  br_16.io.enable <> bb_for_body5.io.Out(13)
+  Gep_arrayidx418.io.enable <> bb_for_body11.io.Out(8)
+
+
+  st_19.io.enable <> bb_for_body11.io.Out(9)
+
+
+  binaryOp_indvars_iv_next20.io.enable <> bb_for_body11.io.Out(10)
+
+
+  icmp_exitcond21.io.enable <> bb_for_body11.io.Out(11)
+
+
+  br_22.io.enable <> bb_for_body11.io.Out(12)
 
 
 
@@ -273,7 +311,7 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   CONNECTING PHI NODES                             *
    * ================================================================== */
 
-  phiindvars_iv6.io.Mask <> bb_for_body5.io.MaskBB(0)
+  phiindvars_iv12.io.Mask <> bb_for_body11.io.MaskBB(0)
 
 
 
@@ -281,12 +319,12 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   CONNECTING MEMORY CONNECTIONS                    *
    * ================================================================== */
 
-  mem_ctrl_cache.io.rd.mem(0).MemReq <> ld_8.io.MemReq
-  ld_8.io.MemResp <> mem_ctrl_cache.io.rd.mem(0).MemResp
-  mem_ctrl_cache.io.rd.mem(1).MemReq <> ld_10.io.MemReq
-  ld_10.io.MemResp <> mem_ctrl_cache.io.rd.mem(1).MemResp
-  mem_ctrl_cache.io.wr.mem(0).MemReq <> st_13.io.MemReq
-  st_13.io.MemResp <> mem_ctrl_cache.io.wr.mem(0).MemResp
+  mem_ctrl_cache.io.rd.mem(0).MemReq <> ld_14.io.MemReq
+  ld_14.io.MemResp <> mem_ctrl_cache.io.rd.mem(0).MemResp
+  mem_ctrl_cache.io.rd.mem(1).MemReq <> ld_16.io.MemReq
+  ld_16.io.MemResp <> mem_ctrl_cache.io.rd.mem(1).MemResp
+  mem_ctrl_cache.io.wr.mem(0).MemReq <> st_19.io.MemReq
+  st_19.io.MemResp <> mem_ctrl_cache.io.wr.mem(0).MemResp
 
 
 
@@ -300,37 +338,43 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   CONNECTING DATA DEPENDENCIES                     *
    * ================================================================== */
 
-  phiindvars_iv6.io.InData(0) <> const0.io.Out
+  icmp_cmp102.io.RightIO <> const0.io.Out
 
-  binaryOp_indvars_iv_next14.io.RightIO <> const1.io.Out
+  phiindvars_iv12.io.InData(0) <> const1.io.Out
 
-  icmp_exitcond15.io.RightIO <> const2.io.Out
+  binaryOp_indvars_iv_next20.io.RightIO <> const2.io.Out
 
-  Gep_arrayidx7.io.idx(0) <> phiindvars_iv6.io.Out(0)
+  br_3.io.CmpIO <> icmp_cmp102.io.Out(0)
 
-  Gep_arrayidx29.io.idx(0) <> phiindvars_iv6.io.Out(1)
+  Gep_arrayidx13.io.idx(0) <> phiindvars_iv12.io.Out(0)
 
-  Gep_arrayidx412.io.idx(0) <> phiindvars_iv6.io.Out(2)
+  Gep_arrayidx215.io.idx(0) <> phiindvars_iv12.io.Out(1)
 
-  binaryOp_indvars_iv_next14.io.LeftIO <> phiindvars_iv6.io.Out(3)
+  Gep_arrayidx418.io.idx(0) <> phiindvars_iv12.io.Out(2)
 
-  ld_8.io.GepAddr <> Gep_arrayidx7.io.Out(0)
+  binaryOp_indvars_iv_next20.io.LeftIO <> phiindvars_iv12.io.Out(3)
 
-  binaryOp_add11.io.RightIO <> ld_8.io.Out(0)
+  ld_14.io.GepAddr <> Gep_arrayidx13.io.Out(0)
 
-  ld_10.io.GepAddr <> Gep_arrayidx29.io.Out(0)
+  binaryOp_add17.io.RightIO <> ld_14.io.Out(0)
 
-  binaryOp_add11.io.LeftIO <> ld_10.io.Out(0)
+  ld_16.io.GepAddr <> Gep_arrayidx215.io.Out(0)
 
-  st_13.io.inData <> binaryOp_add11.io.Out(0)
+  binaryOp_add17.io.LeftIO <> ld_16.io.Out(0)
 
-  st_13.io.GepAddr <> Gep_arrayidx412.io.Out(0)
+  st_19.io.inData <> binaryOp_add17.io.Out(0)
 
-  icmp_exitcond15.io.LeftIO <> binaryOp_indvars_iv_next14.io.Out(1)
+  st_19.io.GepAddr <> Gep_arrayidx418.io.Out(0)
 
-  br_16.io.CmpIO <> icmp_exitcond15.io.Out(0)
+  icmp_exitcond21.io.LeftIO <> binaryOp_indvars_iv_next20.io.Out(1)
 
-  st_13.io.Out(0).ready := true.B
+  br_22.io.CmpIO <> icmp_exitcond21.io.Out(0)
+
+  icmp_cmp102.io.LeftIO <> ArgSplitter.io.Out.dataVals.elements("field0")(0)
+
+  sextwide_trip_count5.io.Input <> ArgSplitter.io.Out.dataVals.elements("field0")(1)
+
+  st_19.io.Out(0).ready := true.B
 
 
 
@@ -338,7 +382,7 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   CONNECTING DATA DEPENDENCIES                     *
    * ================================================================== */
 
-  br_16.io.PredOp(0) <> st_13.io.SuccOp(0)
+  br_22.io.PredOp(0) <> st_19.io.SuccOp(0)
 
 
 
@@ -346,7 +390,7 @@ class vaddDF(PtrsIn: Seq[Int] = List(64, 64, 64), ValsIn: Seq[Int] = List(), Ret
    *                   PRINTING OUTPUT INTERFACE                        *
    * ================================================================== */
 
-  io.out <> ret_4.io.Out
+  io.out <> ret_10.io.Out
 
 }
 

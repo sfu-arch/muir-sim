@@ -5,7 +5,7 @@ import chisel3._
 import dandelion.accel._
 import dandelion.memory._
 
-class vaddRootDF(PtrsIn : Seq[Int] = List (64, 64, 64), ValsIn : Seq[Int] = List(), Returns: Seq[Int] = List())
+class vaddRootDF(PtrsIn : Seq[Int] = List (64, 64, 64), ValsIn : Seq[Int] = List(64), Returns: Seq[Int] = List())
                   (implicit p: Parameters) extends DandelionAccelDCRModule(PtrsIn, ValsIn, Returns) {
 
   val NumKernels = 1
@@ -18,7 +18,7 @@ class vaddRootDF(PtrsIn : Seq[Int] = List (64, 64, 64), ValsIn : Seq[Int] = List
   /**
     * Kernel Modules
     */
-  val vadd =  Module(new vaddDF(PtrsIn = List(64, 64, 64), ValsIn = List(), Returns = List()))
+  val vadd =  Module(new vaddDF(PtrsIn = List(64, 64, 64), ValsIn = List(64), Returns = List()))
 
   vadd.io.in <> io.in
   io.out <> vadd.io.out

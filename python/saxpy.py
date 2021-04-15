@@ -3,7 +3,7 @@ import platform
 import dsim
 
 
-array_size = 100
+array_size = 2048
 
 flatten = lambda l: [item for sublist in l for item in sublist]
 
