@@ -38,7 +38,6 @@ class DebugBufferReads(numDebug: Int, val boreIDsList: Seq[Int])
 
   for(i <- 0 until numDebug){
     read_buffers(i).io.addrDebug := io.addrDebug(i)
-//    read_buffers(i).io.start := read_buf_start(i)
     io.vmeIn(i) <> read_buffers(i).io.vmeOut
 
 
@@ -49,7 +48,6 @@ class DebugBufferReads(numDebug: Int, val boreIDsList: Seq[Int])
     BoringUtils.addSource(read_buf_data(i), s"in_log_data${boreIDsList(i)}")
     BoringUtils.addSource(read_buf_valid(i), s"in_log_Buffer_valid${boreIDsList(i)}")
 
-//    BoringUtils.addSink(read_buf_start(i), s"in_log_Buffer_start${boreIDsList(i)}")
     BoringUtils.addSink(read_buf_ready(i), s"in_log_Buffer_ready${boreIDsList(i)}")
   }
 
