@@ -60,15 +60,17 @@ input_data = []
                             #        inst|addr|data
 #events = dsim.sim(ptrs = [mainMem ], vars= [0, 4, 2,
  #                                    0,128,2], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
+i = 0
+stDist = 0
 
 with open(sys.argv[2]) as trace:
     trigger = csv.reader(trace)
-    for i, row in enumerate(trigger):
+    for row in trigger:
         if(int(row[0]) == 2 ):
             input_inst.append(int(row[0]))
             input_addr.append(0)
             input_data.append(int(row[1]))
-        if (int(row[0]) == 4 ):
+        elif (int(row[0]) == 4):     
             input_inst.append(int(row[0]))
             input_addr.append(int(row[1],16))
             input_data.append(int(row[2]))
@@ -76,7 +78,8 @@ with open(sys.argv[2]) as trace:
             input_inst.append(int(row[0],16))
             input_addr.append(int(row[1],16))
             input_data.append(0)
-        if (i == nVals - 1):
+	   
+        if (i >= nVals - 1):
             break
 
 
@@ -98,27 +101,27 @@ for i in range(17):
 
 header = ["numLine", "bm", "nw", "ns", "tbe", "lock", "nParal","nc", "nword", 
             "cycles", "nHit", "nMiss", "nLoadInst","nInst","cpuReq","mmReqs"]
-file =open ("python/{}_Ran.csv".format(bm),'a')
+file =open ("python/{}_sweep_analysis.csv".format(bm),'a')
 with file:
     fnames = header   
     writer = csv.DictWriter(file, fieldnames=fnames)    
-    if (os.stat("python/{}_Ran.csv".format(bm)).st_size == 0):
-        writer.writeheader()
+    # if (os.stat("python/{}_sweep_analysis.csv".format(bm)).st_size == 0):
+        # writer.writeheader()
     
-    writer.writerow({ 'numLine': numLine,
-        'bm': bm,
-        'nw': nw,
-        'ns': ns,
-        'tbe':tbe,
-        'lock':lock,
-        'nParal':nparal,
-	    'nc':nc,
-	    'nword':nword,
-        'cycles':events[0],
-        'nMiss':events[1],
-        'nHit':events[2],
-        'nLoadInst':events[6],
-        'nInst':events[3],
-        'cpuReq':events[4],
-        'mmReqs':events[5]
-    })
+    # writer.writerow({ 'numLine': numLine,
+    #     'bm': bm,
+    #     'nw': nw,
+    #     'ns': ns,
+    #     'tbe':tbe,
+    #     'lock':lock,
+    #     'nParal':nparal,
+	#     'nc':nc,
+	#     'nword':nword,
+    #     'cycles':events[0],
+    #     'nMiss':events[1],
+    #     'nHit':events[2],
+    #     'nLoadInst':events[6],
+    #     'nInst':events[3],
+    #     'cpuReq':events[4],
+    #     'mmReqs':events[5]
+    # })
