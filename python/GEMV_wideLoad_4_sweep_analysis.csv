@@ -1,0 +1,2 @@
+numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+1000,GEMV_wideLoad_4,4,128,8,8,4,4,8,60717,5,69,74,179,110,69

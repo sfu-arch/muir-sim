@@ -12,7 +12,7 @@ nword=8
 
 #libhw_8_256_6_8_2_1_16
 line=64
-bm=$PY_DIR/traces/simpleTest_1.csv #blackscholes axpy GEMM
+bm=$1 #blackscholes axpy GEMM
 #for ns in 64 
 #do
 #    for nw in 4 
@@ -26,7 +26,7 @@ bm=$PY_DIR/traces/simpleTest_1.csv #blackscholes axpy GEMM
 #                   for nword in 8 
 #	           do
 
-        timeout 15 python3 $PY_DIR/memGenAccel.py $line $bm $nw $ns $tbe $lock $np $nc $nword
+        python3 $PY_DIR/memGenAccel.py $line $bm $nw $ns $tbe $lock $np $nc $nword
 #done
 #done
 #done
