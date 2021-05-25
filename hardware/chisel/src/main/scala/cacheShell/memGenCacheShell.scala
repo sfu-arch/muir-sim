@@ -58,7 +58,7 @@ class memGenAccel ( PtrsIn: Seq[Int] = List(),
     accel.io.instruction(dstNode).bits.addr := io.in.bits.dataVals("field1").data.asUInt()
     accel.io.instruction(dstNode).bits.data := io.in.bits.dataVals("field2").data.asTypeOf(UInt((accelParams.cacheBlockBits).W))
  
-   io.out <> DontCare
+    io.out <> DontCare
   
     io.out.bits.data("field0").data := accel.io.resp(0).bits.inst
     io.out.bits.data("field2").data := accel.io.resp(0).bits.data
