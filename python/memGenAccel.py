@@ -25,7 +25,7 @@ bm= path_leaf(sys.argv[2])[:-4] #remove csv
 print(bm)
 
 
-mainMem = np.zeros(100000, dtype = np.uint64) #10 Milions 
+mainMem = np.zeros(1000000, dtype = np.uint64) #10 Milions 
 if platform.system() == 'Linux':
         hw_lib_path = "./python/build/libhw_{}_{}_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal,nc,nword)
 elif platform.system() == 'Darwin':
@@ -60,12 +60,11 @@ input_data = []
                             #        inst|addr|data
 #events = dsim.sim(ptrs = [mainMem ], vars= [0, 4, 2,
  #                                    0,128,2], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
-i = 0
 stDist = 0
 
 with open(sys.argv[2]) as trace:
     trigger = csv.reader(trace)
-    for row in trigger:
+    for (i,row) in enumerate(trigger):
         if(int(row[0]) == 2 ):
             input_inst.append(int(row[0]))
             input_addr.append(0)
@@ -78,8 +77,7 @@ with open(sys.argv[2]) as trace:
             input_inst.append(int(row[0],16))
             input_addr.append(int(row[1],16))
             input_data.append(0)
-	   
-        if (i >= nVals - 1):
+        if (i >= nVals-1):
             break
 
 
