@@ -11,13 +11,13 @@ nword=8
 
 
 #libhw_8_256_6_8_2_1_16
-line=64
+line=$2
 bm=$1 #blackscholes axpy GEMM
 #for ns in 64 
 #do
 #    for nw in 4 
 #    do
-#	for np in 8 
+#	for np in 1 2 
 #	do
 #	    for tbe in  32 
 #	    do
