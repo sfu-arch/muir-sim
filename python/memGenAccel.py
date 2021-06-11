@@ -25,7 +25,7 @@ bm= path_leaf(sys.argv[2])[:-4] #remove csv
 print(bm)
 
 
-mainMem = np.zeros(1000000, dtype = np.uint64) #10 Milions 
+mainMem = np.zeros(1000000, dtype = np.uint32) #10 Milions 
 if platform.system() == 'Linux':
         hw_lib_path = "./python/build/libhw_{}_{}_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal,nc,nword)
 elif platform.system() == 'Darwin':
@@ -33,7 +33,7 @@ elif platform.system() == 'Darwin':
 
 print(hw_lib_path)
 
-mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt64)
+mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt32)
 
 nVals = numLine
 input_inst = []
