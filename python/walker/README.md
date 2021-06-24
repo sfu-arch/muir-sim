@@ -1,16 +1,16 @@
-condition:
+condition: \
 	actual result = (hash &= mask2) < nbucket ? hash : hash & mask1;
 
-Hash STR:
-    y = 0;
-	for (i = 0; key[i]; i++) {
-		y += key[i];
-		y += (y << 10);
-		y ^= (y >> 6);
-	}
-	y += (y << 3);
-	y ^= (y >> 11);
-	y += (y << 15);
+Hash STR: \
+    y = 0; \
+	for (i = 0; key[i]; i++) { \
+		y += key[i]; \
+		y += (y << 10); \
+		y ^= (y >> 6); \
+	} \
+	y += (y << 3); \
+	y ^= (y >> 11); \ 
+	y += (y << 15); \
 
 Hash INT:
     ((unsigned int) (key) >> 7)  ^ \
