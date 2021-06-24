@@ -1,0 +1,2 @@
+STR, orig: Brand#23, Hashed: 432, result: 176, Mask1: 255, Mask2: 511, nbucket: 256
+STR, orig: MED BOX, Hashed: 28, result: 28, Mask1: 255, Mask2: 511, nbucket: 256

@@ -1,0 +1,2 @@
+STR, orig: GERMANY, Hashed: 207, result: 207, Mask1: 255, Mask2: 511, nbucket: 256
+STR, orig: GERMANY, Hashed: 207, result: 207, Mask1: 255, Mask2: 511, nbucket: 256
