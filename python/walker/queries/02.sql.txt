@@ -1,0 +1,3 @@
+LONG, orig: 4624633867356078080, Hashed: 248, result: 248, Mask1: 255, Mask2: 511, nbucket: 256
+STR, orig: EUROPE, Hashed: 333, result: 77, Mask1: 255, Mask2: 511, nbucket: 256
+STR, orig: EUROPE, Hashed: 333, result: 77, Mask1: 255, Mask2: 511, nbucket: 256
