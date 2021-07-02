@@ -1,0 +1,3 @@
+INT, orig: 2000, Hashed: 479, actual result: 223, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa68c002438, 0
+STR, orig: CANADA, Hashed: 3, actual result: 3, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6dc000d18, 256
+LONG, orig: 3, Hashed: 3, actual result: 3, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6f4002348, 512

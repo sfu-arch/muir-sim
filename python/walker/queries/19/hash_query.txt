@@ -1,0 +1,19 @@
+INT, orig: 2000, Hashed: 479, actual result: 223, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa68c002438, 0
+STR, orig: Brand#34, Hashed: 116, actual result: 116, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa638001d88, 0
+STR, orig: Brand#12, Hashed: 39, actual result: 39, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa638001d88, 0
+STR, orig: Brand#23, Hashed: 432, actual result: 176, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa638001d88, 0
+STR, orig: SM PACK, Hashed: 448, actual result: 192, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: LG PKG, Hashed: 244, actual result: 244, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: LG CASE, Hashed: 211, actual result: 211, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: SM PKG, Hashed: 407, actual result: 151, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: LG BOX, Hashed: 493, actual result: 237, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: MED PKG, Hashed: 431, actual result: 175, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: LG PACK, Hashed: 345, actual result: 89, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: MED BAG, Hashed: 224, actual result: 224, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: MED PACK, Hashed: 199, actual result: 199, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: SM BOX, Hashed: 221, actual result: 221, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: SM CASE, Hashed: 36, actual result: 36, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: MED BOX, Hashed: 28, actual result: 28, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6c8001978, 0
+STR, orig: DELIVER IN PERSON, Hashed: 3575, actual result: 3575, Mask1: 4095, Mask2: 8191, nbucket: 6862, hash_address: 0x7fa6f400e108, 0
+STR, orig: AIR REG, Hashed: 6524, actual result: 6524, Mask1: 4095, Mask2: 8191, nbucket: 6862, hash_address: 0x7fa770007378, 0
+STR, orig: AIR, Hashed: 4461, actual result: 4461, Mask1: 4095, Mask2: 8191, nbucket: 6862, hash_address: 0x7fa770007378, 0

@@ -12,6 +12,16 @@ def path_leaf(path):
     head, tail = ntpath.split(path)
     return tail or ntpath.basename(head)
 
+def read_index_table(mem, file_name='table_index.txt'):
+    file = open(file_name, 'r')
+    for line in file:
+        index_data = line.split(',')
+        address = int(index_data[0])
+        
+        for i, data in enumerate(index_data[1:]):
+            mem[address+i] = int(data)
+
+
 
 nw   = int(sys.argv[3])
 ns   = int(sys.argv[4])

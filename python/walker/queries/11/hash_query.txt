@@ -1,0 +1,4 @@
+INT, orig: 2000, Hashed: 479, actual result: 223, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa68c002438, 0
+STR, orig: GERMANY, Hashed: 207, actual result: 207, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6a0001688, 256
+STR, orig: GERMANY, Hashed: 207, actual result: 207, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa6a0001688, 256
+LONG, orig: 7, Hashed: 7, actual result: 7, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fa7740015a8, 512
