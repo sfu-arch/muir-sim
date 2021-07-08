@@ -1,17 +1,18 @@
-INT, orig: 6, Hashed: 6, result: 6, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 9, Hashed: 9, result: 9, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 24, Hashed: 24, result: 24, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 27, Hashed: 27, result: 27, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 43, Hashed: 43, result: 43, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 58, Hashed: 58, result: 58, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 63, Hashed: 63, result: 63, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 96, Hashed: 96, result: 96, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 100, Hashed: 100, result: 100, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 102, Hashed: 102, result: 102, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 115, Hashed: 115, result: 115, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 122, Hashed: 122, result: 122, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 127, Hashed: 127, result: 127, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 129, Hashed: 128, result: 128, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 135, Hashed: 134, result: 134, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 145, Hashed: 144, result: 144, Mask1: 1023, Mask2: 2047, nbucket: 1714
-INT, orig: 149, Hashed: 148, result: 148, Mask1: 1023, Mask2: 2047, nbucket: 1714
+Inst,orig,Hashed,result,mask1,mask2,nbucket 
+INT,  6,  6,  6,  1023,  2047,  1714
+INT,  9,  9,  9,  1023,  2047,  1714
+INT,  24, 24,  24,  1023,  2047,  1714
+INT,  27, 27,  27,  1023,  2047,  1714
+INT,  43, 43,  43,  1023,  2047,  1714
+INT,  58, 58,  58,  1023,  2047,  1714
+INT,  63, 63,  63,  1023,  2047,  1714
+INT,  96, 96,  96,  1023,  2047,  1714
+INT,  100, 100,  100,  1023,  2047,  1714
+INT,  102, 102,  102,  1023,  2047,  1714
+INT,  115, 115,  115,  1023,  2047,  1714
+INT,  122, 122,  122,  1023,  2047,  1714
+INT,  127, 127,  127,  1023,  2047,  1714
+INT,  129, 128,  128,  1023,  2047,  1714
+INT,  135, 134,  134,  1023,  2047,  1714
+INT,  145, 144,  144,  1023,  2047,  1714
+INT,  149, 148,  148,  1023,  2047,  1714
