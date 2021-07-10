@@ -141,7 +141,7 @@ object DandelionSimDCRAccelMain extends App {
     new WithSimShellConfig(dLen = data_len, pLog = print_log, cLog = cache_log)(
       nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls) ++
       new memGen.config.WithAccelConfig(memGen.config.DandelionAccelParams(                               
-                                cacheNWays  = num_ways,
+                                 cacheNWays  = num_ways,
                                  cacheNSets = num_sets,
                                  tbeSize   = tbe_depth,
                                  lockSize   = lock_depth,
