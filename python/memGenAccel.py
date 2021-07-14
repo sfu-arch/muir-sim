@@ -14,7 +14,7 @@ def path_leaf(path):
 
 BLOCK_SIZE_IN_BYTE = 8
 
-def convert_str_to_int(data):
+def convert_str_to_byte_stream(data):
     asciied = 0
     str_list = []
     for i in range(len(data)//BLOCK_SIZE_IN_BYTE + 1):
@@ -42,9 +42,10 @@ def read_index_table(mem, file_name='index_info.txt'):
             if data.isnumeric():
                 mem[address+i] = int(data)
             else:
-                str_list = convert_str_to_int(data)
+                str_list = convert_str_to_byte_stream(data)
                 for index, asciied in enumerate(str_list):
                     mem[address+index] = asciied
+
 
 nw   = int(sys.argv[3])
 ns   = int(sys.argv[4])
