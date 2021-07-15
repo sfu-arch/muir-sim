@@ -6,7 +6,7 @@ tbe=8
 lock=8
 np=1
 nc=1
-nword=4
+nword=1
 
 
 

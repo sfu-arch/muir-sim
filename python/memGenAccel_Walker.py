@@ -25,7 +25,7 @@ bm= path_leaf(sys.argv[2])[:-4] #remove csv
 print(bm)
 
 
-mainMem = np.zeros(1000000, dtype = np.uint32) #10 Milions 
+mainMem = np.zeros(5900000, dtype = np.uint32) #10 Milions 
 if platform.system() == 'Linux':
         hw_lib_path = "./python/build/libhw_walker_{}_{}_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal,nc,nword)
 elif platform.system() == 'Darwin':
