@@ -1,0 +1,4 @@
+opcode, dest_node, payload
+7, 1, 5000
+7, 2, 5000
+7, 0, 10000
