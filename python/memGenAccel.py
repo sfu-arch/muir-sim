@@ -12,40 +12,6 @@ def path_leaf(path):
     head, tail = ntpath.split(path)
     return tail or ntpath.basename(head)
 
-BLOCK_SIZE_IN_BYTE = 8
-
-def convert_str_to_byte_stream(data):
-    asciied = 0
-    str_list = []
-    for i in range(len(data)//BLOCK_SIZE_IN_BYTE + 1):
-        asciied = 0
-        
-        for j in range(BLOCK_SIZE_IN_BYTE):
-            if  i *  BLOCK_SIZE_IN_BYTE + j >= len(data):
-                break
-
-            asciied |= ord(data[ i *  BLOCK_SIZE_IN_BYTE + j])
-            asciied <<= 8
-        asciied >>= 8 
-        str_list.append(asciied)
-
-    return str_list
-
-def read_index_table(mem, file_name='index_info.txt'):
-    file = open(file_name, 'r')
-    for line in file:
-        index_data = line.split(',')
-        address = int(index_data[0])
-        for i, data in enumerate(index_data[1:]):
-            data = data.strip(' ')
-            data = data.strip('\n')
-            if data.isnumeric():
-                mem[address+i] = int(data)
-            else:
-                str_list = convert_str_to_byte_stream(data)
-                for index, asciied in enumerate(str_list):
-                    mem[address+index] = asciied
-
 
 nw   = int(sys.argv[3])
 ns   = int(sys.argv[4])
@@ -74,27 +40,6 @@ input_inst = []
 input_addr = []
 input_data = [] 
 
-#vals = [list(inst) for inst in zip(input_inst, input_addr, input_data)]
-#vals = [item  for sublist in vals for item in sublist  ]
-# print(vals)
-
-# LD 0x1000
-# LD 0x1020
-# ACK 2 // COMP
-# NOP // because comp takes one cycle
-# ST 0x3000
-# LD 0x1040
-# NOP // for non-vector ops e.g. computing pointer
-# LD 0x1060
-# ACK 2 // wait for data
-# NOP // because comp takes one cycle
-# ST 0x3020
-
-
-                            #        inst|addr|data
-#events = dsim.sim(ptrs = [mainMem ], vars= [0, 4, 2,
- #                                    0,128,2], debugs=[], numRets=0, numEvents=1, hwlib = hw_lib_path)
-stDist = 0
 
 with open(sys.argv[2]) as trace:
     trigger = csv.reader(trace)
@@ -114,10 +59,6 @@ with open(sys.argv[2]) as trace:
         if (i >= nVals-1):
             break
 
-
-# print(input_inst)
-# print(input_addr)
-# print(input_data)
 
 input_inst = dsim.DArray(input_inst ,  dsim.DArray.DType.UInt64)
 input_addr = dsim.DArray(input_addr ,  dsim.DArray.DType.UInt64)

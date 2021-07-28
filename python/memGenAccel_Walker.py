@@ -1,3 +1,4 @@
+from utils import read_index_table
 import numpy as np
 import platform
 import dsim
@@ -25,7 +26,12 @@ bm= path_leaf(sys.argv[2])[:-4] #remove csv
 print(bm)
 
 
-mainMem = np.zeros(5900000, dtype = np.uint32) #10 Milions 
+mainMem = np.zeros(300, dtype = np.uint32) #10 Milions 
+
+if (__name__ == "__main__"):
+    read_index_table(mainMem, file_name= "python/walker/queries/22/index_info.txt")
+print(mainMem)
+
 if platform.system() == 'Linux':
         hw_lib_path = "./python/build/libhw_walker_{}_{}_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal,nc,nword)
 elif platform.system() == 'Darwin':
@@ -35,27 +41,21 @@ print(hw_lib_path)
 
 mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt32)
 
-nVals = numLine
+print(mainMem)
 input_inst = []
 input_addr = []
 input_data = [] 
-stDist = 0
+
 
 with open(sys.argv[2]) as trace:
     trigger = csv.DictReader(trace)
     for (i,row) in enumerate(trigger):
-        print(row)
         if(str(row['Inst']) == "LONG" or str(row['Inst']) == "INT" ):
             input_inst.append(0)
             input_addr.append(row['orig'])
             input_data.append(0)
             nVals = i + 1
-     
 
-
-# print(input_inst)
-# print(input_addr)
-# print(input_data)
 
 input_inst = dsim.DArray(input_inst ,  dsim.DArray.DType.UInt64)
 input_addr = dsim.DArray(input_addr ,  dsim.DArray.DType.UInt64)
@@ -65,6 +65,7 @@ events = dsim.sim(ptrs = [mainMem,input_inst,input_addr,input_data ], vars= [nVa
 
 Events = ["Cycles","missLD","hitLD", "InstCount", "CPUReq", "memCtrlReq", "numLoadReq", "numReplace"] + [""]*9
 print("\nDone!\n")
+
 for i in range(17):
     if(Events[i] != ""):
         print("\n{},{}".format(Events[i], events[i]))
