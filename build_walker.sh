@@ -4,15 +4,15 @@ nw=8
 ns=8
 tbe=8
 lock=8
-np=1
+np=4
 nc=1
 nword=1
 #for ns in 128
 #do
 #    for nw in 4
 #    do
-#	for np in 2 4
-#	do
+	for np in 8
+	do
 #	    for tbe in 8 16 
 #	    do
 #                for nc in 4 8 
@@ -28,6 +28,6 @@ nword=1
 #done
 #done 
 #done
-#done
+done
 #done
 
