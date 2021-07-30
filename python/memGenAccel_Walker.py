@@ -11,7 +11,8 @@ ntpath.basename("a/b/c")
 
 def path_leaf(path):
     head, tail = ntpath.split(path)
-    return tail or ntpath.basename(head)
+    _, prev_head = ntpath.split(head)
+    return str(prev_head) + "_" + str(tail)
 
 
 nw   = int(sys.argv[3])
