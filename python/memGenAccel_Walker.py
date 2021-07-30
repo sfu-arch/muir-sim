@@ -23,15 +23,16 @@ nparal   = int(sys.argv[7])
 nc = int(sys.argv[8])
 nword = int(sys.argv[9])
 numLine = int(sys.argv[1])
-bm= path_leaf(sys.argv[2])[:-4] #remove csv
+bm= (sys.argv[2])[0:-4]#remove csv
+bm = path_leaf(bm)
+
 print(bm)
 
 
-mainMem = np.zeros(300, dtype = np.uint32) #10 Milions 
+mainMem = np.zeros(300000, dtype = np.uint64) #10 Milions 
 
 if (__name__ == "__main__"):
     read_index_table(mainMem, file_name= "python/walker/queries/22/index_info.txt")
-print(mainMem)
 
 if platform.system() == 'Linux':
         hw_lib_path = "./python/build/libhw_walker_{}_{}_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal,nc,nword)
@@ -40,9 +41,8 @@ elif platform.system() == 'Darwin':
 
 print(hw_lib_path)
 
-mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt32)
+mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt64)
 
-print(mainMem)
 input_inst = []
 input_addr = []
 input_data = [] 
@@ -51,6 +51,8 @@ input_data = []
 with open(sys.argv[2]) as trace:
     trigger = csv.DictReader(trace)
     for (i,row) in enumerate(trigger):
+        row = { k.strip():v.strip() for k, v in row.items()}
+        # print(row)
         if(str(row['Inst']) == "LONG" or str(row['Inst']) == "INT" ):
             input_inst.append(0)
             input_addr.append(row['orig'])
@@ -73,27 +75,29 @@ for i in range(17):
 
 header = ["numLine", "bm", "nw", "ns", "tbe", "lock", "nParal","nc", "nword", 
             "cycles", "nHit", "nMiss", "nLoadInst","nInst","cpuReq","mmReqs"]
-file =open ("python/{}_sweep_analysis.csv".format(bm),'a')
+file =open ("python/sweep/{}_sweep_analysis.csv".format(bm),'a')
+
+print(file.name)
 with file:
     fnames = header   
     writer = csv.DictWriter(file, fieldnames=fnames)    
-    # if (os.stat("python/{}_sweep_analysis.csv".format(bm)).st_size == 0):
-        # writer.writeheader()
+    if (os.stat(file.name).st_size == 0):
+        writer.writeheader()
     
-    # writer.writerow({ 'numLine': numLine,
-    #     'bm': bm,
-    #     'nw': nw,
-    #     'ns': ns,
-    #     'tbe':tbe,
-    #     'lock':lock,
-    #     'nParal':nparal,
-	#     'nc':nc,
-	#     'nword':nword,
-    #     'cycles':events[0],
-    #     'nMiss':events[1],
-    #     'nHit':events[2],
-    #     'nLoadInst':events[6],
-    #     'nInst':events[3],
-    #     'cpuReq':events[4],
-    #     'mmReqs':events[5]
-    # })
+    writer.writerow({ 'numLine': numLine,
+        'bm': bm,
+        'nw': nw,
+        'ns': ns,
+        'tbe':tbe,
+        'lock':lock,
+        'nParal':nparal,
+	    'nc':nc,
+	    'nword':nword,
+        'cycles':events[0],
+        'nMiss':events[1],
+        'nHit':events[2],
+        'nLoadInst':events[6],
+        'nInst':events[3],
+        'cpuReq':events[4],
+        'mmReqs':events[5]
+    })
