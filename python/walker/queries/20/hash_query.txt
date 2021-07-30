@@ -1,3 +1,9 @@
-INT, orig: 2000, Hashed: 479, actual result: 223, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fb408002438, 0
-STR, orig: CANADA, Hashed: 3, actual result: 3, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fb448001a08, 256
-LONG, orig: 3, Hashed: 3, actual result: 3, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fb4380015e8, 512
+INT, orig: 2000, Hashed: 479, actual result: 223, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7f5130002438, 0
+INT, orig: 1, Hashed: 1, actual result: 1, Mask1: 511, Mask2: 1023, nbucket: 800, hash_address: 0x7f527c0014c8, 256
+STR, orig: forest%, Hashed: 75, actual result: 75, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7f5270001598, 1056
+INT, orig: 3, Hashed: 3, actual result: 3, Mask1: 4095, Mask2: 8191, nbucket: 6862, hash_address: 0x7f526c004918, 1312
+INT, orig: 4, Hashed: 4, actual result: 4, Mask1: 4095, Mask2: 8191, nbucket: 6862, hash_address: 0x7f517c006098, 8174
+Hashed: 1196, actual result: 1196, Mask1: 4095, Mask2: 8191, nbucket: 6862, hash_address: 0x7f5234011e78, 0
+INT, orig: 5, Hashed: 5, actual result: 5, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7f5174000bf8, 15036
+STR, orig: CANADA, Hashed: 3, actual result: 3, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7f5258002268, 15292
+LONG, orig: 3, Hashed: 3, actual result: 3, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7f5154002568, 15548
