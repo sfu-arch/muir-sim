@@ -4,7 +4,7 @@ nw=8
 ns=8
 tbe=8
 lock=8
-np=8
+np=1
 nc=1
 nword=1
 
@@ -16,10 +16,10 @@ bm=$1 #blackscholes axpy GEMM
 #do
 #    for nw in 4 
 #    do
-#	for np in  4 
-#	do
-#	    for tbe in  32 
-#	    do
+	for np in  1
+	do
+	    for tbe in  8   
+	    do
 #                for nc in 1
 #                do
 #                   for nword in 8 
@@ -27,8 +27,8 @@ bm=$1 #blackscholes axpy GEMM
 
         python3 $PY_DIR/memGenAccel_Walker.py 0 $bm $nw $ns $tbe $lock $np $nc $nword
 #done
-#done
-#done
+done
+done
 #done 
 #done 
 #done
