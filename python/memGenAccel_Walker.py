@@ -29,8 +29,8 @@ bm = path_leaf(bm)
 print(bm)
 
 
-mainMem = np.zeros(300000, dtype = np.uint64) #10 Milions 
-
+mainMem = np.zeros(10000000, dtype = np.uint64) #10 Milions 
+mainMem = [ 0 for i in range(len(mainMem)) ]
 if (__name__ == "__main__"):
     read_index_table(mainMem, file_name= "python/walker/queries/22/index_info.txt")
 
@@ -41,7 +41,10 @@ elif platform.system() == 'Darwin':
 
 print(hw_lib_path)
 
+print(mainMem[263])
 mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt64)
+
+# print(mainMem)
 
 input_inst = []
 input_addr = []
@@ -55,8 +58,8 @@ with open(sys.argv[2]) as trace:
         # print(row)
         if(str(row['Inst']) == "LONG" or str(row['Inst']) == "INT" ):
             input_inst.append(0)
-            input_addr.append(row['orig'])
-            input_data.append(0)
+            input_addr.append(int(row['orig']) + 1)
+            input_data.append(int(0))
             nVals = i + 1
 
 

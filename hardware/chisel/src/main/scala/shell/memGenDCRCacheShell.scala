@@ -175,7 +175,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
         }.otherwise {
             accel.io.in.valid := true.B
             when(accel.io.in.fire){
-              printf(p"\nInst : ${inputQ(is_inst).io.deq.bits.data} for addr ${inputQ(is_addr).io.deq.bits.data} cycle ${cycles} \n")
+              printf(p"\nInst : ${accel.io.in.bits.dataVals(s"field0").data} for addr ${accel.io.in.bits.dataVals(s"field1").data} with data ${accel.io.in.bits.dataVals(s"field2").data} cycle ${cycles} \n")
               incChunkCounter := true.B
             }
         }
