@@ -21,7 +21,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   })
 
   val chunk = 1
-  val WAIT_TIME = 300 
+  val WAIT_TIME = 30000 
 
   val numInputs  = 3
   val is_data = 2
@@ -48,6 +48,8 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   val is_busy = state === sBusy
 
   val goToBusy = Wire(Bool())
+
+ val lastCycle = Reg(UInt(32.W))
 
 
   /**
@@ -98,11 +100,12 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   }
 
  vcr.io.dcr.ecnt(0).valid := last
- vcr.io.dcr.ecnt(0).bits := cycles
+ vcr.io.dcr.ecnt(0).bits := lastCycle
 
   when(accel.io.out.fire()){
       printf(p"Data back for addr ${accel.io.out.bits.data("field1").data} cycle ${cycles} \n") 
       printf(p"ackCounter :${ ackCounter}\n")
+      lastCycle := cycles
   }
 
     val inputQ = for (i <- 0 until numInputs) yield {
@@ -172,7 +175,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
         }.otherwise {
             accel.io.in.valid := true.B
             when(accel.io.in.fire){
-              printf(p"\nInst : ${inputQ(is_inst).io.deq.bits.data} for addr ${inputQ(is_addr).io.deq.bits.data} cycle ${cycles} \n")
+              printf(p"\nInst : ${accel.io.in.bits.dataVals(s"field0").data} for addr ${accel.io.in.bits.dataVals(s"field1").data} with data ${accel.io.in.bits.dataVals(s"field2").data} cycle ${cycles} \n")
               incChunkCounter := true.B
             }
         }
