@@ -28,7 +28,7 @@ def read_index_table(mem, file_name='index_info.txt'):
             if (i == 1): #skip row id
                 continue
             if data.isnumeric():
-                mem[address] |= int(data) << int(i/2) * 32
+                mem[address] |= int(data) << (int(i/2) * 32)
             else:
                 str_list = convert_str_to_byte_stream(data)
                 for index, asciied in enumerate(str_list):

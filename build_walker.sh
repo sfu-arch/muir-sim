@@ -2,7 +2,7 @@ mkdir python/build
 
 nw=8
 ns=8
-tbe=8
+tbe=10
 lock=8
 np=2
 nc=1
@@ -13,7 +13,7 @@ nword=1
 #    do
 	for np in  1 
 	do
-	    for tbe in 8
+	    for tbe in 10
 	    do
 #                for nc in 4 8 
 #                do

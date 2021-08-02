@@ -18,7 +18,7 @@ bm=$1 #blackscholes axpy GEMM
 #    do
 	for np in  1
 	do
-	    for tbe in  8   
+	    for tbe in  10
 	    do
 #                for nc in 1
 #                do
