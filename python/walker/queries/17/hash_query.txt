@@ -1,3 +1,5 @@
-INT, orig: 2000, Hashed: 479, actual result: 223, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fb408002438, 0
-STR, orig: Brand#23, Hashed: 432, actual result: 176, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fb3e0001088, 256
-STR, orig: MED BOX, Hashed: 28, actual result: 28, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7fb4b4000fa8, 512
+INT, orig: 2000, Hashed: 479, actual result: 223, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7f5130002438, 0
+INT, orig: 1, Hashed: 1, actual result: 1, Mask1: 4095, Mask2: 8191, nbucket: 6862, hash_address: 0x7f519c0043a8, 256
+INT, orig: 2, Hashed: 2, actual result: 2, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7f5208000fa8, 7118
+STR, orig: Brand#23, Hashed: 432, actual result: 176, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7f511c002e18, 7374
+STR, orig: MED BOX, Hashed: 28, actual result: 28, Mask1: 255, Mask2: 511, nbucket: 256, hash_address: 0x7f5188002858, 7630
