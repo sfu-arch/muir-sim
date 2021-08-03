@@ -54,11 +54,12 @@ input_data = []
 with open(sys.argv[2]) as trace:
     trigger = csv.DictReader(trace)
     for (i,row) in enumerate(trigger):
+        print(row)
         row = { k.strip():v.strip() for k, v in row.items()}
         # print(row)
         if(str(row['Inst']) == "LONG" or str(row['Inst']) == "INT" ):
             input_inst.append(0)
-            input_addr.append(int(row['orig']) + 1)
+            input_addr.append(int(row['orig'])  )
             input_data.append(int(0))
             nVals = i + 1
 
