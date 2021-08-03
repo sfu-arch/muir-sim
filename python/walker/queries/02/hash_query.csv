@@ -1,0 +1,4 @@
+Inst, orig, Hashed, result, mask1, mask2, nbucket, start_index
+LONG, 3, 3, 3, 255, 511, 256, 512
+LONG, 4624633867356078080, 248, 248, 255, 511, 256, 256
+LONG, 6, 6, 6, 511, 1023, 800, 768
