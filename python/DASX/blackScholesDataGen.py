@@ -42,20 +42,18 @@ if __name__ == '__main__':
             
             vector_index += 1
     
-    tasks = 1000
+    # tasks = 1000
     iter_num = int(tasks / TASKS_PER_ITER)
     res = 'opcode, address\n'
 
     for iter in range(iter_num):
         inner_index = 0
-        while True:
-            # request load from collectors
-            if (inner_index * CACHE_BLOCK_SIZE / DATA_SIZE) < TASKS_PER_ITER:
-                for col in collectors:
-                    res += '0, ' + str(collectors[col][0] + inner_index * CACHE_BLOCK_SIZE) + '\n'
-                if (inner_index == 0):
-                    res += '2, ' + str(len(collectors)) + '\n'
+        # request load from collectors
+        for col in collectors:
+            res += '3, ' + str(collectors[col][0] + inner_index * CACHE_BLOCK_SIZE)  + ', ' + str(TASKS_PER_ITER)+ '\n'
 
+        res += '2, ' + str(len(collectors)) + '\n'
+        while True:
             # request load from PE
             for j in range(PE_COUNT):
                 if inner_index * PE_COUNT + j >= TASKS_PER_ITER:
