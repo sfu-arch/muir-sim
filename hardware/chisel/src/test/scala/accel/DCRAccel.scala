@@ -94,6 +94,7 @@ object DandelionSimDCRAccelMain extends App {
   var num_paral = 2
   var num_cache = 0
   var num_word = 0
+  var bm = ""
   /**
     * Make sure accel name is added to TestDCRAccel class
     */
@@ -125,6 +126,7 @@ object DandelionSimDCRAccelMain extends App {
     case Array("--num-paral", argParal: String) => num_paral= argParal.toInt
     case Array("--num-cache", argCache: String) => num_cache= argCache.toInt
     case Array("--num-word", argWord: String) => num_word= argWord.toInt
+    case Array("--benchmark", argBM: String) => bm = argBM
 
 
 
@@ -147,7 +149,8 @@ object DandelionSimDCRAccelMain extends App {
                                  lockSize   = lock_depth,
                                  nparal = num_paral,
                                  ncache = num_cache,
-                                 nword = num_word) ) ++
+                                 nword = num_word,
+				 bm = bm) ) ++
       new WithTestConfig()
   chisel3.Driver.execute(args.take(4),
     () => new DandelionSimDCRAccel(() => DandelionTestDCRAccel(accel_name))(

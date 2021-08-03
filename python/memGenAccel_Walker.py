@@ -54,6 +54,7 @@ input_data = []
 with open(sys.argv[2]) as trace:
     trigger = csv.DictReader(trace)
     for (i,row) in enumerate(trigger):
+        print(row)
         row = { k.strip():v.strip() for k, v in row.items()}
         # print(row)
         if(str(row['Inst']) == "LONG" or str(row['Inst']) == "INT" ):

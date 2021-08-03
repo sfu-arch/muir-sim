@@ -21,7 +21,7 @@ nword=1
 #	           do
 #
 	rm -rf hardware/chisel/build
-        python3 run.py --accel-config examples/memGenTest.json --nWays $nw --nSets $ns --tbe-depth $tbe --lock-depth $lock --num-paral $np --num-cache $nc --num-word $nword 
+        python3 run.py --accel-config examples/memGenTest.json --nWays $nw --nSets $ns --tbe-depth $tbe --lock-depth $lock --num-paral $np --num-cache $nc --num-word $nword --benchmark "walker"
 	
 	mv hardware/chisel/build/libhw.so python/build/libhw_walker_$nw\_$ns\_$tbe\_$lock\_$np\_$nc\_$nword.so
 #done
