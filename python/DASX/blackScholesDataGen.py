@@ -5,8 +5,8 @@ DATA_SIZE = 8 # bytes
 VECOTR_COUNT = 7
 
 BYTES_PER_ITER = DATA_SIZE * VECOTR_COUNT
-TASKS_PER_ITER = CACHE_SIZE // BYTES_PER_ITER
-
+# TASKS_PER_ITER = CACHE_SIZE // BYTES_PER_ITER
+TASKS_PER_ITER = 40
 
 if __name__ == '__main__':
     file = open('trace.csv', 'r')
