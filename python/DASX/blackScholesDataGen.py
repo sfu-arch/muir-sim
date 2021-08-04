@@ -50,7 +50,7 @@ if __name__ == '__main__':
         inner_index = 0
         # request load from collectors
         for col in collectors:
-            res += '3, ' + str(collectors[col][0] + inner_index * CACHE_BLOCK_SIZE)  + ', ' + str(TASKS_PER_ITER)+ '\n'
+            res += '3, ' + str(collectors[col][0] + iter * TASKS_PER_ITER * 16)  + ', ' + str(TASKS_PER_ITER)+ '\n'
 
         res += '2, ' + str(len(collectors)) + '\n'
         while True:
