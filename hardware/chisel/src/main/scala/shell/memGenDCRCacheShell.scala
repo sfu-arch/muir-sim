@@ -27,8 +27,9 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
   val is_data = 2
   val is_addr = 1
   val is_inst = 0
+
   val is_ack = 2
-  val is_nop = 3
+  val is_nop = 4
 
   val regBits = dcrParams.regBits
   val ptrBits = regBits * 2
@@ -165,7 +166,7 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
     is(sBusy) {
 ()
-        when(inputQ(0).io.deq.valid === false.B || inputQ(1).io.deq.bits.data === 0.U ) {
+        when(inputQ(0).io.deq.valid === false.B /*|| inputQ(1).io.deq.bits.data === 0.U*/ ) {
           state := sDone
         }.elsewhen( inputQ(is_inst).io.deq.bits.data === is_ack.U) {
           state := sAck
