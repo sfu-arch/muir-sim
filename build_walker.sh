@@ -11,7 +11,7 @@ nword=1
 #do
 #    for nw in 4
 #    do
-	for np in  1 
+	for np in  1
 	do
 	    for tbe in 10
 	    do
