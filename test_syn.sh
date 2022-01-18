@@ -1,7 +1,7 @@
 PY_DIR=python
 
-nw=8
-ns=8
+nw=4
+ns=32
 tbe=8
 lock=8
 np=1
@@ -18,14 +18,14 @@ bm=$1 #blackscholes axpy GEMM
 #    do
 	for np in  1
 	do
-	    for tbe in 16
+	    for tbe in 8
 	    do
 #                for nc in 1
 #                do
 #                   for nword in 8 
 #	           do
 
-        python3 $PY_DIR/memGenAccel_Walker.py 0 $bm $nw $ns $tbe $lock $np $nc $nword 
+        python3 $PY_DIR/memGenAccel_syn.py 0 $bm $nw $ns $tbe $lock $np $nc $nword 
 #done
 done
 done

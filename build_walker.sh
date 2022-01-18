@@ -1,19 +1,19 @@
 mkdir python/build
 
-nw=8
-ns=8
-tbe=10
-lock=8
-np=2
+nw=2
+ns=2
+tbe=8
+lock=4
+np=4
 nc=1
 nword=1
 #for ns in 128
 #do
 #    for nw in 4
 #    do
-	for np in  1
+	for np in 4 
 	do
-	    for tbe in 10
+	    for tbe in 8
 	    do
 #                for nc in 4 8 
 #                do
