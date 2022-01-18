@@ -70,10 +70,11 @@ with open(sys.argv[2]) as trace:
         elif (int(row['opcode']) == 6 ):
             input_inst.append(ack)
             input_addr.append(0)
-            input_data.append(280)
+            input_data.append(40)
         elif (int(row['opcode']) == 1 ):
+            # continue
             input_inst.append(1)
-            input_addr.append(int(row['address']) << 3)
+            input_addr.append(int(row['address']))
             input_data.append(0)
         else:
             input_inst.append(int(row['opcode']))
@@ -82,7 +83,7 @@ with open(sys.argv[2]) as trace:
 
         nVals = i + 1
 
-        if (nVals > 200):
+        if (nVals > 266):
             break
 
 

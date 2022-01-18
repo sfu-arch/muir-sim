@@ -23,8 +23,9 @@ nparal   = int(sys.argv[7])
 nc = int(sys.argv[8])
 nword = int(sys.argv[9])
 numLine = int(sys.argv[1])
-bm= (sys.argv[2])[0:-4]#remove csv
+bm= (sys.argv[2])[0:-4]#removes csv
 bm = path_leaf(bm)
+
 print(bm)
 
 
@@ -34,13 +35,12 @@ if (__name__ == "__main__"):
     read_index_table(mainMem, file_name= "python/walker/queries/22/index_info.txt")
 
 if platform.system() == 'Linux':
-        hw_lib_path = "./python/build/libhw_walker_{}_{}_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal,nc,nword)
+        hw_lib_path = "./python/build/libhw_syn_{}_{}_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal,nc,nword)
 elif platform.system() == 'Darwin':
     hw_lib_path = "./hardware/chisel/build/libhw.dylib"
 
 print(hw_lib_path)
 
-print(mainMem[263])
 mainMem = dsim.DArray(mainMem ,  dsim.DArray.DType.UInt64)
 
 # print(mainMem)
@@ -49,18 +49,24 @@ input_inst = []
 input_addr = []
 input_data = [] 
 
-with open(sys.argv[2]) as trace:
-        trigger = csv.DictReader(trace)
-        for (i,r) in enumerate(trigger):
-            print(r)
-            row = { k.strip():v.strip() for k, v in r.items()}
-            if(str(row['Inst']) == "LONG" or str(row['Inst']) == "INT" ):
-                input_inst.append(0)
-                input_addr.append(int(row['orig'])  )
-                input_data.append(int(0))
-                nVals = i + 1
 
-print(nVals)
+Num_NOP = 200
+
+with open(sys.argv[2]) as trace:
+    trigger = csv.DictReader(trace)
+    for (i,row) in enumerate(trigger):
+        row = { k.strip():v  for k, v in row.items()}
+        # print(row)
+        input_inst.append(int(row['opcode']))
+        input_addr.append(int(row['address']))
+        input_data.append(int(row['data']))
+
+
+
+        nVals = i
+
+
+
 
 
 input_inst = dsim.DArray(input_inst ,  dsim.DArray.DType.UInt64)

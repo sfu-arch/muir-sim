@@ -28,13 +28,13 @@ bm = path_leaf(bm)
 print(bm)
 
 
-mainMem = np.zeros(10000000, dtype = np.uint64) #10 Milions 
+mainMem = np.zeros(1000000, dtype = np.uint64) #10 Milions 
 mainMem = [ 0 for i in range(len(mainMem)) ]
 if (__name__ == "__main__"):
     read_index_table(mainMem, file_name= "python/walker/queries/22/index_info.txt")
 
 if platform.system() == 'Linux':
-        hw_lib_path = "./python/build/libhw_walker_{}_{}_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal,nc,nword)
+        hw_lib_path = "./python/build/libhw_gp_{}_{}_{}_{}_{}_{}_{}.so".format(nw,ns,tbe,lock,nparal,nc,nword)
 elif platform.system() == 'Darwin':
     hw_lib_path = "./hardware/chisel/build/libhw.dylib"
 
@@ -53,12 +53,28 @@ with open(sys.argv[2]) as trace:
         trigger = csv.DictReader(trace)
         for (i,r) in enumerate(trigger):
             print(r)
-            row = { k.strip():v.strip() for k, v in r.items()}
-            if(str(row['Inst']) == "LONG" or str(row['Inst']) == "INT" ):
+            row = { k.strip():v for k, v in r.items()}
+            if(int(row['opcode']) == 7):
                 input_inst.append(0)
-                input_addr.append(int(row['orig'])  )
-                input_data.append(int(0))
-                nVals = i + 1
+                input_addr.append(int(row['dest_node'])  )
+                input_data.append(int(row['payload']))
+
+            elif(int(row['opcode']) == 1):
+                input_inst.append(1)
+                input_addr.append(int(row['dest_node'])  )
+                input_data.append(int(row['payload']))
+
+            elif (int(row['opcode']) == 8 ):
+                input_inst.append(4)
+                input_addr.append(int(row['dest_node'])  )
+                input_data.append(int(row['payload']))
+
+            else:#(int(row['opcode']) == 2 ):
+                input_inst.append(2)
+                input_addr.append(0)
+                input_data.append(int(row['dest_node']))
+            nVals = i + 1
+
 
 print(nVals)
 
