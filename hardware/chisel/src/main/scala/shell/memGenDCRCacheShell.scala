@@ -136,15 +136,19 @@ class memGenDCRCacheShell [T <: memGenModule](accelModule: () => T)
 
 
   // connecting input queues to accel input
-  for (i <- 0 until 2) {
-    accel.io.in.bits.dataVals(s"field${i}") := inputQ(i).io.deq.bits
+  for (i <- 0 until 3) {
+    if (i == 1){
+    accel.io.in.bits.dataVals(s"field${i}").data := inputQ(i).io.deq.bits.data + ptrs(0)
+    }else {
+        accel.io.in.bits.dataVals(s"field${i}") := inputQ(i).io.deq.bits
+    }
   }
 
-  when (inputQ(0).io.deq.bits.data === 0.U){// when Find in Walker
-    accel.io.in.bits.dataVals(s"field2").data := ptrs(0) // mainMem
-  }.otherwise{
-    accel.io.in.bits.dataVals(s"field2") := inputQ(2).io.deq.bits
-  }
+  // when (inputQ(0).io.deq.bits.data === 0.U){// when Find in Walker
+  //   accel.io.in.bits.dataVals(s"field2").data := inputQ(2).io.deq.bits.data // mainMem
+  // }.otherwise{
+  //   accel.io.in.bits.dataVals(s"field2") := inputQ(2).io.deq.bits
+  // }
 
   accel.io.in.bits.enable := ControlBundle.active()
   accel.io.in.valid := false.B

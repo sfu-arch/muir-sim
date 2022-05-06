@@ -1,0 +1,2277 @@
+[33mcommit ae9aa85db502df7afd7e96d3b66ab2844912ba81[m[33m ([m[1;36mHEAD -> [m[1;32mmemGen[m[33m)[m
+Merge: 2232f17 85bad43
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Mon Aug 2 19:19:52 2021 -0700
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit 85bad435b72404181ff746f89192a73b5c83f959[m[33m ([m[1;31morigin/memGen[m[33m)[m
+Merge: e7dff6d e2313bb
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Mon Aug 2 16:22:51 2021 -0700
+
+    Merge branch 'memGen' of https://github.com/sfu-arch/muir-sim into memGen
+
+[33mcommit e7dff6d13db0d3800516c9958a3bd74d2b10609e[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Mon Aug 2 16:22:43 2021 -0700
+
+    Add new traces
+    
+    02, 11, and 17 have been renewed.
+
+[33mcommit 2232f176b98f77a86db043cac3d43a1eca7534d3[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Aug 1 23:45:50 2021 -0700
+
+    Back to real 22.sql
+
+[33mcommit e2313bb5edf87c3172b64daed6e101ba869cfada[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Aug 1 23:26:11 2021 -0700
+
+    Updating python script
+
+[33mcommit 7d746aaeb7391957036b36689a9ad637b2b28300[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Aug 1 11:13:20 2021 -0700
+
+    adding nextPTR to higher bits
+
+[33mcommit f86f596fd66f4da2e60c755029c022749715598b[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Jul 31 16:34:16 2021 -0700
+
+    updating memGen
+
+[33mcommit 12d9b5914069b700b801895eb2eed469e50195b4[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Jul 31 16:30:50 2021 -0700
+
+    updating build and test script
+
+[33mcommit e272671a6b12964a946a9cbf3624addb2e2500db[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Jul 31 16:30:25 2021 -0700
+
+    minor changes
+
+[33mcommit 04cede15d6110aeb0c10284e5161b594b7241709[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Jul 30 16:20:46 2021 -0700
+
+    updating memGen
+
+[33mcommit 4e831288ca6577030c5323a192ba5cbcec284448[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Jul 30 16:17:30 2021 -0700
+
+    minor changes
+
+[33mcommit 8a1302960336dfdca152e0574ce5ee4029b9b7fb[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Jul 30 16:17:09 2021 -0700
+
+    updating simulator
+
+[33mcommit 67fd433f9a2138b13b1bd2edf156b9ba57a30b46[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Thu Jul 29 23:19:18 2021 -0700
+
+    Add new trace for graphpulse.
+
+[33mcommit 4e990528358fe19a22df9ae102df2c9fb7c26660[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Thu Jul 29 21:45:14 2021 -0700
+
+    Update benchmark 19
+
+[33mcommit db5e3d4f81d7917061dfbc512447643dab7f4118[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Thu Jul 29 21:09:23 2021 -0700
+
+    Change benchmark
+
+[33mcommit 81aa305b74b50bd7f9b70f73536e57610586e37a[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Thu Jul 29 20:32:10 2021 -0700
+
+    Merge
+
+[33mcommit fe85c6ff13dfeccecf3b8f826c5479025d9dabd2[m
+Merge: 699076e 3670413
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Thu Jul 29 20:31:33 2021 -0700
+
+    Merge branch 'memGen' of https://github.com/sfu-arch/muir-sim into memGen
+
+[33mcommit 699076e1ee5032e57fbc2a81a1c64c37029363f6[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Thu Jul 29 20:31:21 2021 -0700
+
+    Add new queries
+    
+    Add new queries for 22.sql
+
+[33mcommit 3670413e86a6ba8c95c9bb68d4cf2d2568f153ec[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Jul 28 10:32:29 2021 -0700
+
+    memGen updated
+
+[33mcommit ca04150ef03ba8ef354fa788730f7e35f0a7d724[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Jul 28 10:32:04 2021 -0700
+
+    utils for running walker
+
+[33mcommit 29a9fe4c8f4abbc1d026fdf9ec84095697250ecd[m
+Merge: bdc1e54 841cb09
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Jul 28 10:29:45 2021 -0700
+
+    memGen updated
+
+[33mcommit bdc1e54457d0930172ece8828e732cbc99df6b96[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Jul 28 10:28:28 2021 -0700
+
+    Updating
+
+[33mcommit 841cb09a8ca154a0be83883268543fac723ad366[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Tue Jul 27 09:20:18 2021 -0700
+
+    Add binarytree trace
+    
+    A new trace has been added. The term 15 at the end indicates the depth of the tree.
+
+[33mcommit 243d9d3d63fccd3e1f26e55a2c36d2d4f2ff9e53[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Tue Jul 27 07:56:17 2021 -0700
+
+    Add BinaryTree trace.
+
+[33mcommit fba381363c73765e27d60e12b61be27cbfc974b6[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Jul 24 10:40:07 2021 -0700
+
+    memGen updated
+
+[33mcommit 5a7f2612f5441b9b637d382db1fb910cc9caa142[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Jul 15 16:35:03 2021 -0700
+
+    updating nWords
+
+[33mcommit 3d1dbb08b036f4ecfa5fdf3dda13cc844f922104[m
+Merge: e72d668 ba394b3
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Jul 15 15:33:56 2021 -0700
+
+    updating 22.sql
+
+[33mcommit e72d668f41629250be264681aa2b8d5d2b186055[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Jul 15 12:34:05 2021 -0700
+
+    memGen changed
+
+[33mcommit ba394b33f8a50d7058995dca866455e6e13334d1[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Wed Jul 14 10:58:28 2021 -0700
+
+    Add graphPulse traces.
+    
+    Traces and memory state are added
+
+[33mcommit 4cbb26a714f08a773aa0abfa8a1353c44ebed88a[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Jul 10 16:14:44 2021 -0700
+
+    Change 22.sql to csv
+
+[33mcommit 8b48e4a0338d1f481ec86c6b48decce6c1a612e8[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Jul 10 16:14:08 2021 -0700
+
+    Test files for Walker
+
+[33mcommit 43a57e668457f913656934fb869186f474a31271[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Jul 10 16:13:42 2021 -0700
+
+    Updating the shell
+
+[33mcommit f8d01ef449313de3737c6f8b32d3f8ab2df14154[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Jul 7 17:15:41 2021 -0700
+
+    Updating 22 sql trace
+
+[33mcommit a2da2b0e4d8bc1c7a9f7639446536de793788493[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Wed Jul 7 13:15:36 2021 -0700
+
+    Add dasx traces.
+    
+    The trace for blackscholes benchmark has been added.
+
+[33mcommit edac1f7b023da2143f80c2d7b00f07d5aa0f771c[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Sat Jul 3 16:43:29 2021 -0700
+
+    Fix bug in indices' addresses.
+
+[33mcommit 09a45856084123d3e2c99f99331c1118125ba230[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Fri Jul 2 08:55:25 2021 -0700
+
+    Update MemGenAccel
+    
+    uImplemented utility functions to fill memory with index table informaion.
+
+[33mcommit 09c5c0ba36e05b06c02a4ace1a5915d9e52ca1b1[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Fri Jul 2 08:51:32 2021 -0700
+
+    Update logs
+    
+    The state of indices at the execution time of the benchmarks are added.
+
+[33mcommit 111d238cb0273f3aa703a49bf241c6808235246d[m
+Merge: 6c6d91d 1659f79
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Jun 24 18:31:06 2021 -0700
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit 1659f798f343ce2539b4d0fc6f1546dc588f8151[m
+Author: miladHakimi <miladhakimi33@gmail.com>
+Date:   Thu Jun 24 14:38:42 2021 -0700
+
+    Update README.md
+
+[33mcommit ca0cadcfe6db1b8916de964e0e76e5208359c7b8[m
+Author: miladHakimi <miladhakimi33@gmail.com>
+Date:   Thu Jun 24 14:36:04 2021 -0700
+
+    Update README.md
+
+[33mcommit 9c889b12a202c2464542e1a301bf3362493470ba[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Thu Jun 24 13:28:19 2021 -0700
+
+    Add walker logs
+
+[33mcommit 6c6d91db7aa963c7635ac9f7e77674651df6aa12[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Jun 24 11:36:00 2021 -0700
+
+    memGen updated
+
+[33mcommit a9e06afba26b742e3677d477ed291d8211885f68[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Jun 24 10:04:49 2021 -0700
+
+    memGen updated
+
+[33mcommit 820a4b446f1ddcff0350f24b78a47a321b620c59[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Jun 23 13:11:34 2021 -0700
+
+    updating memGen
+
+[33mcommit 2e680f572072cf9487de3ef14ba12920068e435a[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Jun 17 16:08:45 2021 -0700
+
+    updating memGen
+
+[33mcommit dbd393005bfc330c1f5c855c82ffc1cfe96e6b91[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Jun 17 15:12:36 2021 -0700
+
+    updating memGen
+
+[33mcommit dc6df8fe16da873b896e5908dc3876ef88fad8fb[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Jun 11 18:57:44 2021 -0700
+
+    updating memGen
+
+[33mcommit ef0ea3665ff7e97c40570c3f3d61e9d0e2e572d8[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Jun 11 12:11:08 2021 -0700
+
+    remove ignored files
+
+[33mcommit 29be1e118f419b1ec76ddff6d0dbd47730ddc156[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Jun 11 12:05:56 2021 -0700
+
+    updating gitignore
+
+[33mcommit 1e28ebb194afddb8c5669c181c627ba502bd5c9c[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Jun 11 12:04:33 2021 -0700
+
+    minor changes
+
+[33mcommit 037530b0ed279eedfb89b79f464b3327b9b93198[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Jun 11 12:04:19 2021 -0700
+
+    trace file updated
+
+[33mcommit 6bdd00c650ec5eeb234f279dfff38be86ad9bf74[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Jun 11 12:03:48 2021 -0700
+
+    minor changes
+
+[33mcommit 01d187cd0789141b9ba32cec6c0d0edfc0153117[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Jun 11 11:32:49 2021 -0700
+
+    updating memGen
+
+[33mcommit ea202b4bf688b8c418da92c0cc1b3f2293ad28fa[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Jun 2 18:27:33 2021 -0700
+
+    upating memGen
+
+[33mcommit d59f7f1b0d1c17eb7b77d1afd0841b48e14f7120[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Jun 2 18:08:17 2021 -0700
+
+    updating python sim
+
+[33mcommit b2eb81b71f44b123cf822544b3cda9d1603146c3[m
+Merge: 078b0ad 2d39545
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 25 12:16:05 2021 -0700
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit 078b0ada5704e9647ddd7591e19a8c4f495f8420[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 25 12:15:46 2021 -0700
+
+    minor changs
+
+[33mcommit 2d39545df1ab984079fe74a2001de93dff4f3587[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Thu May 20 11:53:36 2021 -0700
+
+    Add compiler
+    
+    compiler.py added. It integrates event, transition, and state extractor
+
+[33mcommit 50f2e23f0de42ff5dc28b86808fd0629a6f108f1[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Thu May 20 11:16:21 2021 -0700
+
+    Add Compiler
+    
+    Three python files are added. They take MI_example-cache.sm and extract the events, transitions, and states.
+
+[33mcommit 60ebb9464ed2668ba4613b487c44ad4ec9370aa7[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 18 17:23:57 2021 -0700
+
+    change in submodules
+
+[33mcommit aaf5ff8982faff67b205bf822d0dff89e4e75f84[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 18 16:49:12 2021 -0700
+
+    change in branch of dandelion repo
+
+[33mcommit 207967b4185f30d0599ddb18655351b2bfa0abef[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 18 16:27:47 2021 -0700
+
+    change in dandelion repo
+
+[33mcommit df2f8c757c8d2d7577f074a6204d5dcae9ff1629[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 18 13:21:13 2021 -0700
+
+    remvoing build files
+
+[33mcommit e46daff25b9e134df2d4ae78c527fe376c1b7737[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 18 13:10:43 2021 -0700
+
+    changing branch of dandelion submodule
+
+[33mcommit ed72a5b458eb76202db7bf83c11ef5fd261420f4[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 18 13:09:37 2021 -0700
+
+    minor changes in test.sh
+
+[33mcommit ace8aebd5fcf78cfe671f800e10046b1c831f24c[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 18 10:40:17 2021 -0700
+
+    updating python and scripts
+
+[33mcommit a6015f253bada2e5832f923111eb9746052ac7a6[m
+Merge: db70751 90b5380
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 18 10:37:31 2021 -0700
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit db70751bfe91a1413520788a6224f39d084cb4bb[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue May 18 10:32:50 2021 -0700
+
+    updating the traces and scripts
+
+[33mcommit 90b538093b6839a774a9708e0a5eb6b7e14d611e[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Mon Apr 12 23:43:18 2021 -0700
+
+    Add concurrent load and forwarding data
+
+[33mcommit f28247e1006fb35fdbed45c0a523f2d849ee8f76[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Mon Apr 12 02:41:27 2021 -0700
+
+    updating prefetch csv
+
+[33mcommit 629aeef499276a77d74375b49c2e68f8984d6030[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Mon Apr 12 02:22:06 2021 -0700
+
+    prefetch sweep
+
+[33mcommit c6d9fe34c4d30fbb80fd157bb563c712f064722a[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Mon Apr 12 02:20:28 2021 -0700
+
+    updating prefetch traces
+
+[33mcommit 7e22a6c5b78abdad00c7be9cc0af2d22a1e43f17[m
+Merge: 112c78e c82442e
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Mon Apr 12 00:18:50 2021 -0700
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit 112c78e209a785aac8c392c8c8bfdbbbfeaf1e13[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Mon Apr 12 00:18:41 2021 -0700
+
+    new traces
+
+[33mcommit c82442e02be1e761e74a7c0075fed433561c8dae[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Sun Apr 11 20:35:09 2021 -0700
+
+    Add wideload for different node counts
+
+[33mcommit 7d8c6212d5200b8fd957aba94f82b63e74249332[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Sun Apr 11 17:14:36 2021 -0700
+
+    Add blackscholes and axpy wideload traces
+
+[33mcommit c55ab80481c81a009a4bebf600f10c2a5b1f14f6[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Apr 11 16:37:55 2021 -0700
+
+    adding normal trace of blackscholes
+
+[33mcommit 11308546f36ae5e7068295eaa28d16f4766d42ba[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Apr 11 16:23:17 2021 -0700
+
+    adding normal blackscholes
+
+[33mcommit 18c8134879b0c7ac1eca1de2c93d898176a796a6[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Apr 11 16:12:22 2021 -0700
+
+    blackscholes prefetch traces
+
+[33mcommit c5e113dd50d4376379bd24859fa78633e2596568[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Apr 11 16:04:36 2021 -0700
+
+    sweeps
+
+[33mcommit f80c299215d71ab9569eab5ce2f7e3558c1c49b6[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Sun Apr 11 10:43:58 2021 -0700
+
+    Add GEMM prefetch traces
+
+[33mcommit a84dadbcb001004e9e8eeffe59b4a9073a64b84a[m
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Sat Apr 10 20:37:36 2021 -0700
+
+    Add GEMV prefetch traces
+
+[33mcommit 9206b55af590dce20baf96d591181db2b29e4d1a[m
+Merge: ad22450 21d2ad0
+Author: miladhakimi <miladhakimi33@gmail.com>
+Date:   Sat Apr 10 13:10:19 2021 -0700
+
+    Merge branch 'memGen' of https://github.com/sfu-arch/muir-sim into memGen
+
+[33mcommit ad22450645c4dd91dd7d6709bb89f6d3a3d6aa8f[m
+Author: Milad Hakimi <miladhakimi33@gmail.com>
+Date:   Sat Apr 10 12:55:39 2021 -0700
+
+    Add blackScholes trace
+
+[33mcommit 21d2ad0aebb1410c3cd09dfc1e0e24d9f9d55127[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Apr 10 02:00:42 2021 -0700
+
+    updating build files
+
+[33mcommit cb5ec64d51411f292f345fb894d8456ee53b6272[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Apr 10 01:58:48 2021 -0700
+
+    adding loop to build.sh
+
+[33mcommit 03b2ff89dd60283d16bb8baa05abc05802694ff6[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Apr 9 20:19:57 2021 -0700
+
+    cleaning
+
+[33mcommit f3ab5879a2fbee97501bb02c57d084caccdf08e8[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Apr 9 20:19:01 2021 -0700
+
+    updating python file
+
+[33mcommit 24c8daabbed56c983c3909f5eb5ade8ad796133a[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Apr 9 20:18:20 2021 -0700
+
+    cleaning
+
+[33mcommit 3668586d7a854ffa664cdf558205fac1a9034a64[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Apr 9 20:15:49 2021 -0700
+
+    fixing a minor bug
+
+[33mcommit 4d28494a6fa7fff50a2d69625288cc4e1acb47bc[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Apr 9 20:15:26 2021 -0700
+
+    adding ncache and nword to makefile
+
+[33mcommit 904421c8e20a00ec30b0e1335dc915e42775ebf7[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Apr 9 11:13:43 2021 -0700
+
+    minor changes
+
+[33mcommit 49a1a7cf4f0ecd209d05e7dc2f15b7ecb460d881[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Apr 9 11:13:05 2021 -0700
+
+    passing load when it's wideLoad
+
+[33mcommit 7583411ef41c6dfccb50640111a0670c07c9f58c[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 8 20:03:36 2021 -0700
+
+    updating for wLoad
+
+[33mcommit 83ce96d1025e2552996a5eff5f828b71fdaa1517[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 8 18:56:14 2021 -0700
+
+    adding arb to resp and inst for supporting multiple cache for wLoad
+
+[33mcommit e89031bb03de2a4e4f69fc7e85ea1b1696d9b84c[m
+Author: Milad Hakimi <miladhakimi33@gmail.com>
+Date:   Thu Apr 8 14:31:33 2021 -0700
+
+    Add traces
+
+[33mcommit 4116f8658e38575e6a0be7928acd0620cf9c0074[m
+Author: Milad Hakimi <miladhakimi33@gmail.com>
+Date:   Thu Apr 8 14:12:10 2021 -0700
+
+    Add resutls
+
+[33mcommit de74533c86745e84625b71cf9d01ff8ae013366d[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 8 14:10:34 2021 -0700
+
+    if ack counter get greater than threshold in would pass the cond
+
+[33mcommit 313b9c154996cb2ab595bec78093124881ab7209[m
+Merge: 59ca052 4a7e5bf
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 8 11:46:08 2021 -0700
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit 4a7e5bf03a09c1cd7c04e66b331881d994372f28[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 8 11:45:53 2021 -0700
+
+    GEMM trace file
+
+[33mcommit 59ca05232894da6cb971900cfc0f2ad6b63d1b62[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Apr 3 00:00:38 2021 -0700
+
+    adding csv to python file
+
+[33mcommit 0bbff14bd6ce0e34d80a15ff623c4e093e8aa8b4[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Apr 2 14:50:59 2021 -0700
+
+    minor change
+
+[33mcommit f7aa559ccd8ef58c4b4d7142752b90a380d3ff34[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Apr 2 14:50:44 2021 -0700
+
+    modifying ack in blackscholes
+
+[33mcommit 559764b84a8c7de7ef4e8cf9ebcacc8a44229e37[m
+Merge: 9a326a1 4bba301
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 23:37:19 2021 -0700
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit 4bba30122c5c24cdd8979a8b1fbab34f55932a1d[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 23:34:26 2021 -0700
+
+    updated blackscholes
+
+[33mcommit 9a326a1ba26c651c4af8abab9c988c14d32f0b38[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 19:33:15 2021 -0700
+
+    minor changes
+
+[33mcommit 476e404f4b0a4ed8eee18d761883797b72ab0af5[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 19:32:53 2021 -0700
+
+    adding nParal to makeFile
+
+[33mcommit 8bf1a493b3ddf36e412c2da2f6931c2c201b36ef[m
+Merge: f910ba1 3351bd2
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 18:13:18 2021 -0700
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit f910ba122dad256ddb6decbcf0f3787938293da4[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 18:12:56 2021 -0700
+
+    csv for gemv
+
+[33mcommit 3351bd239e0ff091bc2f59ae94a4294f7e73fd64[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 15:12:40 2021 -0700
+
+    build script added
+
+[33mcommit 4a5ae9fec6609ece79dfa7477d7d78303f9ab26b[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 15:12:11 2021 -0700
+
+    adding build parameters to config file input
+
+[33mcommit 17b2e9e88ea2b7d130b4582935af4844584e3d67[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 15:11:32 2021 -0700
+
+    adding build parameters in Makefile
+
+[33mcommit 0078800e4614e8567aa12b5e38eb6da995a88df0[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 15:11:01 2021 -0700
+
+    adding build parameters in python
+
+[33mcommit 32915aef658f03ab13ab54eac3e93e0da6b32e37[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Apr 1 14:02:23 2021 -0700
+
+    adding 16 bore for events
+
+[33mcommit 536a565125e79ac419f78ae84582b3b1b2954425[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 31 19:17:31 2021 -0700
+
+    minor changes
+
+[33mcommit 40c30b3666bb6fb5a484ab4812c6b9533694892d[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Mar 28 19:14:28 2021 -0700
+
+    Cleaning. Design works for large test inputs
+
+[33mcommit e4d591126a6a1117f693c67e99eacf5c79946845[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Mar 28 19:11:02 2021 -0700
+
+    fix a minor bug (iteration had one overlap)
+
+[33mcommit 90dbaa43f4352af2ab6a3ee352cfaa9890ef4fab[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Mar 28 19:10:16 2021 -0700
+
+    len was limited to 256, so swithed to iterative filling
+
+[33mcommit b83677757a324f091228cef7b07473667cad9f0b[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Mar 28 16:33:29 2021 -0700
+
+    changing to dpi req_len = 32
+
+[33mcommit aa8d17198168775a3fa57e976187b72b59180a2f[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Mar 28 16:11:27 2021 -0700
+
+    just work for 256 inputs, because of the memDPI LenBits = 8
+
+[33mcommit dbbef4004cd55f035feaa6a11c634420a8346d4d[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Mar 28 16:10:30 2021 -0700
+
+    updating python for new input type
+
+[33mcommit 8eb0c955a9d59fa3524e5d6e9db4a9e9635d204b[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Mar 28 16:10:02 2021 -0700
+
+    changing reg to Queue for input
+
+[33mcommit 8e02f763a958bb1f5b3d973e8fc3932c704290c5[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Mar 26 17:32:44 2021 -0700
+
+    input queue is s working in DCR shell
+
+[33mcommit e359015dd1e631c5fa8d90223d12107b5d0e212c[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Mar 26 16:57:15 2021 -0700
+
+    changing sim input to queue
+
+[33mcommit d58772ffdfa0df242076d1ee2adbc6403451d9e8[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Mar 26 16:16:40 2021 -0700
+
+    minor changes in simulator file
+
+[33mcommit ac5038b61812bc9029575ac23553d0e87d5faceb[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 24 16:39:13 2021 -0700
+
+    changes in memGen
+
+[33mcommit 14a8fe3881b1d3fbb3db2da73d2918377ab14b6b[m
+Merge: ddd309b 05458c7
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue Mar 23 11:22:48 2021 -0700
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit ddd309b15e3a3d24fea02c7462adf42de4a71ed4[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue Mar 23 11:22:36 2021 -0700
+
+    blackScholes trace added
+
+[33mcommit 05458c7bbdbb892f5a96da5c7ea047f34ed15ad7[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 17 18:12:42 2021 -0700
+
+    works for axpy benchmark
+
+[33mcommit b799de7e0aeaa7daf7e3544ef644ac0fa3081f21[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 17 11:00:12 2021 -0700
+
+    adding some prints for debugging
+
+[33mcommit 8c508caefd2c34cd75415b9f20b67a217f4e4528[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue Mar 16 13:32:21 2021 -0700
+
+    changes in memGen
+
+[33mcommit 7a6a55520617e83806c6b13a342a73755eaedc13[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue Mar 16 13:23:34 2021 -0700
+
+    adding numVals to argv
+
+[33mcommit 17e2b50dc57d99b82facb55dbb17fa92d0c13f4c[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Mar 12 13:56:57 2021 -0800
+
+    cleaning
+
+[33mcommit c79078736b99086d6075ebe52226e2d3be8a766c[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Mar 12 12:33:59 2021 -0800
+
+    ***IMPORTANT:changing dpi addr width to 32 bits***
+
+[33mcommit acc5f420d786349dfd1629c54877afd5ae999aeb[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Mar 12 12:29:45 2021 -0800
+
+    fixing printing hit problem
+
+[33mcommit adc863152f0763f6d35b881fd3d847f34a8173cb[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Mar 12 12:28:45 2021 -0800
+
+    updating python simulation file
+
+[33mcommit 9062890d044fb0d1ba1165f3efbb11cf67e080f2[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 10 15:03:51 2021 -0800
+
+    adding inc heap cmd
+
+[33mcommit 135ed814d5bb5f4131d06f525851c0ba5c87bd4f[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 10 14:32:43 2021 -0800
+
+    reading from trace.csv and pushing into val array
+
+[33mcommit 3793904f1110e22849fa6b53adc83577c59b3c42[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 10 14:32:18 2021 -0800
+
+    nop won't be sent into cache
+
+[33mcommit 0b413979856936baf642d272d9df4f2f4e4cd4a4[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 10 13:27:27 2021 -0800
+
+    trace file for axpy
+
+[33mcommit 33797f6f91826b3d5768555e64de84146e504729[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 10 12:11:40 2021 -0800
+
+    adding ack to shell controller
+
+[33mcommit c5a568eb4829ccbe042a5e704f1fe21304c40190[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sat Mar 6 18:39:09 2021 -0800
+
+    adding input format example
+
+[33mcommit 9644d2936e53db9c1886006597acd3223b097625[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Mar 4 16:59:14 2021 -0800
+
+    removing debugging prints in software files
+
+[33mcommit 5d1e514fdc52af031473657b8def11d843b2ecee[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Mar 4 16:58:35 2021 -0800
+
+    adding output print for hits
+
+[33mcommit f195d8f58f2a3bd29c465f903d42bec60a317039[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Mar 4 14:37:37 2021 -0800
+
+    changes in shell for resp
+
+[33mcommit a4d6752332599044cd44c3a9eda9779f763edc94[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Mar 4 00:00:10 2021 -0800
+
+    changes in memGen
+
+[33mcommit 2a51427b00f06527f1f1fe29902fb7d6946dee08[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 3 23:55:59 2021 -0800
+
+    changes for adding resp port
+
+[33mcommit ebe983c7783cd17999d63bd155b060a8bb48a628[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 3 16:33:08 2021 -0800
+
+    increasing bitwidth to bBits
+
+[33mcommit be8691d97649473d35bef2872c8b72af5ab61140[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 3 12:08:07 2021 -0800
+
+    changes in memGEn
+
+[33mcommit 968a5f03cf434ac622e74f4f5ce31ece06ac591e[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Mar 3 12:07:13 2021 -0800
+
+    changing the 32 bits to 64
+
+[33mcommit e891f72331025d4da668a43b9875f718015bf0c4[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue Mar 2 19:43:27 2021 -0800
+
+    increasing stopSim counter
+
+[33mcommit 3a011662ae7bc0c62190f5c6a015dc61670120d8[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue Mar 2 19:43:06 2021 -0800
+
+    increasing load vec ops to 10
+
+[33mcommit 92f9ffdbc4551f23ca1054f6447387646a2d671c[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Feb 28 23:45:47 2021 -0800
+
+    cleaning python file
+
+[33mcommit 318d06aedb134a9fcf5481deeb2b072ffbd80d27[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Feb 28 23:45:16 2021 -0800
+
+    lenBits updated
+
+[33mcommit 5b7ae7954c4d6bbbe2b204559e6c6ddb0b8313b5[m
+Merge: aa26473 9f41093
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Feb 28 16:40:06 2021 -0800
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit aa2647306652add499a5b83e1662e9b1dea73372[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Feb 28 16:39:58 2021 -0800
+
+    python file updated
+
+[33mcommit 9f41093f009cf7fd30d08cdbc4f4691d15784aa0[m
+Merge: e6fa71e 367b5e2
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Feb 28 12:27:52 2021 -0800
+
+    Merge branch 'memGen' of github.com:sfu-arch/muir-sim into memGen
+
+[33mcommit e6fa71ef9c17deb6572dd2c66e8ebea9626afa31[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Feb 28 12:27:46 2021 -0800
+
+    changes in memGen
+
+[33mcommit 367b5e248d02c9937ff4e3ab7e9667813e7fd647[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Feb 26 18:00:45 2021 -0800
+
+    fixing the base address problem
+
+[33mcommit dfa436cd1b698e672915d4bc75719b3569d0ef2b[m
+Merge: bf44642 cb1a05f
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Feb 26 17:58:36 2021 -0800
+
+    updating #events
+
+[33mcommit bf44642f34e75b558944869dd4e8a8903058dda3[m
+Author: asedagha <asedagha@cs-arch-srv01.cmpt.sfu.ca>
+Date:   Fri Feb 26 17:56:18 2021 -0800
+
+    updating #events
+
+[33mcommit cb1a05f4363956d11fe5dd284a3785b97db034c4[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Feb 26 15:51:14 2021 -0800
+
+    memGen updated
+
+[33mcommit 59f9f8f79b667b7b36d7c1f3fbadb0095afbe840[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Feb 25 21:49:38 2021 -0800
+
+    memGen test file added
+
+[33mcommit 4de42cbf3d9acbfb12677a60e86ed76f99078698[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Feb 25 19:18:05 2021 -0800
+
+    changing config file
+
+[33mcommit 667ca7ae9a40bb6c65b3f4a3d9a2c738fa704786[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Feb 25 18:20:55 2021 -0800
+
+    minor changes
+
+[33mcommit 2289f1b44060ad6e565ad4c3c8e04a1f3828edd1[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Wed Feb 24 18:14:38 2021 -0800
+
+    fixing bugs in dcr shell
+
+[33mcommit 9a584027d8337db7d7fb47f95c71d869033a9135[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Tue Feb 23 16:24:57 2021 -0800
+
+    memGen updated
+
+[33mcommit e8ecaffea640ec1c9703ee74f483abb0c80cdff5[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Feb 21 23:41:25 2021 -0800
+
+    memGen updated
+
+[33mcommit 5fcb002f091baa00d885d0542a0c794bbc0b39f3[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Feb 21 23:36:27 2021 -0800
+
+    changing connection due to changes in memGen input bundle
+
+[33mcommit 2bf117ffeb2be392aaba9f78c864f9760c9543fc[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Sun Feb 21 19:17:51 2021 -0800
+
+    memGenShell works with several consecutive input
+
+[33mcommit 6574d526b2cef6d17007fdab01a51ece281737fc[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Feb 19 12:52:54 2021 -0800
+
+    memGen subMod updated
+
+[33mcommit f439d54805b2b9f577b72690314ddaf5e79fdc74[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Feb 19 12:50:23 2021 -0800
+
+    dandelionTestDCRAccel updated for memGen
+
+[33mcommit 870ae8da78dad85ca3f5f4a42cfbe81c99e58bde[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Feb 19 12:49:52 2021 -0800
+
+    config input changed to be compatible with accelParams of memGen
+
+[33mcommit 0302ce08d31aadb38bfa177a7823cea240c3c103[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Feb 19 12:49:24 2021 -0800
+
+    changing the top level module for testing
+
+[33mcommit 7027e2204004482fdd34f818a4babe48cf40d4a2[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Fri Feb 19 12:48:00 2021 -0800
+
+    MakeFile changed for memGen testing
+
+[33mcommit 8a903946ff651649c0ba93324fb04c9a86e7121c[m
+Author: Ali-Sed <asedagha@sfu.ca>
+Date:   Thu Feb 18 00:11:30 2021 -0800
+
+    adding memGen to build.sbt
+
+[33mcommit 52ef65e1cc728c38c43afa02ff3857f29ac30f20[m
+Author: Parmida Vahdatnia <pvahdatn@sfu.ca>
+Date:   Tue Nov 24 21:04:47 2020 -0800
+
+    Add chisel debug nodes
+
+[33mcommit 3f31afa0736a049a8a1d753a76557d0144a685d7[m
+Author: Parmida Vahdatnia <pvahdatn@sfu.ca>
+Date:   Mon Nov 23 20:58:42 2020 -0800
+
+    Update verilog files
+
+[33mcommit ad4127bae4af2b4e090efa9f8028f5432f41abc2[m
+Author: Parmida Vahdatnia <pvahdatn@sfu.ca>
+Date:   Mon Nov 23 18:03:12 2020 -0800
+
+    guarded verilog
+
+[33mcommit d68f9615f5aa5549ea44a3e6065ddd1e0ce63c7d[m
+Author: Parmida Vahdatnia <pvahdatn@sfu.ca>
+Date:   Sun Nov 22 23:59:35 2020 -0800
+
+    relu verilog for reza
+
+[33mcommit f18c4de558e83fd38a23921e1794d49fca8a4596[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 21 19:32:53 2020 -0800
+
+    Update readme
+
+[33mcommit 439d2c388d0ff38b77c2fe54af6a719f8d09f0ba[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 21 19:31:27 2020 -0800
+
+    Add script to extract information from muir log
+
+[33mcommit 2612ab807415a5d17ea695b3aff437c24133b2e8[m
+Merge: 3af65b2 c4be84a
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Nov 11 19:16:37 2020 -0800
+
+    Apply merge with master
+
+[33mcommit 3af65b2160d0b69e25ef79e82fd6b1edab92bdd9[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Nov 11 19:14:28 2020 -0800
+
+    Add guard reader
+
+[33mcommit 2603b00aeed8fdecf84bdd0ce84b94f03c98ce55[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Nov 11 19:14:16 2020 -0800
+
+    Add guard reader
+
+[33mcommit c4be84a2505ff794d6d6a0287af8c8b4de75d991[m
+Author: Reza Hojabr <reza.hojabr@gmail.com>
+Date:   Wed Nov 11 18:13:59 2020 -0800
+
+    AWS config
+
+[33mcommit 35e4c93fa880bf530247840919c051115a5f1c3b[m
+Merge: db20df1 44b8203
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Nov 11 18:03:16 2020 -0800
+
+    Merge branch 'log' of https://github.com/sfu-arch/muir-sim into log
+
+[33mcommit db20df114cde08c1cac9939f7d312ef423b793cb[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Nov 11 18:00:51 2020 -0800
+
+    Update f1 shell
+
+[33mcommit 44b8203b97b99be4634846d6398ce141caeabff5[m
+Merge: 67f1c91 31ff15e
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 7 18:46:35 2020 -0800
+
+    Merge branch 'log' of github.com:sfu-arch/muir-sim into log
+
+[33mcommit 67f1c91e15b92443b4e6f90c8e435299b7170f21[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 7 18:46:18 2020 -0800
+
+    Update stencil code
+
+[33mcommit e00da4fdc7fd2c6c201e3235c53f8d08846f083e[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 7 18:39:52 2020 -0800
+
+    Update conv2d
+
+[33mcommit d6c7c529e7eb7268da4197ade521f99647820b48[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 7 18:18:53 2020 -0800
+
+    Update saxpy
+
+[33mcommit dca6001f748de97ab35340e9f62ac5cecfa3f7d2[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 7 18:17:12 2020 -0800
+
+    Update relu
+
+[33mcommit 31ff15ef66496f7e0b74fc1a0c0b92ff23223d13[m
+Author: Parmida Vahdatnia <pvahdatn@sfu.ca>
+Date:   Mon Nov 2 22:56:52 2020 -0800
+
+    verilogs with phi guard on
+
+[33mcommit d5fe05738455af19548b94d304ac23acb3b89ac0[m
+Author: Parmida Vahdatnia <pvahdatn@sfu.ca>
+Date:   Mon Nov 2 22:48:52 2020 -0800
+
+    stencti v
+
+[33mcommit ccd3f6e6f19f1df8917c67a6b6d857cb1a18e7e9[m
+Author: pvahdatn <pvahdatn@sfu.ca>
+Date:   Mon Sep 28 17:40:10 2020 -0700
+
+    ella
+
+[33mcommit 0f6a17a9997e0281305b85af1cebe0478b998484[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Sep 16 14:07:39 2020 -0700
+
+    Remove extra UltraRAM verilog file
+
+[33mcommit b80b2de32dc24e4a61628a34161dc214e2e9b170[m
+Author: Reza Hojabr <reza.hojabr@gmail.com>
+Date:   Sun Sep 13 19:46:03 2020 -0700
+
+    URAM_Queue
+
+[33mcommit 2607ac8ea237ab8536943e4a24949fe3fbd60d3c[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Jun 10 19:07:04 2020 -0700
+
+    Update make to get f1 accel
+
+[33mcommit 656af2577fe78f7f3d2bffe20389349491769e6a[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Jun 5 15:49:19 2020 -0700
+
+    Update test01 and test02
+
+[33mcommit bce300bd63223cc55fe5ec63da242161ec0f536e[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Jun 4 16:05:35 2020 -0700
+
+    update test14
+
+[33mcommit 5f11323d90ccbb0873f763e9d3912b34aba79a5c[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun May 31 23:12:59 2020 -0700
+
+    Update test14
+
+[33mcommit 5c09279b22c8ce6b77d56a8da0ad05d17773a693[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun May 31 22:36:26 2020 -0700
+
+    Update const nodes
+
+[33mcommit fd21e8194729590b76021a5bc70353a0742be1f7[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun May 31 22:14:53 2020 -0700
+
+    Add test13
+
+[33mcommit 3c28bfeee7ae1ab8a641c916bd0defd608255737[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat May 30 17:15:17 2020 -0700
+
+    Add example 12
+
+[33mcommit 139dc01f29a6ae313db4634f15d1facbe8d72723[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat May 30 13:51:49 2020 -0700
+
+    Add test11
+
+[33mcommit cb5c7a16f32f62606ba1104d767b3c5b9597e5c4[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri May 29 12:31:18 2020 -0700
+
+    Add test10
+
+[33mcommit faae5cb7b4802ed6dc70d459b5d4cb61f88bd4f1[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri May 29 09:41:26 2020 -0700
+
+    Update submodules
+
+[33mcommit f5d0cde2da251fea7515fdf798b9409e9b070466[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed May 27 13:34:07 2020 -0700
+
+    Update test15 to support function call
+
+[33mcommit 2b3f0a5e901ef54380c1c5f260ca494acccff32f[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed May 27 09:42:04 2020 -0700
+
+    Add test15
+
+[33mcommit 997c053ef5775ab36ec7fd8ce177f978001025b1[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Apr 20 12:49:50 2020 -0700
+
+    update test14 to use scratchpad memory
+
+[33mcommit 52362e6bd470b1638e23edb3d148e19cdf7272dd[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Apr 20 11:44:31 2020 -0700
+
+    Add test14 with local buffers
+
+[33mcommit 536eca2e8e6c8f87c6510bec76664231cf99e976[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Apr 20 10:06:26 2020 -0700
+
+    Fix the driver to work with MAC
+
+[33mcommit c7c2e71e713c9d25f19c2b6aaa800c998d893549[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 15 23:29:43 2020 -0700
+
+    Add getting verilog function for CycloneV
+
+[33mcommit ef41d8dd1080302d5d43e1b228149f644f7abb91[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 15 22:38:57 2020 -0700
+
+    Update debug for test05
+
+[33mcommit dc0d3112dee80afc91c1c6b7e7b55d070eb96591[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 15 22:00:31 2020 -0700
+
+    A bug in multiple debug write request
+
+[33mcommit 25172eaefdf1a7794ab7abe98aa86a6c76716242[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 8 11:18:05 2020 -0700
+
+    Add test14
+
+[33mcommit c9ab247ebac70865d7c117200e401bafb9324e00[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 8 10:32:02 2020 -0700
+
+    Add Gemm example
+
+[33mcommit 9028bff0b7a880400aaf27e0577ec5dc21054b47[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 8 02:12:00 2020 -0700
+
+    Update fft example, it works and finishes
+
+[33mcommit 98a6396ed672ca71a0e2e3e8302304352322f196[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 8 01:21:22 2020 -0700
+
+    Add fft but the run doesn't finish, needs investigation
+
+[33mcommit c05703688f422f7f5165aa8de0186435d1c79bba[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 8 00:14:26 2020 -0700
+
+    Finish spmvCRS example
+
+[33mcommit 88cca097569adbd3cd3dec5d63ec68ffb29742e6[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Apr 7 21:04:31 2020 -0700
+
+    Update driver type to support 32bit and 64bit and float
+
+[33mcommit b34886e63fe78457becb068aa1eb4d6d58409d8a[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Apr 7 19:41:06 2020 -0700
+
+    Start adding spmv example
+
+[33mcommit 1c78c5694d99b9c725f39d974fac96ee3a2d02e1[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Apr 7 17:42:06 2020 -0700
+
+    Add conv2d example
+
+[33mcommit fb1349f801c6cdadbd898bfeed793221f46bf501[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Apr 7 16:46:52 2020 -0700
+
+    Add saxpy example
+
+[33mcommit ae74ee8eb637e7968abfff6106ad93aec609af6f[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Apr 7 15:13:27 2020 -0700
+
+    Add stencil example
+
+[33mcommit 28a4b629617545e0dd1dbaaede86cb7ed14810ad[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Apr 6 23:48:12 2020 -0700
+
+    Add relu example
+
+[33mcommit 3803a58b89c32a49030fe14647b1a2d1cacd9b4c[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Apr 6 23:47:52 2020 -0700
+
+    Update test01-05
+
+[33mcommit c268b1b75281dff7bcd1ad760f8b4864a03a8fa3[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Apr 6 12:54:12 2020 -0700
+
+    Update debug shell to support modules with no debug nodes
+
+[33mcommit e992ce569b3e3255f52493af1102e4afcd382883[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Apr 6 11:54:05 2020 -0700
+
+    Update test05 to support the third debug node as store
+
+[33mcommit 19587e731fd578bdfeb78641e83fb29cf300aadf[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Apr 6 03:03:49 2020 -0700
+
+    Update test05 with new load nodes
+
+[33mcommit 0a48b47adb69669e1221fa5ca84604990daf5977[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Apr 6 01:00:04 2020 -0700
+
+    Update test05 to support multiple write
+
+[33mcommit f01bf9b34e391bc34445f17ff590fb8fac3b6ffc[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Apr 5 13:13:11 2020 -0700
+
+    Update load debug node
+
+[33mcommit 33414dfd4903612245dc2f87acfb1b844e1feb36[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Apr 4 22:03:55 2020 -0700
+
+    Update test05 to support new memory interface
+
+[33mcommit 554a929a7f63eb362c76d76117bf95406960c57e[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Apr 4 12:08:48 2020 -0700
+
+    Start updating test05
+
+[33mcommit fc5389a40903765055b073d7f3deca13577a79fb[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Apr 2 14:21:00 2020 -0700
+
+    Update test04
+
+[33mcommit b2bc90f6bdf2745df04eab38fe871bc498140daa[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 1 21:57:38 2020 -0700
+
+    Update test05
+
+[33mcommit 5516553899779b774efcfd182d4f34fbd09660ab[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 1 21:55:09 2020 -0700
+
+    Update debug nodes for test04
+
+[33mcommit 9e00eb21144a9e6d51764f85559a9bb53c1fbc81[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 1 16:42:56 2020 -0700
+
+    Add test04 debugger
+
+[33mcommit 1c5c6cd66d24fc5ecbf0a1565aa9272fc131555c[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Apr 1 16:41:24 2020 -0700
+
+    Update debug interface for test04
+
+[33mcommit f81ef1922e739f5d36424fcef0206c89b23c2485[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Mar 31 21:14:59 2020 -0700
+
+    Update test04 debug
+
+[33mcommit 9d22470f8a6ccbfd1735d2a96945f49d3eeffaad[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Mar 31 12:59:41 2020 -0700
+
+    Update README.md
+
+[33mcommit 06fb8ae58bbfa2bf5de0faa17091203edab6defb[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Mar 31 10:25:10 2020 -0700
+
+    Clean up config files to contain debug configs
+
+[33mcommit 461df980a6b6df3dc0ba085ebdf51379512fe2a1[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Mar 30 18:03:56 2020 -0700
+
+    Fix a bug in debug shell
+
+[33mcommit 7ab92991ca2345f458c4410e76d74301ad596583[m[33m ([m[1;31morigin/log_merge[m[33m)[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Mar 30 01:03:46 2020 -0700
+
+    Finish test04 debuging
+
+[33mcommit 78da05d629f8c0b2ffe59e36a4b63128dcb6de08[m
+Merge: 1b38688 e9293d8
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Mar 29 20:47:41 2020 -0700
+
+    Update confilicts
+
+[33mcommit 1b386884eb67a73d5f31f1fe9c121c6274b0e6a9[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Mar 29 19:09:41 2020 -0700
+
+    Update run.py script
+
+[33mcommit 9f29173d7a1fb64f2f3d6783e1d4911d1a8bcb96[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Mar 29 18:28:13 2020 -0700
+
+    Update DME write
+
+[33mcommit 7ae976e88703758ea9903e68eaa6f83d67f994dc[m
+Merge: e4ffd3a c77f08a
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Mar 29 13:42:18 2020 -0700
+
+    Merge branch 'master' of github.com:sfu-arch/muir-sim into dcr-interface
+
+[33mcommit c77f08aceb6ff11e0569b6eca244f7e97ef6b3d5[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Mar 29 13:41:02 2020 -0700
+
+    Update README.md
+
+[33mcommit e4ffd3a6594a44099fd4a0cf9986c050b22ca9fc[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Mar 29 13:13:34 2020 -0700
+
+    Update git ignore
+
+[33mcommit bb956d18a5460d6a2eef3eb39fc51b2a50b396bc[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Mar 29 13:13:05 2020 -0700
+
+    Update git ignore
+
+[33mcommit a61c35bd9986f24ed6577f2af8a2ee165612ed54[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Mar 29 13:12:09 2020 -0700
+
+    Update test09 cache example to use cache with DME instead of AXI
+
+[33mcommit 429e0176dbf909e0cbfaef37bb51c88f0f873c86[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Mar 29 11:21:35 2020 -0700
+
+    Add module for dcr accel
+
+[33mcommit baa56698571ffb8ef0c027c8b3db333673d3c9b6[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Mar 28 23:46:46 2020 -0700
+
+    Adding build dsim option to run.py
+
+[33mcommit 37063fca992b370a37ccc5e30950c967db393c99[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Mar 28 23:37:46 2020 -0700
+
+    Add example config file
+
+[33mcommit 38f4b5206bda7ec3206a1fc67a9446854f97f9d9[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Mar 28 23:37:10 2020 -0700
+
+    Add run.py
+
+[33mcommit 2e4acdaac198d2d7689d1fc7319e4d3d01d26f2f[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Mar 28 19:18:55 2020 -0700
+
+    Update accelIO to include new dcr interface
+
+[33mcommit d5366001e04f610e89b47df765c05d6b50cd1a9a[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Mar 28 13:13:27 2020 -0700
+
+    Modifying accel io
+
+[33mcommit 81a6f04ad5568885aaa7cc4d14e702387f5d841d[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Mar 28 12:45:41 2020 -0700
+
+    Update makefile to make it easier for running Make
+
+[33mcommit e9293d823cee72b060e2a1fea10a322b177ab0fd[m
+Author: Parmida Vahdatnia <pvahdatn@sfu.ca>
+Date:   Fri Mar 27 20:12:19 2020 -0700
+
+    Update VCR
+
+[33mcommit b3e3662f6907048f9757582ab48d317276d5fcd0[m
+Author: Parmida Vahdatnia <pvahdatn@sfu.ca>
+Date:   Fri Mar 27 19:50:58 2020 -0700
+
+    Update debug04 node
+
+[33mcommit de5dbc61cee973d35299a1fc665e61b1657e4b2b[m
+Author: Parmida Vahdatnia <parmida.vahdatnia@gmail.com>
+Date:   Fri Mar 27 19:43:37 2020 -0700
+
+    Add test04 for debug
+
+[33mcommit 3d05848c8a3b717107ea294364853a6a5518bfc0[m
+Author: Parmida Vahdatnia <parmida.vahdatnia@gmail.com>
+Date:   Wed Mar 25 20:17:33 2020 -0700
+
+    Update log nodes
+
+[33mcommit db69f2d80479d8f1415a801864439740c2b6281e[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Mar 25 15:10:51 2020 -0700
+
+    Update test09
+
+[33mcommit 5921081929cb924a98b18f88792ce49009b2c24f[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Mar 25 12:53:37 2020 -0700
+
+    Update test09, so the test can pass, make parallel loads, serialize but it should happen at the controller level
+
+[33mcommit 81d35202050b061940d06c90bd8b785c8f1d06fc[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Mar 25 12:00:28 2020 -0700
+
+    Update reference cache to work with test05
+
+[33mcommit acb18057c82405aacc7c0169d650722542ff42f9[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Mar 24 00:19:34 2020 -0700
+
+    Update cache interface
+
+[33mcommit 4e77903c86cf79c53ea205ccfc0b95fa43105287[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Mar 23 22:58:07 2020 -0700
+
+    Update cache reference
+
+[33mcommit fb773a64a4494ad7a5409b7fa2b450ab7322d4dc[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Mar 4 15:51:21 2020 -0800
+
+    Fix f1 shell for number of ptrs
+
+[33mcommit 49b5a7b554dafde5359463f40b36d24dd643a4ff[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Mar 4 11:42:42 2020 -0800
+
+    Update f1 shell to use DCR
+
+[33mcommit e6e762569e7c1c5d0a876e2ffad28944d894ab21[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Feb 26 11:23:24 2020 -0800
+
+    Update readme
+
+[33mcommit 745365d9fa3af59b0386941c021196690d38b107[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Feb 25 10:28:17 2020 -0800
+
+    Add xilinx and f1 shell
+
+[33mcommit e2901bedcd37319f1731a9ddd9ab14ce2c85b3a5[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 20 15:41:27 2020 -0800
+
+    Add test08
+
+[33mcommit a336d8f54b1095d3aa672c0c2f26f0087c5996d3[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 20 15:22:18 2020 -0800
+
+    add test07
+
+[33mcommit 101cebe9b06163f1bf5b6d4ee468d96a24072fa6[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 20 15:21:55 2020 -0800
+
+    add test07
+
+[33mcommit 109ed57aae8a7d3888c92736f7ccca71b796919f[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 20 13:47:33 2020 -0800
+
+    Update readme
+
+[33mcommit fd5890ccaf873b9f7ff01c0675ce197c9bf8aa81[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 20 13:46:40 2020 -0800
+
+    Update readme
+
+[33mcommit 33f16f5036cdfb6a262a7af0ed757338fabe2ae3[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 20 13:45:46 2020 -0800
+
+    Update readme
+
+[33mcommit 83bd995c7470fd16c9c39b1bab8d2690567c2d29[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 20 13:44:56 2020 -0800
+
+    Update readme
+
+[33mcommit bc961db560e57e702cbe56dfb6c8e8a5176a6a26[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 20 12:11:33 2020 -0800
+
+    Update readme file
+
+[33mcommit 0a9343a46f484f5f46ec6f110716e91d977615f2[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 20 11:48:28 2020 -0800
+
+    Add test06
+
+[33mcommit 59290755336b21442442305db70572332cda8c29[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 20 10:59:41 2020 -0800
+
+    Add test04 and test05
+
+[33mcommit 04d678b906370e9a3ad66120447b134c9a3c6648[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Feb 19 16:59:59 2020 -0800
+
+    Adding example 4 and 5
+
+[33mcommit ff4c8dd41755c9067715f895e7b133099b7fa5e5[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Feb 19 11:41:05 2020 -0800
+
+    Add test03
+
+[33mcommit b03b34830dac45aea80984f9ce7f2f7f9cf676fc[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Feb 19 11:40:52 2020 -0800
+
+    Add test03
+
+[33mcommit 9de3f698965721e5f37fe6d9d94f93b31a413815[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Feb 18 21:30:44 2020 -0800
+
+    Add test02
+
+[33mcommit 4b85cd8dfecd271016eda9607695e895e5805f08[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Feb 18 21:17:55 2020 -0800
+
+    Add test01
+
+[33mcommit 3cb37785ef5ecf08dac6d9f1f05179d7dfe613e2[m
+Author: pvahdatn <pvahdatn@sfu.ca>
+Date:   Tue Feb 18 13:53:13 2020 -0800
+
+    Update submodule
+
+[33mcommit 06560e72e243ab23b6b4df1f57e6ca564aeb2286[m
+Author: pvahdatn <pvahdatn@sfu.ca>
+Date:   Tue Feb 18 13:49:38 2020 -0800
+
+    Update submodule
+
+[33mcommit cae83b5be5a27cf47171d121daf22f91db93d757[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Feb 17 23:43:44 2020 -0800
+
+    Update readme
+
+[33mcommit c3d76db0d67d8d00cd7c549fc737ffb15f75fdb8[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Feb 17 23:38:54 2020 -0800
+
+    Update config and readme file
+
+[33mcommit b614126c67603dc400af707a74abdef93236571c[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Feb 17 23:30:34 2020 -0800
+
+    Update readme
+
+[33mcommit d60c9565f6fed8a31ca6d5f4d80fef62f87e3f80[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Feb 17 23:25:50 2020 -0800
+
+    Update muir-lib submodule
+
+[33mcommit a9461268c8ead6e51862d37368f7b84a223f29a3[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Feb 17 23:24:31 2020 -0800
+
+    remove dandelion-lib
+
+[33mcommit c6c7ecf06e0beba59cc596ff495077db704c7ee3[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Feb 17 23:23:18 2020 -0800
+
+    update submodules
+
+[33mcommit 94b91abe7d9d622e6471290f118c83661d9a40d5[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Feb 17 23:21:34 2020 -0800
+
+    Update submodules
+
+[33mcommit 340c40b8c02d7ea20981f5530266d70e74794172[m
+Author: pvahdatn <pvahdatn@sfu.ca>
+Date:   Thu Feb 13 16:22:21 2020 -0800
+
+    First example for debug with VME worked
+
+[33mcommit 2e1812b8056e3dd7a0c5d295e223befede88de9d[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Thu Feb 13 15:06:25 2020 -0800
+
+    Update readme and submodule paths
+
+[33mcommit 8b034459ee0259775e36c55d51601cf78ba34ca1[m
+Author: pvahdatn <pvahdatn@sfu.ca>
+Date:   Thu Feb 13 14:43:30 2020 -0800
+
+    Fix the debug ptrs in vcr accel
+
+[33mcommit f386b6edfa2bda03315d00a600e3893d1e111057[m
+Author: pvahdatn <pvahdatn@sfu.ca>
+Date:   Wed Feb 12 18:25:36 2020 -0800
+
+    Adding debug ptrs to pythonr interface
+
+[33mcommit bc3c5d3f604309c4fb0a2ac1f0bc270831270a73[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Feb 5 14:11:08 2020 -0800
+
+    Update the driver and interface
+
+[33mcommit 983878e6db0ff6f31817315dc96524f51eaef92f[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Feb 5 10:25:59 2020 -0800
+
+    Update interface to pass test modules as argument
+
+[33mcommit 7260b73d2daaee03ec4e816895b9ee6c9a8b7636[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Feb 4 16:04:14 2020 -0800
+
+    Updating submodules
+
+[33mcommit 12efbbd81be32be3df1349ed4ed737ab72afb8a5[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Feb 4 13:40:18 2020 -0800
+
+    Update dandelion submodule
+
+[33mcommit 79e9de45a5c0e01226a930c74930b1460ef15cda[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Feb 4 13:34:40 2020 -0800
+
+    Removed submodule
+
+[33mcommit 136cb66ea876b9093b86a0ec27762c8c243ff8c1[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Feb 4 13:30:26 2020 -0800
+
+    Update to support new config files
+
+[33mcommit 93c6b6c8cdb3e31115f38c3835cc83e0cd6133d4[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Feb 3 23:00:34 2020 -0800
+
+    Start updaing the config file to use global CDE
+
+[33mcommit b9a6dada9c393279b6c428aeb454cd7fbbecb8f8[m
+Merge: e97b1e0 4f9abbf
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Jan 26 11:22:30 2020 -0800
+
+    Update the sim repo with new dandelion config file
+
+[33mcommit e97b1e015ea65a501dedf60cff1ad3236d91c450[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sun Jan 26 11:20:18 2020 -0800
+
+    Update the sim repo with new dandelion config file
+
+[33mcommit 4f9abbfb4d90e65cb820cfb0a43ed0ef60fabb72[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Jan 18 19:01:36 2020 -0800
+
+    clean debug flag
+
+[33mcommit 69918e82a3ad60619f131ff8f1d2e7f872386796[m
+Merge: 1894f54 4ecce9d
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Jan 18 18:57:45 2020 -0800
+
+    Merge branch 'master' of csil-git1.cs.surrey.sfu.ca:Dandelion/dandelion-sim
+
+[33mcommit 1894f5408f061024129c16496ad1bb62a7908ea7[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Jan 18 18:57:29 2020 -0800
+
+    Reorder the src directory
+
+[33mcommit 4ecce9d2f570662c4f4cfc2e57b6120e331063fd[m
+Merge: e9c7ba8 f77603f
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Dec 13 08:13:19 2019 -0800
+
+    Merge branch 'master' of csil-git1.cs.surrey.sfu.ca:Dandelion/dandelion-sim
+
+[33mcommit e9c7ba823f7dd1cea9b82cc5c2285af49ce53ea2[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Dec 13 08:13:03 2019 -0800
+
+    Seprate darry to a seprate header file
+
+[33mcommit f77603f63e2d5d4ac036a4376e601c475c11b011[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Dec 10 12:59:16 2019 -0800
+
+    Update test cases and readme
+
+[33mcommit 3475974c3b54ec77800e530220a48189f1ac84b4[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Dec 10 12:47:51 2019 -0800
+
+    Update sim shell and support for test15
+
+[33mcommit 4b130d660c8960b4b88e5aaf172de5dc731fe04d[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Dec 9 12:43:15 2019 -0800
+
+    Simulation with xlen = 64 bit works but cache still needs to be flushed
+
+[33mcommit a19e11889572c19390f7ddfea4560d67778219a2[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Dec 7 22:15:26 2019 -0800
+
+    Reformat the project
+
+[33mcommit a371b3ece341c94bb0dce6bf494aaaa914b0b7ea[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Dec 7 22:11:34 2019 -0800
+
+    Fixing driver bug, VME is tested and it works. The cache doesn't work yet, AXI parameters don't match with Cache parameter
+
+[33mcommit a7908dbe4d54c4b17445c5832ff9e19cd229c856[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Dec 7 22:06:47 2019 -0800
+
+    Fixing driver bug, VME is tested and it works. The cache doesn't work yet, AXI parameters don't match with Cache parameter
+
+[33mcommit 5ec0c3ee6464a114cfee30365b7354ce95c024ac[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 30 08:58:02 2019 -0800
+
+    Clean up readme file
+
+[33mcommit 552eb2a261f7aec92f273190f5ad6c95c31cc4c5[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 30 08:52:06 2019 -0800
+
+    Update the readme
+
+[33mcommit 46d88fe9406dd0d9ace08992f303fbc015d71c71[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 30 08:51:18 2019 -0800
+
+    Update the readme
+
+[33mcommit 5ffa90477c2a4f9ab84e25088d3c4f677fe13778[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 30 08:40:49 2019 -0800
+
+    Make hw library path optional
+
+[33mcommit 14c90ff68796684270906da1addf6ee3548b794b[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 30 08:35:34 2019 -0800
+
+    Add software directory
+
+[33mcommit 00d4da82897701b547e5d74e1d9bf406ccd0fe00[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Nov 29 23:45:17 2019 -0800
+
+    Update Makefile deafult values
+
+[33mcommit e70bf8c3e9ef1392605a7e464c14055921a202bc[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Nov 29 23:39:52 2019 -0800
+
+    Update config setup
+
+[33mcommit 72818c3aba46170e1e77743d74de7e3529239930[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Nov 29 23:35:41 2019 -0800
+
+    Update config interface
+
+[33mcommit f90555f5639d4960f692bf09be6c12b50686aca4[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Nov 29 23:27:43 2019 -0800
+
+    Update folder structures and add Shell configs
+
+[33mcommit 380cdfdb1ba17189f46c523165d7985ae23c2da6[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Nov 29 21:45:15 2019 -0800
+
+    Update readme
+
+[33mcommit feaa75bdab5f775779fc5e2a4362351cd59eb60a[m
+Merge: f8e0b32 b54ccd0
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Nov 29 21:33:44 2019 -0800
+
+    Merge branch 'master' of csil-git1.cs.surrey.sfu.ca:Dandelion/dandelion-sim
+
+[33mcommit f8e0b32b2df02bc8cb1c57df476a25c707cf3c65[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Nov 29 21:29:59 2019 -0800
+
+    Update simulator file to support pybind11
+
+[33mcommit a6a2cd6e968b7e0cef20a0967d7a05bbbc06c021[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 23 22:14:23 2019 -0800
+
+    Add down sample halide example
+
+[33mcommit e21c6fcefd873a4c7dc82562c2046b270b71d7d3[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 23 18:17:58 2019 -0800
+
+    Add conv layer halide example
+
+[33mcommit da7d9e988f5a078a58c2415b03c255312b6b0eb5[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 23 14:58:36 2019 -0800
+
+    Add halide up sample example
+
+[33mcommit 432a53572854d17b1037123e7e1acdf8ef586dd0[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 23 13:42:45 2019 -0800
+
+    Add halided strided conv example
+
+[33mcommit 8d040b83df7e0dcccd105086752ed07842c922b9[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 23 13:42:13 2019 -0800
+
+    Add halide strided conv shell
+
+[33mcommit abb3647c742a30b4f263c3dbe81182bd8e7125d7[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Nov 23 11:54:13 2019 -0800
+
+    Add Halide conv example
+
+[33mcommit b54ccd06f6f23ad93038e04750b0b31235300702[m
+Author: amiralis <amirali_sharifian@sfu.ca>
+Date:   Sat Oct 5 00:59:19 2019 -0700
+
+    Update README.md
+
+[33mcommit d177f39cd23c6a902dedfa8bbc70cc9d854e4f01[m
+Author: amiralis <amirali_sharifian@sfu.ca>
+Date:   Sat Oct 5 00:59:00 2019 -0700
+
+    Update README.md
+
+[33mcommit bea8dc9bc81a5454167164de772e3325f4eab3a7[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Oct 5 00:53:06 2019 -0700
+
+    Fix the bug for driver
+
+[33mcommit 1ddaef43b834814ae8009943ae8d1eb89f0c3a62[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Oct 2 13:47:03 2019 -0700
+
+    Clean up the Makefile to work on linux
+
+[33mcommit 12d027bfa3c6604626f66c2ac5a55c4191f2c6c7[m
+Author: amiralis <amirali_sharifian@sfu.ca>
+Date:   Wed Oct 2 13:26:14 2019 -0700
+
+    Update README.md
+
+[33mcommit 5c1a57c57f91f12fb730afde92d022b7ce72fc16[m
+Author: amiralis <amirali_sharifian@sfu.ca>
+Date:   Wed Oct 2 13:24:35 2019 -0700
+
+    Update README.md
+
+[33mcommit aa2995aa2c58da97bcbb1b5c6c72ded0c4596765[m
+Merge: e01d4c5 6869eb6
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Oct 2 11:40:13 2019 -0700
+
+    Merge branch 'master' of csil-git1.cs.surrey.sfu.ca:Dandelion/dandelion-sim
+
+[33mcommit e01d4c5c50a35cb54412444176e31da6fc8b3286[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Oct 2 11:40:04 2019 -0700
+
+    Update the readme file
+
+[33mcommit 6869eb63afe2d2666dd9d1dd65bd57690d47fc86[m
+Author: amiralis <amirali_sharifian@sfu.ca>
+Date:   Wed Oct 2 10:45:37 2019 -0700
+
+    Add LICENSE
+
+[33mcommit 11f5fbc2b47a11536fb9b3597b824cc83ebe69b5[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Oct 2 01:06:10 2019 -0700
+
+    Update readme
+
+[33mcommit 7f1876deeb2f2d54c40c65d610164fb8005d4b0e[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Oct 2 00:35:22 2019 -0700
+
+    Add tvm as an external project
+
+[33mcommit 7a0f8e76a176ceffb34e986d6740887f9683ad62[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Oct 1 22:37:51 2019 -0700
+
+    Add tvm_runtime
+
+[33mcommit 6662c6e184e1698ac25764e2341115e3fb157d43[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Oct 1 20:33:13 2019 -0700
+
+    Test14 works to the end
+
+[33mcommit b228a22cd7aa061b71ff4afdf48f65521cdb217f[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Oct 1 16:55:21 2019 -0700
+
+    Test14 works to the end
+
+[33mcommit cb738ba01f38c6a2cefc09cd0fe8f1635f393788[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Oct 1 15:47:07 2019 -0700
+
+    Try to fix cache store bug
+
+[33mcommit 8a0b53587c89172e19ae3995a88af59736c75c70[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Oct 1 13:58:11 2019 -0700
+
+    Update python script
+
+[33mcommit 1549053e3439c481d0fa0bd1d2d4afb59b18566d[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Oct 1 13:41:39 2019 -0700
+
+    Update shell and fix the bug that was passing b=0 for test14
+
+[33mcommit f6fb279c1a9acffd33a4a43dd3fcb99f265956b3[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Oct 1 12:37:52 2019 -0700
+
+    Start testing dandelion examples
+
+[33mcommit b3721ef3d9e800581416ae3414fb83d43b634a83[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Mon Sep 30 17:09:02 2019 -0700
+
+    Update the repo so it works with new dandelion-lib and be independent from tvm
+
+[33mcommit 10984be4e9693e852a86690cf731614095b59c01[m
+Merge: b8bab16 7d465fa
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Sat Sep 28 08:22:38 2019 -0700
+
+    Merge with master
+
+[33mcommit 7d465faed9f8ff528529738c69c034947b0eb376[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Sep 27 18:14:49 2019 -0700
+
+    Add initialize cache version and add shell
+
+[33mcommit 812ab2a1b380f1794fba8e8d5729b07d353c7ebd[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Sep 27 18:14:05 2019 -0700
+
+    Update sim to test cache, write command for cache breaks
+
+[33mcommit 395e3ec1b81d9b0cdc2074c80a80c5d1c09c1ba7[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Fri Sep 27 14:11:29 2019 -0700
+
+    Update the sim to work with axi bus
+
+[33mcommit b8bab16b7a5817525b53c4288f0d1dc84c9e6843[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Sep 25 00:21:23 2019 -0700
+
+    Clean up the Makefile and Accel.scala
+
+[33mcommit a8cb0a655b4becd3140c972f41af755758af5c41[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Wed Sep 25 00:06:41 2019 -0700
+
+    Update build.sbt to include dandelion-lib
+
+[33mcommit 905d0f0f794556e7e6a060af93f03772c3581149[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Sep 24 23:45:48 2019 -0700
+
+    Add chisel-3.2 upgrade patch for tvm and update readme file
+
+[33mcommit 2ca23cc53cd6b97dad7b72e684458210fca79145[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Sep 24 23:15:20 2019 -0700
+
+    Update readme
+
+[33mcommit 238270bd91ce77ac8b3db930ecaf277ccbd15ada[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Sep 24 22:37:24 2019 -0700
+
+    Update readme
+
+[33mcommit dd101d678c03007aeac0e9c2ceed69933883a575[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Sep 24 22:19:35 2019 -0700
+
+    add gitignore
+
+[33mcommit fdfd2bdd2481e6252667edb34a7c44027bf82bff[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Sep 24 22:19:02 2019 -0700
+
+    Both Chisel and Verilog simulation are working
+
+[33mcommit 293ad5bd198b518af82a16a78013858a6a2a00cd[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Sep 24 22:18:49 2019 -0700
+
+    Both Chisel and Verilog simulation are working
+
+[33mcommit fa9354f571df1e41e969b3b8b6023e72371361f0[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Sep 24 21:51:46 2019 -0700
+
+    Cleaning up front end to build swlib
+
+[33mcommit 587789ea7d8f60600b151a4e32abd51a5a56fbd4[m
+Author: Amirali Sharifian <am.sharifian@gmail.com>
+Date:   Tue Sep 24 21:37:55 2019 -0700
+
+    Initial commit

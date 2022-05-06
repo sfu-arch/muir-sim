@@ -1,0 +1,10 @@
+numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+0,graphpulse_initial_queue,8,8,10,8,1,1,1,914541893,0,3,3,3,3,0
+0,graphpulse_initial_queue,8,8,10,8,1,1,1,914541893,0,3,3,3,3,0
+0,graphpulse_initial_queue,8,8,10,8,1,1,1,914541893,0,3,3,3,3,0
+0,graphpulse_initial_queue,8,8,10,8,1,1,1,914541893,0,3,3,3,3,0
+0,graphpulse_initial_queue,8,8,10,8,1,1,1,914541893,0,3,3,3,3,0
+0,graphpulse_initial_queue,8,8,10,8,1,1,1,914541893,0,3,3,3,3,0
+0,graphpulse_initial_queue,2,4096,10,8,1,1,1,983193146,0,3,3,3,3,0
+0,graphpulse_initial_queue,8,8,10,8,1,1,1,663,0,4,7,10,4,3
+0,graphpulse_initial_queue,2,4096,10,8,1,1,1,663,0,4,7,10,4,3

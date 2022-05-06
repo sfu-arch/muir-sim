@@ -1,0 +1,4 @@
+numLine,bm,nw,ns,tbe,lock,nParal,nc,nword,cycles,nHit,nMiss,nLoadInst,nInst,cpuReq,mmReqs
+0,Synthetic_walker_100,4,32,8,8,1,1,1,570,4,1,5,99,25,2
+0,Synthetic_walker_100,4,32,8,8,1,1,1,570,4,1,5,99,25,2
+0,Synthetic_walker_100,4,32,8,8,1,1,1,58178,2032,16,2048,11351,10240,32

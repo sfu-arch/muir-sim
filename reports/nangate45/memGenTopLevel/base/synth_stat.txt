@@ -1,0 +1,76 @@
+
+20. Printing statistics.
+
+=== memGenTopLevel ===
+
+   Number of wires:              73249
+   Number of wire bits:          73770
+   Number of public wires:        7169
+   Number of public wire bits:    7690
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              64906
+     AND2_X1                      1224
+     AND3_X1                       366
+     AND4_X1                       103
+     AOI211_X2                     192
+     AOI211_X4                       6
+     AOI21_X1                     6036
+     AOI21_X2                        4
+     AOI21_X4                        2
+     AOI221_X1                    1077
+     AOI221_X2                      14
+     AOI222_X1                     258
+     AOI222_X2                       2
+     AOI22_X1                     1169
+     BUF_X1                       4732
+     BUF_X16                         1
+     BUF_X2                        397
+     BUF_X4                         64
+     BUF_X8                         11
+     CLKBUF_X1                    1142
+     CLKBUF_X2                       1
+     DFF_X1                       7228
+     FA_X1                         289
+     HA_X1                        1171
+     INV_X1                       2396
+     INV_X2                          4
+     INV_X4                          3
+     INV_X8                          1
+     LOGIC0_X1                       1
+     MUX2_X1                     10232
+     MUX2_X2                         9
+     NAND2_X1                     7385
+     NAND2_X2                        2
+     NAND3_X1                     1765
+     NAND3_X2                        1
+     NAND4_X1                      591
+     NAND4_X2                        2
+     NOR2_X1                      4049
+     NOR2_X2                        17
+     NOR3_X1                      1132
+     NOR3_X2                        13
+     NOR4_X1                       789
+     NOR4_X2                         9
+     NOR4_X4                         2
+     OAI211_X2                     184
+     OAI21_X1                     5187
+     OAI21_X2                        5
+     OAI21_X4                        4
+     OAI221_X1                    1176
+     OAI222_X1                      83
+     OAI22_X1                      890
+     OAI33_X1                      184
+     OR2_X1                        701
+     OR2_X2                          1
+     OR3_X1                        226
+     OR3_X2                          3
+     OR4_X1                        154
+     OR4_X2                          3
+     OR4_X4                          3
+     XNOR2_X1                     1021
+     XOR2_X1                      1189
+
+   Chip area for module '\memGenTopLevel': 103934.712000
+
