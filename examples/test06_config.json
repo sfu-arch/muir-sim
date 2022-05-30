@@ -6,7 +6,6 @@
         "numRets"  : 1,
         "numEnts"  : 1,
         "numCtrls" : 1,
-        "numDbgs"  : 0,
         "boreIDs"  : [],
         "dataLen"  : 64,
 

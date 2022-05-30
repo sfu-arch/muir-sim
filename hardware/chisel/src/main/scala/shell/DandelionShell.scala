@@ -885,8 +885,8 @@ class DandelionStreamDebugShell(accelModule: () => DandelionAccelDCRModule)
     * Connecting debug ptrs (first for read, second for write)
     */
   for (i <- 0 until 2*numDbgs by 2) {
-    debug_read_module.get.io.addrDebug(i) := dcr.io.dcr.ptrs(numPtrs + i)
-    debug_write_module.get.io.addrDebug(i) := dcr.io.dcr.ptrs(numPtrs + i+1)
+    debug_read_module.get.io.addrDebug(i/2) := dcr.io.dcr.ptrs(numPtrs + i)
+    debug_write_module.get.io.addrDebug(i/2) := dcr.io.dcr.ptrs(numPtrs + i+1)
   }
 
 

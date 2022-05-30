@@ -95,7 +95,7 @@ class test04DF(PtrsIn: Seq[Int] = List(), ValsIn: Seq[Int] = List(32, 32, 32), R
   val br_10 = Module(new UBranchNode(ID = 10))
 
   //  %sum.0.lcssa = phi i32 [ %a, %entry ], [ %mul, %for.end.loopexit ], !UID !47
-  val phisum_0_lcssa11 = Module(new PhiFastNode(NumInputs = 2, NumOutputs = 1, ID = 11, Res = true))
+  val phisum_0_lcssa11 = Module(new PhiFastNode(NumInputs = 2, NumOutputs = 1, ID = 11, Res = true, Debug = false))
 
   //  ret i32 %sum.0.lcssa, !dbg !46, !UID !48, !BB_UID !49
   val ret_12 = Module(new RetNode2(retTypes = List(32), ID = 12, NumBores = 1, Debug = true))

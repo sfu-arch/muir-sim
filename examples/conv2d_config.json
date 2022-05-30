@@ -2,7 +2,6 @@
     "Accel" : {
         "nameAccel" : "conv2d",
         "numPtrs"  : 3,
-        "numDbgs"  : 0,
         "numVals"  : 4,
         "numRets"  : 0,
         "numEnts"  : 1,

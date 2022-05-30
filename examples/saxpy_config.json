@@ -2,7 +2,6 @@
     "Accel" : {
         "nameAccel" : "saxpy",
         "numPtrs"  : 2,
-        "numDbgs"  : 0,
         "numVals"  : 2,
         "numRets"  : 0,
         "numEnts"  : 1,

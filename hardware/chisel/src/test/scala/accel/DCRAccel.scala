@@ -163,7 +163,6 @@ object DandelionSimDebugAccelMain extends App {
 
   //These are default values for DCR
   var num_ptrs = 0
-  var num_dbgs = 1
   var num_vals = 0
   var num_returns = 1
   var num_events = 1
@@ -185,7 +184,6 @@ object DandelionSimDebugAccelMain extends App {
   args.sliding(2, 2).toList.collect {
     case Array("--accel-name", argAccel: String) => accel_name = argAccel
     case Array("--num-ptrs", argPtrs: String) => num_ptrs = argPtrs.toInt
-    case Array("--num-dbgs", argDbgs: String) => num_dbgs = argDbgs.toInt
     case Array("--num-vals", argVals: String) => num_vals = argVals.toInt
     case Array("--num-rets", argRets: String) => num_returns = argRets.toInt
     case Array("--num-events", argEvent: String) => num_events = argEvent.toInt
@@ -202,12 +200,12 @@ object DandelionSimDebugAccelMain extends App {
     */
   implicit val p =
     new WithDebugSimShellConfig(dLen = data_len, pLog = print_log, cLog = cache_log)(
-      nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls, nDbgs = num_dbgs)
+      nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls, nDbgs = bore_ids.length)
 
-  lazy val accel_module = DandelionTestDebugDCRAccel(accel_name, num_dbgs, bore_ids)
+  lazy val accel_module = DandelionTestDebugDCRAccel(accel_name, bore_ids.length, bore_ids)
   chisel3.Driver.execute(args.take(4) ++ List("--full-stacktrace"),
     () => new DandelionSimDebugAccel(accel_module._1, accel_module._2)
-    (numPtrs = num_ptrs, numDbgs = num_dbgs, numVals = num_vals, numRets = num_returns, numEvents = num_events, numCtrls = num_ctrls))
+    (numPtrs = num_ptrs, numDbgs = bore_ids.length, numVals = num_vals, numRets = num_returns, numEvents = num_events, numCtrls = num_ctrls))
 
 }
 
@@ -231,7 +229,6 @@ object DCRAccelMain extends App {
 
   //These are default values for DCR
   var num_ptrs = 0
-  var num_dbgs = 1
   var num_vals = 0
   var num_returns = 1
   var num_events = 1
@@ -253,7 +250,6 @@ object DCRAccelMain extends App {
   args.sliding(2, 2).toList.collect {
     case Array("--accel-name", argAccel: String) => accel_name = argAccel
     case Array("--num-ptrs", argPtrs: String) => num_ptrs = argPtrs.toInt
-    case Array("--num-dbgs", argDbgs: String) => num_dbgs = argDbgs.toInt
     case Array("--num-vals", argVals: String) => num_vals = argVals.toInt
     case Array("--num-rets", argRets: String) => num_returns = argRets.toInt
     case Array("--num-events", argEvent: String) => num_events = argEvent.toInt
@@ -272,13 +268,13 @@ object DCRAccelMain extends App {
     */
   implicit val p =
     new WithDe10ShellConfig(dLen = data_len, pLog = print_log)(
-      nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls, nDbgs = num_dbgs)
+      nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls, nDbgs = bore_ids.length)
 
-  lazy val accel_module = DandelionTestDebugDCRAccel(accel_name, num_dbgs, bore_ids)
+  lazy val accel_module = DandelionTestDebugDCRAccel(accel_name, bore_ids.length, bore_ids)
 
   val chirrtl = firrtl.Parser.parse(chisel3.Driver.emit(
     () => new DandelionDebugFPGAShell(accel_module._1)(accel_module._2)
-    (numPtrs = num_ptrs, numDbgs = num_dbgs, numVals = num_vals, numRets = num_returns, numEvents = num_events, numCtrls = num_ctrls)))
+    (numPtrs = num_ptrs, numDbgs = bore_ids.length, numVals = num_vals, numRets = num_returns, numEvents = num_events, numCtrls = num_ctrls)))
 
   val verilogFile = new File(dir, s"${chirrtl.main}.v")
   val verilogWriter = new FileWriter(verilogFile)
@@ -300,7 +296,6 @@ object DandelionF1AccelMain extends App {
 
   //These are default values for DCR
   var num_ptrs = 0
-  var num_dbgs = 1
   var num_vals = 0
   var num_returns = 1
   var num_events = 1
@@ -322,7 +317,6 @@ object DandelionF1AccelMain extends App {
   args.sliding(2, 2).toList.collect {
     case Array("--accel-name", argAccel: String) => accel_name = argAccel
     case Array("--num-ptrs", argPtrs: String) => num_ptrs = argPtrs.toInt
-    case Array("--num-dbgs", argDbgs: String) => num_dbgs = argDbgs.toInt
     case Array("--num-vals", argVals: String) => num_vals = argVals.toInt
     case Array("--num-rets", argRets: String) => num_returns = argRets.toInt
     case Array("--num-events", argEvent: String) => num_events = argEvent.toInt
@@ -341,13 +335,13 @@ object DandelionF1AccelMain extends App {
     */
   implicit val p =
     new WithF1ShellConfig(dLen = data_len, pLog = print_log)(
-      nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls, nDbgs = num_dbgs)
+      nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls, nDbgs = bore_ids.length)
 
-  lazy val accel_module = DandelionTestDebugDCRAccel(accel_name, num_dbgs, bore_ids)
+  lazy val accel_module = DandelionTestDebugDCRAccel(accel_name, bore_ids.length, bore_ids)
 
   val chirrtl = firrtl.Parser.parse(chisel3.Driver.emit(
     () => new F1Shell(accel_module._1)(accel_module._2)
-    (nPtrs = num_ptrs, nDbgs = num_dbgs, nVals = num_vals, numRets = num_returns, numEvents = num_events, numCtrls = num_ctrls)))
+    (nPtrs = num_ptrs, nDbgs = bore_ids.length, nVals = num_vals, numRets = num_returns, numEvents = num_events, numCtrls = num_ctrls)))
 
   val verilogFile = new File(dir, s"${chirrtl.main}.v")
   val verilogWriter = new FileWriter(verilogFile)
@@ -367,7 +361,6 @@ object DandelionSimStreamDebugAccelMain extends App {
 
   //These are default values for DCR
   var num_ptrs = 0
-  var num_dbgs = 1
   var num_vals = 0
   var num_returns = 1
   var num_events = 1
@@ -389,7 +382,6 @@ object DandelionSimStreamDebugAccelMain extends App {
   args.sliding(2, 2).toList.collect {
     case Array("--accel-name", argAccel: String) => accel_name = argAccel
     case Array("--num-ptrs", argPtrs: String) => num_ptrs = argPtrs.toInt
-    case Array("--num-dbgs", argDbgs: String) => num_dbgs = argDbgs.toInt
     case Array("--num-vals", argVals: String) => num_vals = argVals.toInt
     case Array("--num-rets", argRets: String) => num_returns = argRets.toInt
     case Array("--num-events", argEvent: String) => num_events = argEvent.toInt
@@ -406,11 +398,11 @@ object DandelionSimStreamDebugAccelMain extends App {
     */
   implicit val p =
     new WithDebugSimShellConfig(dLen = data_len, pLog = print_log, cLog = cache_log)(
-      nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls, nDbgs = num_dbgs * 2)
+      nPtrs = num_ptrs, nVals = num_vals, nRets = num_returns, nEvents = num_events, nCtrls = num_ctrls, nDbgs = bore_ids.length * 2)
 
-  lazy val accel_module = DandelionTestDebugStreamDCRAccel(accel_name, num_dbgs, bore_ids)
+  lazy val accel_module = DandelionTestDebugStreamDCRAccel(accel_name, bore_ids.length, bore_ids)
   chisel3.Driver.execute(args.take(4) ++ List("--full-stacktrace"),
     () => new DandelionSimStreamDebugAccel(accel_module._1, accel_module._2, accel_module._3)
-    (numPtrs = num_ptrs, numDbgs = num_dbgs, numVals = num_vals, numRets = num_returns, numEvents = num_events, numCtrls = num_ctrls))
+    (numPtrs = num_ptrs, numDbgs = bore_ids.length, numVals = num_vals, numRets = num_returns, numEvents = num_events, numCtrls = num_ctrls))
 
 }

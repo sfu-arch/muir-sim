@@ -3,7 +3,6 @@
         "TOP" : "DandelionAccelDebugSim",
         "nameAccel" : "test04",
         "numPtrs"  : 0,
-        "numDbgs"  : 1,
         "numVals"  : 3,
         "numRets"  : 1,
         "numEnts"  : 1,
